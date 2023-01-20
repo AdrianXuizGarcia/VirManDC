@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/VirManDC/Level/Scenes/BasicScene.unity
+    guid: 3bbc175d3de7a4446a46726ae4d84240
+  - enabled: 0
+    path: Assets/VirManDC/Level/Scenes/HandInteractionExamples.unity
+    guid: 3dd4a396b5225f8469b9a1eb608bfa57
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ebbe24bb191cd8c41b48a8afcd73c1e0, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: e05fe3b461a29f34f8625a38cff8e68d, type: 2}
