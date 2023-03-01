@@ -17,11 +17,11 @@ namespace VMDC.AuxiliarConfiguration
 			urlZabbixAPI = urlAPI;
 			urlConfigurationFiles = urlFiles;
 		}
-		
-		public string ipServer { get; set; }
-		public string urlZabbixAPI { get; set;}
-		public string urlConfigurationFiles { get; set;}
-	}
+
+        public string ipServer;
+        public string urlZabbixAPI;
+        public string urlConfigurationFiles;
+    }
 	
     public static class ZabbixConfigFile
     {
@@ -127,7 +127,9 @@ namespace VMDC.AuxiliarConfiguration
 			try
             {
 				string jsonConfig = ReadFile(VMDCPaths.defaultConfigFilePath);
-				ZabbixConfigInfo aux = JsonUtility.FromJson<ZabbixConfigInfo>(jsonConfig);
+                //Debug.Log(jsonConfig);
+                ZabbixConfigInfo aux = JsonUtility.FromJson<ZabbixConfigInfo>(jsonConfig);
+				//Debug.Log(aux.urlZabbixAPI);
 				SetDefaultValues(aux.ipServer,aux.urlZabbixAPI,aux.urlConfigurationFiles);
             }
             catch (Exception e)

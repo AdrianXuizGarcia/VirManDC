@@ -3,33 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using VMDC.Dtos;
 
+	/// <summary>
+    /// This class is used to get the raw data of the architecture, and to
+    /// reload it if necesary. This class also provide several useful functions,
+    /// like setObjectsFromData.
+    /// 
+    /// To check how the data is readed, check ArchitectureXmlManager.
+    /// To check how the data is applied to the GameObjects, check ArchitectureObjectsManager.
+    /// </summary>
 public class ArchitectureGeneralManager : MonoBehaviour
-{
-	/* This class is used to get the raw data of the architecture, and to
-	reload it if necesary. This class also provide several useful functions,
-	like setObjectsFromData.
-	
-	To check how the data is readed, check ArchitectureXmlManager.
-	To check how the data is applied to the GameObjects, check ArchitectureObjectsManager.
-	*/
-	
+{	
 	//[Header("Link to the Manager for objects adjustments")]
 	private ArchitectureObjectsManager objectsManager;
 	private ArchitectureXmlManager xmlManager;
 	private ArchitectureRawData architectureRawData;
 	
-	private ErrorManager errorManager;
+	//private ErrorManager errorManager;
 	private LogInUIElementsController loginController;
 	
     public bool Initialize()
 	{
 		objectsManager = GetComponent<ArchitectureObjectsManager>();
-		errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
-		loginController = GameObject.FindWithTag("LogInController").GetComponent<LogInUIElementsController>();
+		// <-> errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
+		// <-> loginController = GameObject.FindWithTag("LogInController").GetComponent<LogInUIElementsController>();
 		
-		xmlManager = new ArchitectureXmlManager(errorManager, loginController);
+		//xmlManager = new ArchitectureXmlManager(errorManager, loginController);
+		xmlManager = new ArchitectureXmlManager(loginController);
+		Debug.Log("Loading...");
 		LoadArchitectureData();
-		//Debug.Log("Loaded");
+		Debug.Log("Loaded");
 		// If there was a problem with the XML Manager, data is null
 		return !(architectureRawData == null);
 	}
@@ -44,8 +46,8 @@ public class ArchitectureGeneralManager : MonoBehaviour
 		return architectureRawData;
 	}
 	
-	public IEnumerator SetObjectsFromData()
+	public void SetObjectsFromData()
 	{
-		yield return StartCoroutine(objectsManager.SetObjectsFromRawData(architectureRawData));
+		objectsManager.SetObjectsFromRawData(architectureRawData);
 	}
 }

@@ -14,11 +14,11 @@ public class PanelSemaforoMasterManager : MonoBehaviour
 	private List<PanelSemaforoData> panelInterfaceList;
 	private List<SemaforoData> panelSemaforoList;
 	private List<KeyModel> listKeyModel;
-	private ErrorManager errorManager;
+	//private ErrorManager errorManager;
 	
 	void OnEnable()
 	{
-		errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
+		//errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
 		panelSemaforoList = XML_extraMethods.LoadPanelSemaforoModels();
 		panelInterfaceList = XML_extraMethods.LoadInterfacesSemaforosModels();
 		UpdateKeyValueModels();
@@ -41,7 +41,7 @@ public class PanelSemaforoMasterManager : MonoBehaviour
 				//Debug.Log("KEY: "+model.key);
 				SemaforoData model = panelSemaforoList.Find(x => (x.id == semaforo.id));
 				if (model==null){
-					errorManager.NewErrorMessage("ERROR: No semaforo found for semaforo ID '"+semaforo.id+"'. Check if the semaforo exists in "+VMDCPaths.panelSemaforoModelsPath);
+					ErrorManager.NewErrorMessage("ERROR: No semaforo found for semaforo ID '"+semaforo.id+"'. Check if the semaforo exists in "+VMDCPaths.panelSemaforoModelsPath);
 					break;
 				}
 				// Add new data
@@ -62,7 +62,7 @@ public class PanelSemaforoMasterManager : MonoBehaviour
 	{
 		KeyModel model = listKeyModel.Find(x => x.id.Contains(keyID));
 		if (model==null)
-				errorManager.NewErrorMessage("ERROR: No keymodel found for key ID '"+keyID+"'. Check if the keymodel exists in "+VMDCPaths.KeyValueModelsPath);
+				ErrorManager.NewErrorMessage("ERROR: No keymodel found for key ID '"+keyID+"'. Check if the keymodel exists in "+VMDCPaths.KeyValueModelsPath);
 		return model;
 	}
 	
@@ -74,7 +74,7 @@ public class PanelSemaforoMasterManager : MonoBehaviour
 	{
 		PanelSemaforoData data = panelInterfaceList.Find(x => x.id.Contains(type));
 		if (data==null)
-				errorManager.NewErrorMessage("ERROR: No info found for panel slot type '"+type+"'. Check if the type exists in "+VMDCPaths.interfacesSemaforoModelsPath);
+				ErrorManager.NewErrorMessage("ERROR: No info found for panel slot type '"+type+"'. Check if the type exists in "+VMDCPaths.interfacesSemaforoModelsPath);
 		return data;
 	}
 	

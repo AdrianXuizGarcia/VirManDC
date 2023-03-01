@@ -24,9 +24,13 @@ namespace VMDC.Dtos
 			modelsRack = new List<RackModelData>();
 			others = new List<OtherDto>();
 		}
-		public float sizeX;
-		public float sizeZ;
-		public CameraSettings cameraSettings;
+		public float scalePosX;
+        public float scaleX;
+        public float scalePosZ;
+        public float scaleZ;
+		public float rotPosX;
+		public float rotPosZ;
+        public CameraSettings cameraSettings;
 		public List<RackDto> racks;
 		public List<RackModelData> modelsRack;
 		public List<OtherDto> others;
@@ -63,7 +67,9 @@ namespace VMDC.Dtos
 		public int rackID;
 		public string name;
 		public string model;
-		public string graphics;
+		public string modelB;
+		public string graphicsM;
+		public string graphicsBM;
 		public float posX;
 		public float posY;
 		public float posZ;
@@ -236,4 +242,13 @@ namespace VMDC.Dtos
 		public string imageName;
 		public bool isVMButton;
 	}
+
+	public class RackBasicData {
+		public RackBasicData(Transform t, string n){
+            this.transform = t;
+            this.rackName = n;
+        }
+        public Transform transform;
+        public string rackName;
+    }
 }

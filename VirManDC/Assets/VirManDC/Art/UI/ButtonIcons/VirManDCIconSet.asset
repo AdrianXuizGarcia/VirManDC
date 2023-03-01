@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb41c8335e2ca96449f3991db5fa5702, type: 3}
+  m_Name: VirManDCIconSet
+  m_EditorClassIdentifier: 
+  quadIcons:
+  - {fileID: 2800000, guid: 62817e34603ddc94999b300795c789d1, type: 3}
+  - {fileID: 2800000, guid: bfceaffbbf6566f49b737928b2f131b6, type: 3}
+  - {fileID: 2800000, guid: 58034dec739276348b8cc46f469b0621, type: 3}
+  - {fileID: 2800000, guid: 6372e0eeba0386240b3a21e8bb3e1a2d, type: 3}
+  - {fileID: 2800000, guid: c86f8ff820563cf478d3e480d64271cb, type: 3}
+  - {fileID: 2800000, guid: 0a109221c28960b42b184de7d928aa51, type: 3}
+  - {fileID: 2800000, guid: 6e9016af31bbc95408a8bc35ead6a99a, type: 3}
+  - {fileID: 2800000, guid: d3e9691df30cb24458f0d94ea7d03f71, type: 3}
+  - {fileID: 2800000, guid: 0e302797fc4b0d340b834d5e315d003b, type: 3}
+  - {fileID: 2800000, guid: 2b58c8124f806bf498f86a9e3ec9a665, type: 3}
+  - {fileID: 2800000, guid: 6ee0bcef907249040943f23a14164ce2, type: 3}
+  - {fileID: 2800000, guid: 20fe56419fb5d164ba641f915b31930f, type: 3}
+  - {fileID: 2800000, guid: ffce2e6d53c2ede4e99b277c114e58d3, type: 3}
+  - {fileID: 2800000, guid: 99f7b9061c0aad7429dc0847a35b7c91, type: 3}
+  - {fileID: 2800000, guid: b8ece71bc7a8f754a8087bdd1cf2be04, type: 3}
+  - {fileID: 2800000, guid: 611d73110357d124daacec43c71bc3a7, type: 3}
+  - {fileID: 2800000, guid: 2b58c8124f806bf498f86a9e3ec9a665, type: 3}
+  - {fileID: 2800000, guid: ac02fc20707508640bc0e4d427e092db, type: 3}
+  spriteIcons: []
+  charIconFont: {fileID: 0}
+  charIcons:
+  - Name: AppBarAdjust
+    Character: 60370
+  - Name: AppBarClose
+    Character: 59153
+  - Name: AppBarDone
+    Character: 59643
+  - Name: AppBarHide
+    Character: 59244
+  - Name: AppBarShow
+    Character: 59154
+  - Name: AppBarHome
+    Character: 60175

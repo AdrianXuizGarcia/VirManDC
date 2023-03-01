@@ -10,16 +10,21 @@ public class Inicio : MonoBehaviour
     public GameObject guiSlotServerTest;
     public float rotationGui = 290;
 
+    public bool callForArchitecture = true;
+
+    public ArchitectureGeneralManager architectureGeneralManager;
+
     void Start()
     {
         selectRack.SetActive(false);
-        guiSlot.SetActive(false);
+        //guiSlot.SetActive(false);
 
         //guiSlotServerTest.SetActive(false);
-        guiSlotServerTest.transform.Rotate(0.0f, rotationGui, 0.0f);
-
-
-
+        //guiSlotServerTest.transform.Rotate(0.0f, rotationGui, 0.0f);
+        if (architectureGeneralManager && callForArchitecture) {
+            architectureGeneralManager.Initialize();
+            architectureGeneralManager.SetObjectsFromData();
+        }
     }
 
 }

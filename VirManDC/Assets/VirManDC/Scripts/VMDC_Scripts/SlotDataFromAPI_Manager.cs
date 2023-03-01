@@ -13,11 +13,11 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 	
 	private ZabbixPetitions apiPetitions;
 	private HostsZabbixData hostsData;
-	private ErrorManager errorManager;
+	//private ErrorManager errorManager;
 	
 	void OnEnable()
 	{
-		errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
+		//errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
 		apiPetitions = GameObject.FindGameObjectWithTag("ZabbixPetitions").GetComponent<ZabbixPetitions>();
 	}
 	
@@ -44,7 +44,7 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 	{
 		yield return StartCoroutine(apiPetitions.getHostsData((HostsZabbixData aux) => hostsData=aux));
 		if (hostsData == null)
-			errorManager.NewErrorMessage("ERROR: The HostsData couldnt be readed. Are you logged?");
+			ErrorManager.NewErrorMessage("ERROR: The HostsData couldnt be readed. Are you logged?");
 	}
 	
 	public IEnumerator GetHostGroupID(string hostname,Action<string> callback)
@@ -68,9 +68,9 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 		component. Beware: you have to had called UpdateHostData at least once.
 	*/
 	{
-		// If no hostsData is found (UpdateHostsData didnt called or check Architecture mode)
+		// If no hostsData is found (UpdateHostsData wasnt called or check Architecture mode)
 		if (hostsData == null) {
-			errorManager.NewErrorMessage("ERROR: The HostsData couldnt be readed. Slot will be empty");
+			ErrorManager.NewErrorMessage("ERROR: The HostsData couldnt be readed. Slot will be empty");
 			slotDaC.checkSlotDemoMode = true;
 		} else {
 			// If the hostID is null, we search from IP. If not, we get the IP from the host
@@ -82,7 +82,7 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 			if (slotDaC.hostID==""||slotDaC.ip=="")
 			{
 				slotDaC.slotIsDeactivated = true;
-				errorManager.NewErrorMessage("ERROR: A host couldnt be found for this IP/hostID: '"+ip+hostID+"'. Make sure the IP/hostID is correct");
+				ErrorManager.NewErrorMessage("ERROR: A host couldnt be found for this IP/hostID: '"+ip+hostID+"'. Make sure the IP/hostID is correct");
 			}
 		}
 	}

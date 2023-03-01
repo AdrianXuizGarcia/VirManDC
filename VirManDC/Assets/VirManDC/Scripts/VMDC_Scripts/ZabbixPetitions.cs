@@ -340,7 +340,8 @@ public class ZabbixPetitions : MonoBehaviour
 			// First we set the url 
 			var url = "http://" + ZabbixConfig.ipServer + "/" + ZabbixConfig.urlZabbixAPI;
 			string jsonParams = JsonUtility.ToJson(zbxRequest);
-			//Debug.Log(jsonParams);
+			Debug.Log("Params:"+jsonParams);
+			Debug.Log("URL:"+url);
 			
 			// Make a new POST request with the params we have set
 			var www = new UnityWebRequest(url, "POST");

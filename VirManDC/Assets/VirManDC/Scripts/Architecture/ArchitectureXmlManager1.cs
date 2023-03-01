@@ -7,7 +7,6 @@ using System.Globalization;
 using VMDC.Dtos;
 using VMDC.Constants;
 
-public class ArchitectureXmlManager {
 	/// <summary>
     /// This class is used ONLY to read the XML file and return the data it contains 
     /// to the main program.
@@ -15,32 +14,35 @@ public class ArchitectureXmlManager {
     /// To access the data and general functions, check ArchitectureGeneralManager. 
     /// To check how the data is applied to the GameObjects, check ArchitectureObjectsManager.
     /// </summary>
-
+public class ArchitectureXmlManager 
+{
 	//private string architecturePath = "ExtraFiles/Architecture.xml";
 	//private string modelsRackPath = "ExtraFiles/RackDataModels.xml";
-	private ErrorManager errorManager;
+	//private ErrorManager errorManager;
 	private LogInUIElementsController loginController;
 	
-	public ArchitectureXmlManager(ErrorManager eM, LogInUIElementsController lC)
+	public ArchitectureXmlManager(LogInUIElementsController lC)
 	{
-		errorManager = eM;
+		//errorManager = eM;
 		loginController = lC;
 	}
 	
+	/// <summary>
+    /// Load the architecture of the racks site.
+    /// First we search the PlaceDescription, then each one of the racks,
+    /// and for each rack, the slots that are in it.
+    /// 
+    /// Everything will be in a ArchitectureRawData that will be returned to the
+    /// main program.
+    /// This function only reads data and put it on the ArchitectureData object.
+    /// </summary>
 	public ArchitectureRawData LoadArchitectureFromXml()
-	/* 
-		Load the architecture of the racks site.
-		First we search the PlaceDescription, then each one of the racks,
-		and for each rack, the slots that are in it.
-		Everything will be in a ArchitectureRawData that will be returned to the
-		main program.
-		This function only reads data and put it on the ArchitectureData object.
-	*/
 	{
 		ArchitectureRawData data = new ArchitectureRawData();
 		LoadRackModels(data);
-		XmlReader reader = XmlReader.Create(VMDCPaths.architecturePath);
-		//ErrorManager errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
+        //Debug.Log(VMDCPaths.architecturePath);
+        XmlReader reader = XmlReader.Create(VMDCPaths.architecturePath);
+		// <-> ErrorManager errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
 		
 		try 
 		{
@@ -49,8 +51,12 @@ public class ArchitectureXmlManager {
 				//Debug.Log(reader.Name);
 				// Read first line. Contains the place definition (size)
 				if (reader.Name.ToLower() == "placedescription") {
-						data.sizeX = float.Parse(reader.GetAttribute(0),CultureInfo.InvariantCulture);
-						data.sizeZ = float.Parse(reader.GetAttribute(1),CultureInfo.InvariantCulture);
+						data.scalePosX = float.Parse(reader.GetAttribute(0),CultureInfo.InvariantCulture);
+						data.scaleX = float.Parse(reader.GetAttribute(1),CultureInfo.InvariantCulture);
+						data.scalePosZ = float.Parse(reader.GetAttribute(2),CultureInfo.InvariantCulture);
+						data.scaleZ = float.Parse(reader.GetAttribute(3),CultureInfo.InvariantCulture);
+						data.rotPosX = float.Parse(reader.GetAttribute(4),CultureInfo.InvariantCulture);
+						data.rotPosZ = float.Parse(reader.GetAttribute(5),CultureInfo.InvariantCulture);
 				}
 				// Read the camera seetings
 				if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "camerasettings") {
@@ -58,13 +64,13 @@ public class ArchitectureXmlManager {
 					while (reader.NodeType != XmlNodeType.EndElement){
 						reader.Read();
 						if (reader.Name.ToLower() == "posx")
-							cameraSettings.posX = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							cameraSettings.posX = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "posy")
-							cameraSettings.posY = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							cameraSettings.posY = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "posz")
-							cameraSettings.posZ = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							cameraSettings.posZ = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "rotation")
-							cameraSettings.rotation = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							cameraSettings.rotation = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 					}
 					data.cameraSettings = cameraSettings;
 				}
@@ -79,13 +85,13 @@ public class ArchitectureXmlManager {
 					while (reader.NodeType != XmlNodeType.EndElement){
 						reader.Read();
 						if (reader.Name.ToLower() == "posx")
-							other.posX = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							other.posX = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "posy")
-							other.posY = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							other.posY = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "posz")
-							other.posZ = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							other.posZ = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "rotation")
-							other.rotation = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							other.rotation = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 					}
 					data.others.Add(other);
 					reader.Read();
@@ -96,18 +102,20 @@ public class ArchitectureXmlManager {
 					rack.rackID = int.Parse(reader.GetAttribute(0));
 					rack.name = reader.GetAttribute(1);
 					rack.model = reader.GetAttribute(2);
-					rack.graphics = reader.GetAttribute(3);
+					rack.modelB = reader.GetAttribute(3);
+					rack.graphicsM = reader.GetAttribute(4);
+					rack.graphicsBM = reader.GetAttribute(5);
 					// For the rest of the elements, we read each node
 					while (reader.NodeType != XmlNodeType.EndElement){
 						reader.Read();
 						if (reader.Name.ToLower() == "posx")
-							rack.posX = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							rack.posX = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "posy")
-							rack.posY = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							rack.posY = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "posz")
-							rack.posZ = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							rack.posZ = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "rotation")
-							rack.rotation = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							rack.rotation = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 					}
 					reader.Read();
 					// Read Slots: first the attributes
@@ -126,10 +134,10 @@ public class ArchitectureXmlManager {
 							while (reader.NodeType != XmlNodeType.EndElement){
 								reader.Read();
 								if (reader.Name.ToLower() == "slotid"){
-									slot.slotID = getItemFromReader(reader);
+									slot.slotID = GetItemFromReader(reader);
 								}
 								if (reader.Name.ToLower() == "posy")
-									slot.posY = int.Parse(getItemFromReader(reader));
+									slot.posY = int.Parse(GetItemFromReader(reader));
 							}
 							rack.rackSlots.Add(slot);
 						}//end slot if
@@ -141,13 +149,13 @@ public class ArchitectureXmlManager {
 			return data;
 		} catch (XmlException e)
 		{
-			errorManager.NewErrorMessage("Error while reading '"+VMDCPaths.architecturePath+"':\n"+e.Message);
+			ErrorManager.NewErrorMessage("Error while reading '"+VMDCPaths.architecturePath+"':\n"+e.Message);
 			loginController.DeactivateInitialButtons();
 			return null;
 		}
 	}
 	
-	private string getItemFromReader (XmlReader reader)
+	private string GetItemFromReader (XmlReader reader)
 	/* Auxiliar function for LoadArchitecture */
 	{	
 		string item = String.Empty;
@@ -170,10 +178,11 @@ public class ArchitectureXmlManager {
 		This function only reads data and put it on the ArchitectureData object.
 	*/
 	{
-		XmlReader reader = XmlReader.Create(VMDCPaths.modelsRackPath);
+		
 		
 		try
 		{
+			XmlReader reader = XmlReader.Create(VMDCPaths.modelsRackPath);
 			while (reader.Read())
 			{
 				// Read Racks: first the attributes
@@ -184,27 +193,27 @@ public class ArchitectureXmlManager {
 					while (reader.NodeType != XmlNodeType.EndElement){
 						reader.Read();
 						if (reader.Name.ToLower() == "spaceinitservers1u")
-							modelData.espacioInicioServers1u = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							modelData.espacioInicioServers1u = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "space1uy")
-							modelData.espacio1uY = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							modelData.espacio1uY = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "spacerackx")
-							modelData.espacioRackX = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							modelData.espacioRackX = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "spacerackz")
-							modelData.espacioRackZ = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							modelData.espacioRackZ = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "spaceinitcanvas1u")
-							modelData.espacioInicioCanvas1u = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);
+							modelData.espacioInicioCanvas1u = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "sizeyrack")
-							modelData.size = int.Parse(getItemFromReader(reader));
+							modelData.size = int.Parse(GetItemFromReader(reader));
 						/*if (reader.Name.ToLower() == "scalerack1u")
-							modelData.scalerack1u = float.Parse(getItemFromReader(reader),CultureInfo.InvariantCulture);*/
+							modelData.scalerack1u = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);*/
 					}
 					data.modelsRack.Add(modelData);
 					reader.Read();
 				}
 			}
-		} catch (XmlException e)
+		} catch (Exception e)
 		{
-			errorManager.NewErrorMessage("Error while reading '"+VMDCPaths.modelsRackPath+"':\n"+e.Message);
+			ErrorManager.NewErrorMessage("Error while reading '"+VMDCPaths.modelsRackPath+"':\n"+e.Message);
 			loginController.DeactivateInitialButtons();
 		}
 		//return data;

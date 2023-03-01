@@ -21,10 +21,10 @@ public class ServerAnim : MonoBehaviour
     }
 
     public void OpenServerAnim(){
-        if (serverIsOpen)
+        /*if (serverIsOpen)
             Debug.Log("Cerrando server");
         else
-            Debug.Log("Abriendo server");
+            Debug.Log("Abriendo server");*/
         animator.SetBool("ServerIsOpen", !serverIsOpen);
         serverIsOpen = !serverIsOpen;
         boxCollider.enabled = !boxCollider.enabled;
