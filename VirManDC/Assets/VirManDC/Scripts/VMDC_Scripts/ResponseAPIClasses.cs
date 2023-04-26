@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -114,7 +115,7 @@ namespace ResponseAPIClasses
 		public string result { get; set; }
 		public int id { get; set; }
 	}
-
+	
 	public class ResponseItems
 	{
 		public string jsonrpc = "2.0";
@@ -129,6 +130,5 @@ namespace ResponseAPIClasses
 		public string name { get; set; }
 		public string lastvalue { get; set; }
 	}
-	
 	
 }

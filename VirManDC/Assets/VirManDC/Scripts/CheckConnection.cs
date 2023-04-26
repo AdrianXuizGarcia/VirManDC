@@ -65,27 +65,32 @@ public class CheckConnection : MonoBehaviour
 		ZabbixConfig.authKey = responseString;
 	}
     		
-		// Auxiliar method to manage the error messages from the UnityWebRequest
-		private string ManageErrorFromWebRequest(UnityWebRequest www){
-			Debug.Log("<color=red>ERROR</color>: Problem with API Zabbix");
-			switch (www.result)
-			{
-				case UnityWebRequest.Result.ConnectionError:
-					display.text="Failed to communicate with the server";
-					break;
-				case UnityWebRequest.Result.ProtocolError:
-					display.text="The server returned an error response";
-					break;
-				case UnityWebRequest.Result.DataProcessingError:
-					display.text="Error processing data";
-					break;
-				default:
-					display.text="Net error";
-					break;
-			}
-			Debug.Log($"Detailed Error: {www.error}");			
-			//callback(www.error);
-			return "";
-		}
+    // Auxiliar method to manage the error messages from the UnityWebRequest
+    private string ManageErrorFromWebRequest(UnityWebRequest www){
+        Debug.Log("<color=red>ERROR</color>: Problem with API Zabbix");
+        switch (www.result)
+        {
+            case UnityWebRequest.Result.ConnectionError:
+                display.text="Failed to communicate with the server";
+                break;
+            case UnityWebRequest.Result.ProtocolError:
+                display.text="The server returned an error response";
+                break;
+            case UnityWebRequest.Result.DataProcessingError:
+                display.text="Error processing data";
+                break;
+            default:
+                display.text="Net error";
+                break;
+        }
+        Debug.Log($"Detailed Error: {www.error}");			
+        //callback(www.error);
+        return "";
+    }
+
+    public void MakeWarningsPetition(){
+        StartCoroutine(apiPetitions.AllWarningsPetition(null,null));
+    }
+
 
 }

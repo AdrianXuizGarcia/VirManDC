@@ -31,9 +31,9 @@ public class SlotRackInteraction : MonoBehaviour
 	public Behaviour slotHalo;
 	
 	// WIP -> Mejor 2 distintos, o tener la misma e ir activando y desactivando mediante un controlador? Mejor eficiencia
-	//public GameObject panelSemaforosObject;
+	//public GameObject indicatorPanelControllerObject;
 	//private List<ScriptSemaforo> scriptsSemaforos = new List<ScriptSemaforo>();
-	public PanelSemaforoManager panelSemaforos;
+	public IndicatorPanelController indicatorPanelController;
 	
 	private bool vmUpdated = false;
 	private bool vmNotInitialized = false;
@@ -84,7 +84,7 @@ public class SlotRackInteraction : MonoBehaviour
 				slotDaC.hostname = originalHostname;
 				slotDaC.dataApiSchema = originalDataApiSchema;
 				//vmUpdated = false;
-				panelSemaforos.IsVmCanvas(false);
+				indicatorPanelController.IsVmCanvas(false);
 			}
 			slotAnimation.DoAnimation(slotIsClosed);
 			slotIsClosed=!slotIsClosed;
@@ -114,7 +114,7 @@ public class SlotRackInteraction : MonoBehaviour
 		//Debug.Log("Defined: "+isDataApiSchemaDefined);
 		
 		// First time, so we read the semaforos values and save the application and keys configuration
-		slotDaC.dataApiSchema = panelSemaforos.StartPanelAndSaveApiSchema(type);
+		slotDaC.dataApiSchema = indicatorPanelController.StartPanelAndSaveApiSchema(type);
 		
 		if (!isDataApiSchemaDefined)
 			originalDataApiSchema = slotDaC.dataApiSchema;
@@ -128,9 +128,9 @@ public class SlotRackInteraction : MonoBehaviour
 			DeactivateSlotGraphics();
 		}
 		
-		// Make the list with the children objects of panelSemaforosObject, in order to 
+		// Make the list with the children objects of indicatorPanelControllerObject, in order to 
 		// update their data later
-		/*foreach (Transform child in panelSemaforosObject.transform)
+		/*foreach (Transform child in indicatorPanelControllerObject.transform)
 		{
 			//Debug.Log(child.gameObject.name);
 			ScriptSemaforo script = child.gameObject.GetComponent<ScriptSemaforo>();
@@ -203,7 +203,7 @@ public class SlotRackInteraction : MonoBehaviour
 		//Debug.Log("Waiting for semaforos update...");
 		//auxCanvas.SetActive(true);
 		//yield return StartCoroutine("UpdateDataButtons");
-		yield return StartCoroutine(panelSemaforos.UpdateDataButtons());
+		yield return StartCoroutine(indicatorPanelController.UpdateDataButtons());
 		//Debug.Log("Data retrieved!");
 		
 		loadingIcon.SetActive(false);
@@ -258,7 +258,7 @@ public class SlotRackInteraction : MonoBehaviour
 		slotDaC.hostname = vmHostname;
 		slotDaC.dataApiSchema = vmDataApiSchema;
 		UpdateAllData();
-		panelSemaforos.IsVmCanvas(true);
+		indicatorPanelController.IsVmCanvas(true);
 	}
 	
 	public GameObject GetPanelCanvas()

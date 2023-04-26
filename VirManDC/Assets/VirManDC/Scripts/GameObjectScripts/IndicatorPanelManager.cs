@@ -5,10 +5,10 @@ using AuxiliarMethods;
 using VMDC.Dtos;
 using VMDC.Constants;
 
-public class PanelSemaforoMasterManager : MonoBehaviour
-/*
-	There is only one script instance. Has the info from the xml's.
-*/
+/// <summary>
+/// There is only one script instance. Has the info from the xml's.
+/// </summary>
+public class IndicatorPanelManager : MonoBehaviour
 {
 	
 	private List<PanelSemaforoData> panelInterfaceList;

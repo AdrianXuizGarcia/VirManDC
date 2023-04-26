@@ -6,13 +6,13 @@ using AuxiliarMethods;
 using VMDC.Dtos;
 using VMDC.Constants;
 
-public class PanelSemaforoManager : MonoBehaviour
+public class IndicatorPanelController : MonoBehaviour
 /*
 	There is one script instance for each slot
 */
 {
 	
-	private PanelSemaforoMasterManager panelSemaforoMasterManager;
+	private IndicatorPanelManager indicatorPanelManager;
 	private PanelSemaforoData normalPanelData;
 	private PanelSemaforoData vmPanelData;
 	
@@ -67,8 +67,8 @@ public class PanelSemaforoManager : MonoBehaviour
 	*/
 	{
 		// Get the data asociated with the type
-		panelSemaforoMasterManager = GameObject.FindWithTag("PanelSemaforoMasterManager").GetComponent<PanelSemaforoMasterManager>();
-		PanelSemaforoData panelData = panelSemaforoMasterManager.GetPanelData(type);
+		indicatorPanelManager = GameObject.FindWithTag("IndicatorPanelManager").GetComponent<IndicatorPanelManager>();
+		PanelSemaforoData panelData = indicatorPanelManager.GetPanelData(type);
 		if (panelData != null) {
 			ApplyPanelSettings(panelData);
 			// To check if is vm type

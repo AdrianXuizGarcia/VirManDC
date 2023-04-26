@@ -9,6 +9,8 @@ TagManager:
   - API_Controller
   - ZabbixPetitions
   - ArchitectureController
+  - MainCanvas
+  - IndicatorPanelManager
   layers:
   - Default
   - TransparentFX

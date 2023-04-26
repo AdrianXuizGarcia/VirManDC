@@ -7,7 +7,7 @@ public class FrontSlotController : MonoBehaviour
     [SerializeField]
     private GameObject basicMenuGUI;
     [SerializeField]
-    private ArchitectureSlotData architectureSlotData;
+    private SlotData slotData;
 
     private ListOfComponentsGUI listOfComponentsGUI;
 
@@ -17,7 +17,9 @@ public class FrontSlotController : MonoBehaviour
     }
 
     public void ChangeMenuState(){
-        basicMenuGUI.SetActive(!basicMenuGUI.activeSelf);
-        listOfComponentsGUI.changeSlotName(architectureSlotData.slotName);
+        // TODO: Fix interaction with close menu button
+        //basicMenuGUI.SetActive(!basicMenuGUI.activeSelf);
+        basicMenuGUI.SetActive(true);
+        listOfComponentsGUI.changeSlotName(slotData.slotName);
     }
 }

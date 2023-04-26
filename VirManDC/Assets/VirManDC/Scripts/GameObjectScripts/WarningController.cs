@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VMDC.Dtos;
@@ -7,9 +8,9 @@ using VMDC.Dtos;
 public class WarningController : MonoBehaviour
 {
     public GameObject warningPanel;
-	public GameObject warningCanvas;
+	public GameObject warningMainPanel;
 	public Text warningChangeButton;
-    public Text warningText;
+    public TextMeshProUGUI warningText;
 	
 	private Color orange = new Color32(255, 128, 8, 230);
 	private Color red = new Color32(236, 9, 0, 230);
@@ -38,7 +39,7 @@ public class WarningController : MonoBehaviour
 		warningDataList = newDataList;
 		// WIP
 		if (warningDataList == null){
-			warningCanvas.SetActive(false);
+			warningMainPanel.SetActive(false);
 		}
 		else {
 			UpdateUI();
@@ -54,9 +55,9 @@ public class WarningController : MonoBehaviour
 	
 	private void UpdateUI(){
 		WarningLastData warningData = warningDataList[actualWarning-1];
-		SetColorViaSeverity(warningData.priority);
+		//SetColorViaSeverity(warningData.priority);
         warningText.text = warningData.warningDescription;
-		warningChangeButton.text = actualWarning+"/"+ warningDataList.Count;
-		warningCanvas.SetActive(true);
+		//warningChangeButton.text = actualWarning+"/"+ warningDataList.Count;
+		warningMainPanel.SetActive(true);
 	}
 }

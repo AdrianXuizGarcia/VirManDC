@@ -12,7 +12,7 @@ public class ScriptSemaforo : MonoBehaviour {
     public int buttonID;
     private ScriptPanelInfo scriptPanel;
 	
-	private PanelSemaforoManager panelSemaforoManager;
+	private IndicatorPanelController indicatorPanelcontroller;
 	
     public SlotDataAndControl slotDataAndControl;
 	
@@ -43,10 +43,10 @@ public class ScriptSemaforo : MonoBehaviour {
 	
 	private void Inicialize()
 	{
-		panelSemaforoManager = gameObject.GetComponentInParent<ControllersList>().panelSemaforoManager;
-		if (panelSemaforoManager==null)
+		indicatorPanelcontroller = gameObject.GetComponentInParent<ControllersList>().indicatorPanelcontroller;
+		if (indicatorPanelcontroller==null)
 			Debug.Log("LOL");
-		scriptPanel = panelSemaforoManager.GetScriptPanelInfo();
+		scriptPanel = indicatorPanelcontroller.GetScriptPanelInfo();
 		
 		//errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
 		errorIcon = transform.GetChild(3).gameObject;
@@ -111,7 +111,7 @@ public class ScriptSemaforo : MonoBehaviour {
 	public void Clicking()
 	{
 		if (!buttonDeactivated) {
-			if (panelSemaforoManager.ButtonWithIDHasBeenPressed(buttonID))
+			if (indicatorPanelcontroller.ButtonWithIDHasBeenPressed(buttonID))
 				StartCoroutine("UpdateDataButtonAndPanel");
 		}
 	}
@@ -126,7 +126,7 @@ public class ScriptSemaforo : MonoBehaviour {
 		if (!initialized)
 			Inicialize();
 
-		panelSemaforoManager.RestoreErrorText();
+		indicatorPanelcontroller.RestoreErrorText();
 		if (buttonDeactivated)
 			ActivateButton();
 		
@@ -173,7 +173,7 @@ public class ScriptSemaforo : MonoBehaviour {
     {
 		if (dataList.Count==0) {
 			DeactivateButton();
-			panelSemaforoManager.SetErrorText("\nError: no values returned from API");
+			indicatorPanelcontroller.SetErrorText("\nError: no values returned from API");
 		} else {
 			//scriptPanel.ClearList();
 			foreach (InfoApi data in dataList) {
@@ -204,7 +204,7 @@ public class ScriptSemaforo : MonoBehaviour {
 			if (icon_image.fillAmount > 0.8f) icon_halo.enabled = true; else icon_halo.enabled = false;
 		} else {
 			errorIcon.SetActive(true);
-			panelSemaforoManager.SetErrorText("\nError: no value found for key '"+buttonKeyData.keyModel.id+"'");
+			indicatorPanelcontroller.SetErrorText("\nError: no value found for key '"+buttonKeyData.keyModel.id+"'");
 			icon_text.text = "Error";
 		}
 		yield return null;
@@ -227,6 +227,6 @@ public class ScriptSemaforo : MonoBehaviour {
 	
 	public void ManageErrorPanel()
 	{
-		panelSemaforoManager.ManageErrorPanel();
+		indicatorPanelcontroller.ManageErrorPanel();
 	}
 }

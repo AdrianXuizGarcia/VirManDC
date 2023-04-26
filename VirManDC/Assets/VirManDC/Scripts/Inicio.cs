@@ -11,6 +11,8 @@ public class Inicio : MonoBehaviour
     public float rotationGui = 290;
 
     public bool callForArchitecture = true;
+    public bool callForZabbixData = true;
+    public SlotDataFromAPI_Manager slotDFAM;
 
     public ArchitectureGeneralManager architectureGeneralManager;
 
@@ -25,6 +27,17 @@ public class Inicio : MonoBehaviour
             architectureGeneralManager.Initialize();
             architectureGeneralManager.SetObjectsFromData();
         }
+        if (slotDFAM && callForZabbixData) {
+            StartCoroutine(UpdateDataCoroutine());
+        }
     }
+
+    private IEnumerator UpdateDataCoroutine(){
+        yield return StartCoroutine(slotDFAM.UpdateHostsData());
+        //Debug.Log("Data updated!");
+        //Debug.Log(slotDFAM.hostsData);
+    }
+
+    
 
 }

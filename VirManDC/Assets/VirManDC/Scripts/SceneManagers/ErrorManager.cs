@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class ErrorManager : MonoBehaviour
+public class ErrorManager
 {
     public static ErrorManager Instance;
     public static event Action<string> OnNewError;
@@ -11,6 +11,12 @@ public class ErrorManager : MonoBehaviour
     }
 
     public static void NewErrorMessage(string s)
+	{	
+		Debug.Log("<color=red>VMDC ERROR: </color>"+s);
+        OnNewError?.Invoke(s);
+    }
+
+    public static void NewErrorMessageThrowException(string s)
 	{	
 		Debug.Log("<color=red>VMDC ERROR: </color>"+s);
         OnNewError?.Invoke(s);

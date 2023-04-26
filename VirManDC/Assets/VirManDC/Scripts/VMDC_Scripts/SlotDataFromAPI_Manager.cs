@@ -10,15 +10,16 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 		This class is used to get and store the data from the 
 		Zabbix API through ApiZabbixPetitions.
 	*/
-	
+	[SerializeField]
 	private ZabbixPetitions apiPetitions;
-	private HostsZabbixData hostsData;
+
+	public HostsZabbixData hostsData;
 	//private ErrorManager errorManager;
 	
 	void OnEnable()
 	{
 		//errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
-		apiPetitions = GameObject.FindGameObjectWithTag("ZabbixPetitions").GetComponent<ZabbixPetitions>();
+		//apiPetitions = GameObject.FindGameObjectWithTag("ZabbixPetitions").GetComponent<ZabbixPetitions>();
 	}
 	
 	public IEnumerator GetMainDataFromApi(DataApiSchema dataApiSchema, string hostID, Action<DataApiContainer> callback)
@@ -33,6 +34,15 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 	{
 		List<WarningLastData> returnedWarningData = null;
 		yield return StartCoroutine(apiPetitions.WarningsPetition(hostID,(List<WarningLastData> aux) => returnedWarningData=aux));
+		callback(returnedWarningData);
+		//return apiPetitions.WarningsPetition(hostID);
+	}
+
+	// TODO
+	public IEnumerator GetAllWarningsData(string hostID, Action<List<WarningLastData>> callback)
+	{
+		List<WarningLastData> returnedWarningData = null;
+		yield return StartCoroutine(apiPetitions.AllWarningsPetition(hostID,(List<WarningLastData> aux) => returnedWarningData=aux));
 		callback(returnedWarningData);
 		//return apiPetitions.WarningsPetition(hostID);
 	}
@@ -62,35 +72,55 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 		callback(vmList);
 	}
 	
-	public void SetHostsDataToSlotData(SlotDataAndControl slotDaC, string hostID, string ip)
-	/* 
-		This function sets the dataHost parameters into the SlotDataAndControl
-		component. Beware: you have to had called UpdateHostData at least once.
-	*/
+	/// <summary>
+	/// This function sets the dataHost parameters into the SlotDataAndControl
+	///	component. Beware: you have to had called UpdateHostsData at least once.
+    /// </summary>
+    /// <param name="slotData"></param>
+    /// <param name="slotControl"></param>
+	public void SetHostsDataToSlotData(SlotData slotData, SlotControl slotControl)
 	{
 		// If no hostsData is found (UpdateHostsData wasnt called or check Architecture mode)
 		if (hostsData == null) {
 			ErrorManager.NewErrorMessage("ERROR: The HostsData couldnt be readed. Slot will be empty");
-			slotDaC.checkSlotDemoMode = true;
+			slotControl.checkSlotDemoMode = true;
 		} else {
-			// If the hostID is null, we search from IP. If not, we get the IP from the host
-			if (hostID=="")
-				GetHostIDFromIP(slotDaC,ip);
-			else
-				GetIPFromHostID(slotDaC,hostID);
+			bool found = GetHostIDorIPFromSlotID(slotData);
 			// If we didnt found a host for the IP, deactivate the slot
-			if (slotDaC.hostID==""||slotDaC.ip=="")
-			{
-				slotDaC.slotIsDeactivated = true;
-				ErrorManager.NewErrorMessage("ERROR: A host couldnt be found for this IP/hostID: '"+ip+hostID+"'. Make sure the IP/hostID is correct");
+			if (!found){
+				slotControl.slotIsDeactivated = true;
+				ErrorManager.NewErrorMessage("ERROR: A host couldnt be found for this IP/hostID: '"+slotData.slotID+"'. Make sure the IP/hostID is correct");
 			}
 		}
 	}
 	
-	private void GetHostIDFromIP(SlotDataAndControl slotDaC, string ip)
+	private bool GetHostIDorIPFromSlotID(SlotData slotData)
 	/*
 		Search the IP in the list of hosts, and asign the data
 	*/
+	{
+        HostZabbixData foundHostData = null;
+        // Assign first, then check 
+        foreach (HostZabbixData hostData in hostsData.listHosts)
+        {
+            if (slotData.slotID == hostData.hostIP || slotData.slotID == hostData.hostID)
+                foundHostData = hostData;
+            //Debug.Log("Comparado '" + slotData.slotID + "' con '" + hostData.hostID + "/" + hostData.hostIP+":"+(foundHostData==null));
+        }
+		if (foundHostData!=null){
+			slotData.hostID = foundHostData.hostID;
+			slotData.ip = foundHostData.hostIP;
+			slotData.hostname = foundHostData.hostname;
+			slotData.host = foundHostData.host;
+			slotData.descriptionHost = foundHostData.descriptionHost;
+		}
+		return (foundHostData!=null);
+    }
+
+	/*private void GetHostIDFromIP(SlotData slotData, string ip)
+	
+		//Search the IP in the list of hosts, and asign the data
+	
 	{
 		// Note: IP must be unique
 		//Debug.Log("Getting id from ip "+ip);
@@ -98,10 +128,10 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 		{
 			if (hostData.hostIP == ip)
 			{
-				slotDaC.hostID = hostData.hostID;
-				slotDaC.hostname = hostData.hostname;
-				slotDaC.host = hostData.host;
-				slotDaC.descriptionHost = hostData.descriptionHost;
+				slotData.hostID = hostData.hostID;
+				slotData.hostname = hostData.hostname;
+				slotData.host = hostData.host;
+				slotData.descriptionHost = hostData.descriptionHost;
 				return;
 			}
 		}
@@ -121,7 +151,7 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 				return;
 			}
 		}
-	}
+	}*/
 	
 	public List<SlotDataAndControl> GetVirtualSlots()
 	// WIP

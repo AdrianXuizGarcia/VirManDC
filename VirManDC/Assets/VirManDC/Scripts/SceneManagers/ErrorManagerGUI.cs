@@ -29,7 +29,7 @@ public class ErrorManagerGUI : MonoBehaviour
 	}
 
 	private void ErrorLog(string error){
-        Debug.Log("also in gui: " + error);
+        //Debug.Log("also in gui: " + error);
         NewErrorMessage(error);
     }
 	
@@ -75,7 +75,7 @@ public class ErrorManagerGUI : MonoBehaviour
 
 		TextMeshProUGUI displayText = optionsErrorScroll.GetComponent<TextMeshProUGUI>();
         displayText.text = displayText.text+"\n"+s;
-        Debug.Log("SO: " + displayText.text);
+        //Debug.Log("SO: " + displayText.text);
     }
 
     private string ErrorInRed(string s)

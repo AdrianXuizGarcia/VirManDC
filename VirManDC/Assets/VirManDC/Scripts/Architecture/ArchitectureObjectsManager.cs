@@ -75,7 +75,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
                 // We get the RackModelData from the ArchitectureRawData of the rack's model
                 RackModelData other_model_data = data.modelsRack.Find(x => x.model.Contains(other.model));
                 if (other_model_data == null)
-                    ErrorManager.NewErrorMessage("No info found for model '" + other.model + "'. Check the file '" + VMDCPaths.modelsRackPath + "'.");
+                    ErrorManager.NewErrorMessageThrowException("No info found for model '" + other.model + "'. Check the file '" + VMDCPaths.modelsRackPath + "'.");
 
                 // Set the position and rotation of the item, and instantiate it
                 Vector3 other_pos = new Vector3(other.posX * other_model_data.espacioRackX, other.posY, other.posZ * other_model_data.espacioRackZ)+originPointToSpawn.position;
@@ -93,7 +93,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
                 // We get the RackModelData from the ArchitectureRawData of the rack's model
                 RackModelData rack_model_data = data.modelsRack.Find(x => x.model.Contains(rackData.model));
                 if (rack_model_data == null)
-                    ErrorManager.NewErrorMessage("No info found for model '" + rackData.model + "'. Check the file '" + VMDCPaths.modelsRackPath + "'.");
+                    ErrorManager.NewErrorMessageThrowException("No info found for model '" + rackData.model + "'. Check the file '" + VMDCPaths.modelsRackPath + "'.");
 
                 // Set the position and rotation of the rack, and instantiate it
                 Vector3 rack_pos = new Vector3(rackData.posX * rack_model_data.espacioRackX, rackData.posY, rackData.posZ * rack_model_data.espacioRackZ)+originPointToSpawn.position;
@@ -137,7 +137,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
                         filledSlotsList[i + slot.posY] = true;
                     }
                     // Set data from architecture into the rack data controller
-                    slot_instance.GetComponentInChildren<ArchitectureSlotData>().SetArchitectureData(slot);
+                    slot_instance.GetComponentInChildren<SlotData>().SetArchitectureData(slot);
                 }
 
                 // Fill empty slots with covers
@@ -162,7 +162,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
 		GameObject other_prefab = Resources.Load<GameObject>(VMDCPaths.othersModelsPath+other.model+"_"+other.graphics);
 		if (other_prefab == null)
 		{
-			ErrorManager.NewErrorMessage("The model '"+other.model+"_"+other.graphics+"' was not found in the path '"+VMDCPaths.othersModelsPath+"'.");
+			ErrorManager.NewErrorMessageThrowException("The model '"+other.model+"_"+other.graphics+"' was not found in the path '"+VMDCPaths.othersModelsPath+"'.");
 			return null;
 		}
 		return Instantiate(other_prefab,other_pos,other_rot,parent) as GameObject;
@@ -178,7 +178,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
 		GameObject rack_prefab = Resources.Load<GameObject>(VMDCPaths.racksModelsPath+rackData.model+"_"+rackData.graphicsM);
 		if (rack_prefab == null)
 		{
-			ErrorManager.NewErrorMessage("The model '"+rackData.model+"_"+rackData.graphicsM+"' was not found in the path '"+VMDCPaths.racksModelsPath+"'.");
+			ErrorManager.NewErrorMessageThrowException("The model '"+rackData.model+"_"+rackData.graphicsM+"' was not found in the path '"+VMDCPaths.racksModelsPath+"'.");
 			return null;
 		}
 		return Instantiate(rack_prefab,rack_pos,rack_rot,parent) as GameObject;
@@ -213,7 +213,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
         GameObject slot_prefab = Resources.Load<GameObject>(VMDCPaths.slotsModelsPath+nameServer);
 		if (slot_prefab == null)
 		{
-			ErrorManager.NewErrorMessage("The model '"+nameServer+"' couldnt be found in the path \""+VMDCPaths.slotsModelsPath+"\".");
+			ErrorManager.NewErrorMessageThrowException("The model '"+nameServer+"' couldnt be found in the path \""+VMDCPaths.slotsModelsPath+"\".");
 			return null;
 		}
 		GameObject slot_instance = Instantiate(slot_prefab,parentTransform) as GameObject;
@@ -238,7 +238,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
 		}
 		
 		if (spriteAssigned == null)
-			ErrorManager.NewErrorMessage("The model '"+slot_data.model+"' couldnt be found.");
+			ErrorManager.NewErrorMessageThrowException("The model '"+slot_data.model+"' couldnt be found.");
 		else
 			spriteRenderer.sprite = spriteAssigned;
 		
@@ -251,6 +251,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
 		return slot_instance;
 	}
 
+	// TODO: NOT CALLED
 	private void AsignSlotData(SlotDataAndControl slot, RackSlotDto slot_data)
 	/*
 		Asign slot data from RackSlotDto and HostsData to SlotDataAndControl component.
@@ -268,7 +269,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
 			slot.hostID = slotID;
 		
 		// Get the data from the API
-		slotDFAM.SetHostsDataToSlotData(slot, slot.hostID, slot.ip);
+		///slotDFAM.SetHostsDataToSlotData(slot, slot.hostID, slot.ip);
 	}
 	
 	/*private void ApplyCameraSettings(ArchitectureRawData data)
@@ -292,7 +293,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
 				GameObject slot_prefab = Resources.Load<GameObject>(VMDCPaths.slotsModelsPath+coverName);
 				if (slot_prefab == null)
 				{
-					ErrorManager.NewErrorMessage("The model '"+coverName+"' couldnt be found in the path \""+VMDCPaths.slotsModelsPath+"\".");
+					ErrorManager.NewErrorMessageThrowException("The model '"+coverName+"' couldnt be found in the path \""+VMDCPaths.slotsModelsPath+"\".");
 				}
 				GameObject slot_instance = Instantiate(slot_prefab,parentTransform) as GameObject;
 				slot_instance.name = "cover";
@@ -305,6 +306,9 @@ public class ArchitectureObjectsManager : MonoBehaviour
 			}
 		}
 	}
+
+
+
 
 
 	public void SetPickedRack(int rackID)

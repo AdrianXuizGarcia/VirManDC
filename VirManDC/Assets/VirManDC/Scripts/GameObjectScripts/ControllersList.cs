@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class ControllersList : MonoBehaviour
 {
-	public PanelSemaforoManager panelSemaforoManager;
+	public IndicatorPanelController indicatorPanelcontroller;
 	public WarningController warningController;
 }

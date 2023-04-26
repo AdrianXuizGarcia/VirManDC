@@ -10,6 +10,8 @@ using VMDC.Dtos;
 using VMDC.Constants;
 using ResponseAPIClasses;
 using VMDC.AuxiliarConfiguration;
+using VMDC.JsonDtos;
+using Newtonsoft.Json;
 
 // This class contains all the petitions to the Zabbix API
 public class ZabbixPetitions : MonoBehaviour
@@ -70,7 +72,8 @@ public class ZabbixPetitions : MonoBehaviour
 				return new KeyData(null,keyModel);
 			}
 			return new KeyData(data.lastValue,keyModel);
-		}
+        
+    }
 		
 		// WARNING PETITIONS
 		public IEnumerator WarningsPetition(string hostID,Action<List<WarningLastData>> callback)
@@ -90,9 +93,8 @@ public class ZabbixPetitions : MonoBehaviour
 			dic.Add("limit", "20");
 			Request r1 = new Request("trigger.get", dic, 1, ZabbixConfig.authKey);
 			string responseString = "Default";
-			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
-            Response values = JsonUtility.FromJson<Response>(responseString);
-			//Debug.Log(responseString);
+			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));
+           Response values = JsonConvert.DeserializeObject<Response>(responseString);
 			if (values.result.Count == 0)
 			{
 				//return new WarningLastData("",0);
@@ -100,10 +102,10 @@ public class ZabbixPetitions : MonoBehaviour
 			}
 			else
 			{
-				//return JsonConvert.SerializeObject(values.result, Formatting.Indented);
-				string warningData = JsonUtility.ToJson(values.result,true);
+				//string warningData = JsonUtility.ToJson(values.result,true);
+				string warningData = JsonConvert.SerializeObject(values.result, Formatting.Indented);
 				//Debug.Log(warningData);
-				List<WarningData> listWarningData = JsonUtility.FromJson<List<WarningData>>(warningData);
+				List<WarningData> listWarningData = JsonConvert.DeserializeObject<List<WarningData>>(warningData);
 				//Debug.Log("Items: "+listWarningData.Count);
 				//Debug.Log(JsonConvert.SerializeObject(listWarningData[0], Formatting.Indented));
 				callback(DefineWarningDataFromResponse(listWarningData));
@@ -119,6 +121,44 @@ public class ZabbixPetitions : MonoBehaviour
 				lastDataList.Add(new WarningLastData(data.lastEvent.name,data.priority));
 			return lastDataList.OrderBy(o=>o.priority).ToList();
 			//return lastDataList;
+		}
+
+		public IEnumerator AllWarningsPetition(string hostID,Action<List<WarningLastData>> callback)
+		{
+			Dictionary<string, System.Object> dic = new Dictionary<string, System.Object>();
+			List<string> output = new List<string>();
+			output.Add("hostid"); //?
+			output.Add("description");
+			output.Add("priority");
+			output.Add("error");
+			dic.Add("output", output);
+			dic.Add("selectLastEvent", "extend");
+			dic.Add("sortfield", "lastchange");
+			dic.Add("monitored", "true");
+			dic.Add("only_true", "");
+			dic.Add("maintenance", "false");
+			dic.Add("limit", "20");
+			dic.Add("selectHosts", ""); //?
+			
+			Request r1 = new Request("trigger.get", dic, 1, ZabbixConfig.authKey);
+			string responseString = "Default";
+			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux,true));
+           Response values = JsonConvert.DeserializeObject<Response>(responseString);
+			if (values.result.Count == 0)
+			{
+				//return new WarningLastData("",0);
+				callback(null);
+			}
+			else
+			{
+				//string warningData = JsonUtility.ToJson(values.result,true);
+				string warningData = JsonConvert.SerializeObject(values.result, Formatting.Indented);
+				//Debug.Log(warningData);
+				List<WarningData> listWarningData = JsonConvert.DeserializeObject<List<WarningData>>(warningData);
+				//Debug.Log("Items: "+listWarningData.Count);
+				//Debug.Log(JsonConvert.SerializeObject(listWarningData[0], Formatting.Indented));
+				callback(DefineWarningDataFromResponse(listWarningData));
+			}
 		}
 		
 		
@@ -146,7 +186,7 @@ public class ZabbixPetitions : MonoBehaviour
                 Request r1 = new Request("host.get", dic, 1, ZabbixConfig.authKey);
 				string responseString = "Default";
 				yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
-				ResponseIdHosts values = JsonUtility.FromJson<ResponseIdHosts>(responseString);
+				ResponseIdHosts values = JsonConvert.DeserializeObject<ResponseIdHosts>(responseString);
 				// For debugging
 				//Debug.Log("Respuesta json de host.get: ");
 				//Debug.Log(JsonConvert.SerializeObject(values, Formatting.Indented));
@@ -180,14 +220,14 @@ public class ZabbixPetitions : MonoBehaviour
                         slot_data.hostID = j.hostid;
                     }
                 }*/
-				hostData.hostIP=CheckIfIsServerIP(j.interfaces[0].ip);
+				//hostData.hostIP=CheckIfIsZabbixServerIP(j.interfaces[0].ip);
 				hostData.hostIP=j.interfaces[0].ip;
 				hostsData.listHosts.Add(hostData);
             }
 			return hostsData;
         }
 		
-		private string CheckIfIsServerIP(string ip)
+		private string CheckIfIsZabbixServerIP(string ip)
 		/* 
 			If the slot has the Zabbix server IP, it wont be find.
 			This patch will fix that
@@ -222,7 +262,7 @@ public class ZabbixPetitions : MonoBehaviour
 			Request r1 = new Request("hostgroup.get", dic, 1, ZabbixConfig.authKey);
 			string responseString = "Default";
 			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
-			ResponseHostGroup values = JsonUtility.FromJson<ResponseHostGroup>(responseString);
+			ResponseHostGroup values = JsonConvert.DeserializeObject<ResponseHostGroup>(responseString);
 			// For debugging
 			//Debug.Log("Respuesta json de host.get: ");
 			//Debug.Log(JsonConvert.SerializeObject(values, Formatting.Indented));
@@ -253,7 +293,7 @@ public class ZabbixPetitions : MonoBehaviour
 			Request r1 = new Request("host.get", dic, 1, ZabbixConfig.authKey);
 			string responseString = "Default";
 			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
-			ResponseIdHosts values = JsonUtility.FromJson<ResponseIdHosts>(responseString);
+			ResponseIdHosts values = JsonConvert.DeserializeObject<ResponseIdHosts>(responseString);
 			// For debugging
 			//Debug.Log("Respuesta json de host.get: ");
 			//Debug.Log(JsonConvert.SerializeObject(values, Formatting.Indented));
@@ -299,7 +339,7 @@ public class ZabbixPetitions : MonoBehaviour
 			Request r1 = new Request("item.get", dic, 1, ZabbixConfig.authKey);
 			string responseString = "Default";
 			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
-			ResponseItems listItems = JsonUtility.FromJson<ResponseItems>(responseString);
+			ResponseItems listItems =  JsonConvert.DeserializeObject<ResponseItems>(responseString);
 			// For debugging
 			//Debug.Log("Respuesta json de item.get: ");
 			//Debug.Log(JsonConvert.SerializeObject(listItems, Formatting.Indented));
@@ -309,7 +349,7 @@ public class ZabbixPetitions : MonoBehaviour
 		
 		
 		// LOG IN PETITIONS
-		public IEnumerator MakeLogInPetition(string user, string password, Action<string> callback)
+		public IEnumerator MakeLogInPetition(string user, string password, Action<string> callback,bool showLog=false)
 		/* 
 			Return null if we cant get a response from the server.
 			Return "" (empty string) if the response is not good.
@@ -321,27 +361,44 @@ public class ZabbixPetitions : MonoBehaviour
 			dic.Add("password", password);
 			Request r1 = new Request("user.login", dic, 1, null);
 			string responseString = "Default";
-			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
+			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux,showLog));
+			/*BasePetition bp = new BasePetition();
+			bp.jsonrpc = "2.0";
+			bp.method = "user.login";
+			bp.@params = new LogInPetitionParams(user, password);
+			bp.id = "1";
+			//bp.auth = null;
+			string responseString = "Default";
+			yield return StartCoroutine(MakePetition(bp,(string aux) => responseString=aux));*/
+			if (showLog)
+				Debug.Log("Response:" + responseString);
 			if (responseString=="")
 				callback(null);
 			else {
-				string deserializedResponse = JsonUtility.FromJson<ResponseLoggin>(responseString).result;
-				if (deserializedResponse==null)
+				string deserializedResponse = JsonConvert.DeserializeObject<ResponseLoggin>(responseString).result;
+				if (showLog)
+					Debug.Log("Response:" + deserializedResponse);
+				if (deserializedResponse==null){
+					ErrorManager.NewErrorMessage("The API Zabbix was reachable, but something went wrong.");
+					ErrorManager.NewErrorMessage($"Detailed Error returned by API Zabbix: {responseString}");			
 					callback("");
+				}					
 				else 
 					callback(deserializedResponse);
-			}
+				}
 		}
 		
 		// MAIN METHOD
-		public IEnumerator MakePetition(Request zbxRequest, Action<string> callback)
+		public IEnumerator MakePetition(Request zbxRequest, Action<string> callback,bool showLog=false)
 		// Return "" if an error occurred
 		{
 			// First we set the url 
 			var url = "http://" + ZabbixConfig.ipServer + "/" + ZabbixConfig.urlZabbixAPI;
-			string jsonParams = JsonUtility.ToJson(zbxRequest);
-			Debug.Log("Params:"+jsonParams);
-			Debug.Log("URL:"+url);
+			//string jsonParams = JsonUtility.ToJson(zbxRequest);
+			string jsonParams = JsonConvert.SerializeObject(zbxRequest);
+			if (showLog)
+				Debug.Log("Params:"+jsonParams);
+			//Debug.Log("URL:"+url);
 			
 			// Make a new POST request with the params we have set
 			var www = new UnityWebRequest(url, "POST");
@@ -355,36 +412,36 @@ public class ZabbixPetitions : MonoBehaviour
 			
 			// We send back the result, as success or as error
 			if (www.result == UnityWebRequest.Result.Success){
-				//Debug.Log($"Success: {www.downloadHandler.text}");
+				if (showLog)
+					Debug.Log($"Success with conection: {www.downloadHandler.text}");
 				callback(www.downloadHandler.text);
 				yield return null;
 			}
 			else {
 				callback(ManageErrorFromWebRequest(www));
-				yield return null;
+            yield return null;
 			}
 		}
 		
 		// Auxiliar method to manage the error messages from the UnityWebRequest
 		private string ManageErrorFromWebRequest(UnityWebRequest www){
-			Debug.Log("<color=red>ERROR</color>: Problem with API Zabbix");
+			ErrorManager.NewErrorMessage("Problem trying to connect to API Zabbix");
 			switch (www.result)
 			{
 				case UnityWebRequest.Result.ConnectionError:
-					Debug.Log("Failed to communicate with the server");
+					ErrorManager.NewErrorMessage("Failed to communicate with the server");
 					break;
 				case UnityWebRequest.Result.ProtocolError:
-					Debug.Log("The server returned an error response");
+					ErrorManager.NewErrorMessage("The server returned an error response");
 					break;
 				case UnityWebRequest.Result.DataProcessingError:
-					Debug.Log("Error processing data");
+					ErrorManager.NewErrorMessage("Error processing data");
 					break;
 				default:
 					break;
 			}
-			Debug.Log($"Detailed Error: {www.error}");			
+			ErrorManager.NewErrorMessage($"Detailed Error: {www.error}");			
 			//callback(www.error);
 			return "";
 		}
-		
 	}

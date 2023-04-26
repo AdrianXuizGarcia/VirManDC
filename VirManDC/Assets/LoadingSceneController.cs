@@ -13,6 +13,7 @@ public class LoadingSceneController : MonoBehaviour
         loadingOperation = VMDC_SceneManager.LoadSceneWithCallBack(newScene);
         isLoading = true;
     }
+    
     void Update()
     {
         if (isLoading){
