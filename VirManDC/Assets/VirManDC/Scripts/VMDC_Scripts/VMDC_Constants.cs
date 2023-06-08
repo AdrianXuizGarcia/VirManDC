@@ -13,7 +13,7 @@ namespace VMDC.Constants
 		
 		public static string architectureName = "Architecture_SalaCPD.xml";
 		public static string architecturePath = Path.Combine(extraFilesDirPath,architectureName);
-		//public static string architecturePath = Path.Combine(extraFilesDirPath,"ArchitectureTestNewRacks.xml");
+		//public static string architecturePath = Path.Combine(extraFilesDirPath,StaticDataHolder.architectureFileName);
 		public static string modelsRackName = "RackDataModels.xml";
 		public static string modelsRackPath = Path.Combine(extraFilesDirPath,modelsRackName);
 		
@@ -34,7 +34,9 @@ namespace VMDC.Constants
 		public static string panelSemaforoModelsPath = Path.Combine(extraFilesDirPath,panelSemaforoModelsName);
 		public static string interfacesSemaforoModelsName = "InterfacesSemaforoModels.xml";
 		public static string interfacesSemaforoModelsPath = Path.Combine(extraFilesDirPath,interfacesSemaforoModelsName);
-		public static string semaforoPrefabPath = "OthersModels/semaforoModel";
+		public static string semaforoPrefabPath = "OthersModels/semaforoModel"; //deprecated
+		public static string indicatorPrefabPath = "UI/Indicator_space"; //deprecated
+
 	}
 	public static class VMDCErrorCodes {
 		public const string NON_RESPONSE_API_ERROR = "<color=red>ERROR</color>: No response from API Zabbix";

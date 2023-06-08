@@ -1,0 +1,7 @@
+@startuml
+class VirtualButtonBehaviour {
+    + color : Color
+    + CheckVMActive(IsVMActive:bool) : void
+}
+MonoBehaviour <|-- VirtualButtonBehaviour
+@enduml

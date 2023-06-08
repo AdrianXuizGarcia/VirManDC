@@ -72,8 +72,9 @@ public class ErrorManagerGUI : MonoBehaviour
 				errorText.text = errorText.text+"\n"+s;
 		}
 		Debug.Log(s);*/
-
-		TextMeshProUGUI displayText = optionsErrorScroll.GetComponent<TextMeshProUGUI>();
+		if(!optionsErrorScroll.activeSelf)
+            optionsErrorScroll.SetActive(true);
+        TextMeshProUGUI displayText = optionsErrorScroll.GetComponent<TextMeshProUGUI>();
         displayText.text = displayText.text+"\n"+s;
         //Debug.Log("SO: " + displayText.text);
     }

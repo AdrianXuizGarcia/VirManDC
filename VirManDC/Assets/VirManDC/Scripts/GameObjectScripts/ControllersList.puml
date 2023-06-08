@@ -1,0 +1,7 @@
+@startuml
+class ControllersList {
+    + indicatorPanelcontroller : IndicatorPanelController
+    + warningController : WarningController
+}
+MonoBehaviour <|-- ControllersList
+@enduml

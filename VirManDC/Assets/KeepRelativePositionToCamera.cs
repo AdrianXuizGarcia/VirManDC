@@ -9,14 +9,20 @@ public class KeepRelativePositionToCamera : MonoBehaviour
     public Transform mainTransform;
     public Vector3 positionToKeep;
     public Vector3 initialRotation;
+    public bool active;
 
     void Start(){
         cameraTransform = Camera.main.transform;
         mainTransform.Rotate(initialRotation);
     }
 
+    public void SwapState(){
+        active=!active;
+    }
+
     void Update()
     {
-        mainTransform.position =  cameraTransform.position + positionToKeep;
+        if (active)
+            mainTransform.position =  cameraTransform.position + positionToKeep;
     }
 }

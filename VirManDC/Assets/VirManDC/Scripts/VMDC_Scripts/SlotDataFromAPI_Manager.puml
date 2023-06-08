@@ -1,0 +1,17 @@
+@startuml
+class SlotDataFromAPI_Manager {
+    - apiPetitions : ZabbixPetitions
+    + hostsData : HostsZabbixData
+    - OnEnable() : void
+    + GetMainDataFromApi(dataApiSchema:DataApiSchema, hostID:string, callback:Action<DataApiContainer>) : IEnumerator
+    + GetWarningsData(hostID:string, callback:Action<List<WarningLastData>>) : IEnumerator
+    + GetAllWarningsData(hostID:string, callback:Action<List<WarningLastData>>) : IEnumerator
+    + UpdateHostsData() : IEnumerator
+    + GetHostGroupID(hostname:string, callback:Action<string>) : IEnumerator
+    + GetVMsData(hostgroupID:string, key:string, callback:Action<List<VMData>>) : IEnumerator
+    + SetHostsDataToSlotData(slotData:SlotData, slotControl:SlotControl) : void
+    - GetHostIDorIPFromSlotID(slotData:SlotData) : bool
+    + GetVirtualSlots() : List<SlotDataAndControl>
+}
+MonoBehaviour <|-- SlotDataFromAPI_Manager
+@enduml

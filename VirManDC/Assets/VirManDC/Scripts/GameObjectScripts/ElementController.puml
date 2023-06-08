@@ -1,0 +1,17 @@
+@startuml
+class ElementController {
+    - key_ : Text
+    - description : Text
+    - lastValue : Text
+    - scriptPanelInfo : ScriptPanelInfo
+    - vmHostname : string
+    - vmHostID : string
+    + vmButton : VirtualButtonBehaviour
+    - OnEnable() : void
+    + SetValues(key_:string, description:string, lastValue:string) : void
+    + SetVMValues(name:string, hostid:string, isVmActive:bool) : void
+    - OnMouseEnter() : void
+    + Entering() : void
+}
+MonoBehaviour <|-- ElementController
+@enduml

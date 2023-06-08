@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class ControllersList : MonoBehaviour
 {
-	public IndicatorPanelController indicatorPanelcontroller;
+	public IndicatorPanelController_old indicatorPanelcontroller;
 	public WarningController warningController;
 }

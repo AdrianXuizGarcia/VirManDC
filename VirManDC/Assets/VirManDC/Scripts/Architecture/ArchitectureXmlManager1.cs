@@ -6,14 +6,15 @@ using System.Collections.Generic;
 using System.Globalization;
 using VMDC.Dtos;
 using VMDC.Constants;
+using System.IO;
 
-	/// <summary>
-    /// This class is used ONLY to read the XML file and return the data it contains 
-    /// to the main program.
-    /// 
-    /// To access the data and general functions, check ArchitectureGeneralManager. 
-    /// To check how the data is applied to the GameObjects, check ArchitectureObjectsManager.
-    /// </summary>
+/// <summary>
+/// This class is used ONLY to read the XML file and return the data it contains 
+/// to the main program.
+/// 
+/// To access the data and general functions, check ArchitectureGeneralManager. 
+/// To check how the data is applied to the GameObjects, check ArchitectureObjectsManager.
+/// </summary>
 public class ArchitectureXmlManager 
 {
 	//private string architecturePath = "ExtraFiles/Architecture.xml";
@@ -41,7 +42,8 @@ public class ArchitectureXmlManager
 		ArchitectureRawData data = new ArchitectureRawData();
 		LoadRackModels(data);
         //Debug.Log(VMDCPaths.architecturePath);
-        XmlReader reader = XmlReader.Create(VMDCPaths.architecturePath);
+        //XmlReader reader = XmlReader.Create(VMDCPaths.architecturePath);
+		XmlReader reader = XmlReader.Create(Path.Combine(VMDCPaths.extraFilesDirPath,StaticDataHolder.architectureName));
 		// <-> ErrorManager errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
 		
 		try 

@@ -1,0 +1,16 @@
+@startuml
+class ScriptPanelInfo {
+    + buttonActive : int
+    + listaElementos : GameObject
+    + elementoLista : GameObject
+    + listElementButton : GameObject
+    - elementoAñadido : GameObject
+    - elementController : ElementController
+    + slotRackInteraction : SlotRackInteraction
+    + ClearList() : void
+    + AddElement(key_:string, description:string, lastValue:string) : void
+    + AddVirtualServerButton(name:string, hostid:string, isVmActive:bool) : void
+    + EnterVMFromButton(hostid:string, vmHostname:string) : void
+}
+MonoBehaviour <|-- ScriptPanelInfo
+@enduml

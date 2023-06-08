@@ -1,0 +1,5 @@
+@startuml
+!include .\\ArchitectureGeneralManager.puml
+!include .\\ArchitectureObjectsManager.puml
+!include .\\ArchitectureXmlManager1.puml
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class ArchitectureXmlManager {
+    - loginController : LogInUIElementsController
+    + ArchitectureXmlManager(lC:LogInUIElementsController)
+    + LoadArchitectureFromXml() : ArchitectureRawData
+    - GetItemFromReader(reader:XmlReader) : string
+    - LoadRackModels(data:ArchitectureRawData) : void
+}
+@enduml

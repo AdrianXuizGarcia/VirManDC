@@ -1,0 +1,19 @@
+@startuml
+class WarningController {
+    + warningPanel : GameObject
+    + warningMainPanel : GameObject
+    + warningChangeButton : Text
+    + warningText : TextMeshProUGUI
+    - orange : Color
+    - red : Color
+    - blue : Color
+    - warningDataList : List<WarningLastData>
+    - actualWarning : int = 1
+    - SetColorViaSeverity(severity:int) : void
+    + ActivePanel() : void
+    + UpdateWarningData(newDataList:List<WarningLastData>) : void
+    + NextWarning() : void
+    - UpdateUI() : void
+}
+MonoBehaviour <|-- WarningController
+@enduml

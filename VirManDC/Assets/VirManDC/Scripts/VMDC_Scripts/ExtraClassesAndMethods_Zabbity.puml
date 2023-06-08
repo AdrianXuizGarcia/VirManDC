@@ -1,0 +1,13 @@
+@startuml
+class XML_extraMethods <<static>> {
+    + {static} LoadKeyValues() : List<KeyModel>
+    - {static} getItemFromReader(reader:XmlReader) : string
+    + {static} LoadPanelSemaforoModels() : List<SemaforoData>
+    + {static} LoadInterfacesSemaforosModels() : List<PanelSemaforoData>
+}
+class Files_extraMethods <<static>> {
+    + {static} CheckOrCreateDirectoryAuxFiles() : bool
+    + {static} CheckIfAuxFilesMissing() : string
+    + {static} CheckIfConfigurationFileMissing() : string
+}
+@enduml

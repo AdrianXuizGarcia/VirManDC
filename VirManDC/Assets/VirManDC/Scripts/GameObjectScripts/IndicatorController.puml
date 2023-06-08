@@ -1,0 +1,36 @@
+@startuml
+class IndicatorController {
+    + buttonID : int
+    - scriptPanel : ScriptPanelInfo
+    - indicatorPanelcontroller : IndicatorPanelController
+    + slotDataAndControl : SlotDataAndControl
+    - errorIcon : GameObject
+    - originalErrorText : string
+    - buttonDeactivated : bool = false
+    - buttonKeyData : KeyData
+    + keySemaforo : string
+    - nameButton : GameObject
+    - icon_text : Text
+    - icon_image : Image
+    - icon_halo : Behaviour
+    - originalColor : Color
+    - initialized : bool = false
+    + isVMButton : bool
+    - OnEnable() : void
+    - Inicialize() : void
+    - OnMouseEnter() : void
+    + Entering() : void
+    - OnMouseExit() : void
+    - OnMouseDown() : void
+    + Clicking() : void
+    + UpdateDataButton() : IEnumerator
+    + UpdateDataButtonAndPanel() : IEnumerator
+    - AddVMToPanel(vmlist:List<VMData>) : IEnumerator
+    - AddDataToPanel(dataList:List<InfoApi>) : IEnumerator
+    - UpdateIconData() : IEnumerator
+    - DeactivateButton() : void
+    - ActivateButton() : void
+    + ManageErrorPanel() : void
+}
+MonoBehaviour <|-- IndicatorController
+@enduml

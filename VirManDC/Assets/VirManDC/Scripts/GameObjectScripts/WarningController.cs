@@ -19,6 +19,10 @@ public class WarningController : MonoBehaviour
 	private List<WarningLastData> warningDataList;
 	private int actualWarning = 1;
 
+	void Start(){
+        warningMainPanel.SetActive(false);
+    }
+	
 	private void SetColorViaSeverity(int severity)
 	{
 		Image image = warningPanel.GetComponent<Image>();
@@ -32,7 +36,8 @@ public class WarningController : MonoBehaviour
 	}
 	
 	public void ActivePanel(){
-		warningPanel.SetActive(!warningPanel.activeSelf);
+		if (warningDataList != null)
+			warningPanel.SetActive(!warningPanel.activeSelf);
 	}
 	
 	public void UpdateWarningData (List<WarningLastData> newDataList){
@@ -45,6 +50,15 @@ public class WarningController : MonoBehaviour
 			UpdateUI();
 		}
 	}
+
+	/// <summary>
+    /// Since this controller is in the panel, this petition avoids
+    /// a dependance with the slotController. Should be one reference on
+    /// main parent, so this call returns something
+    /// </summary>
+	public void NewPetitionForWarningData(){
+        this.GetComponentInParent<SlotComponentsReferences>().NewPetitionForWarningData();
+    }
 	
 	public void NextWarning(){
 		actualWarning = actualWarning+1;

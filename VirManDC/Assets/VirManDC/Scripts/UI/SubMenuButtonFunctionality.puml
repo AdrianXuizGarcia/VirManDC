@@ -1,0 +1,13 @@
+@startuml
+class SubMenuButtonFunctionality {
+    - buttonType : MenuEventType
+    - newButtonColor : Color
+    + isDefaultMode : bool
+    - Start() : void
+    - FixedUpdate() : void
+    + SendOnClickEvent() : void
+    + onChangeSubmenuButtonEvent : ChangeSubmenuButtonEvent
+    + onChangeSubmenuEvent : ChangeSubmenuEvent
+}
+MonoBehaviour <|-- SubMenuButtonFunctionality
+@enduml

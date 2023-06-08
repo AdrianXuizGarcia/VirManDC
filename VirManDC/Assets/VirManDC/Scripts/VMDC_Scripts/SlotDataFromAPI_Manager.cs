@@ -12,8 +12,9 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 	*/
 	[SerializeField]
 	private ZabbixPetitions apiPetitions;
+    private BehaviourSlotController[] listBehaviour;
 
-	public HostsZabbixData hostsData;
+    public HostsZabbixData hostsData;
 	//private ErrorManager errorManager;
 	
 	void OnEnable()
@@ -39,13 +40,33 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 	}
 
 	// TODO
-	public IEnumerator GetAllWarningsData(string hostID, Action<List<WarningLastData>> callback)
+	/*public IEnumerator GetAllWarningsData(string hostID, Action<List<WarningLastData>> callback)
 	{
 		List<WarningLastData> returnedWarningData = null;
 		yield return StartCoroutine(apiPetitions.AllWarningsPetition(hostID,(List<WarningLastData> aux) => returnedWarningData=aux));
 		callback(returnedWarningData);
 		//return apiPetitions.WarningsPetition(hostID);
+	}*/
+	public void GetAllWarningsData()
+	{
+		StartCoroutine(GetAllWarningsData_Co());
 	}
+
+	public IEnumerator GetAllWarningsData_Co(){
+		//Debug.Log("searching for behaviours...");
+		yield return StartCoroutine(GetListBehaviour());
+        //Debug.Log("Founded! now updating...");
+		foreach(BehaviourSlotController controller in listBehaviour){
+            controller.UpdateWarningData();
+        }
+    }
+
+	private IEnumerator GetListBehaviour(){
+		listBehaviour = GameObject.FindObjectsOfType<BehaviourSlotController>();
+		yield return null;
+	}
+	
+
 	
 	public IEnumerator UpdateHostsData()
 	/*
@@ -83,7 +104,7 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 		// If no hostsData is found (UpdateHostsData wasnt called or check Architecture mode)
 		if (hostsData == null) {
 			ErrorManager.NewErrorMessage("ERROR: The HostsData couldnt be readed. Slot will be empty");
-			slotControl.checkSlotDemoMode = true;
+			slotControl.slotIsDeactivated = true;
 		} else {
 			bool found = GetHostIDorIPFromSlotID(slotData);
 			// If we didnt found a host for the IP, deactivate the slot

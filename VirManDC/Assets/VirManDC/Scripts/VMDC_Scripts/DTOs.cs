@@ -219,8 +219,8 @@ namespace VMDC.Dtos
 		public int priority;
 	}
 	
-	public class PanelSemaforoData {
-		public PanelSemaforoData() {
+	public class IndicatorsPanelData {
+		public IndicatorsPanelData() {
 			listSemaforos = new List<SemaforoData>();
 			schema = new DataApiSchema();
 		}

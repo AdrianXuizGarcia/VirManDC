@@ -33,7 +33,7 @@ public class SlotRackInteraction : MonoBehaviour
 	// WIP -> Mejor 2 distintos, o tener la misma e ir activando y desactivando mediante un controlador? Mejor eficiencia
 	//public GameObject indicatorPanelControllerObject;
 	//private List<ScriptSemaforo> scriptsSemaforos = new List<ScriptSemaforo>();
-	public IndicatorPanelController indicatorPanelController;
+	public IndicatorPanelController_old indicatorPanelController;
 	
 	private bool vmUpdated = false;
 	private bool vmNotInitialized = false;

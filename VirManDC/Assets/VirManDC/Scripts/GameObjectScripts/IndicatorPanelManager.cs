@@ -11,35 +11,38 @@ using VMDC.Constants;
 public class IndicatorPanelManager : MonoBehaviour
 {
 	
-	private List<PanelSemaforoData> panelInterfaceList;
+	private List<IndicatorsPanelData> panelInterfaceList;
 	private List<SemaforoData> panelSemaforoList;
 	private List<KeyModel> listKeyModel;
-	//private ErrorManager errorManager;
-	
-	void OnEnable()
+    //private ErrorManager errorManager;
+    //public bool initialized = false;
+
+    void OnEnable()
 	{
 		//errorManager = GameObject.FindWithTag("ErrorManager").GetComponent<ErrorManager>();
 		panelSemaforoList = XML_extraMethods.LoadPanelSemaforoModels();
 		panelInterfaceList = XML_extraMethods.LoadInterfacesSemaforosModels();
-		UpdateKeyValueModels();
+		listKeyModel = XML_extraMethods.LoadKeyValues();
+		//UpdateKeyValueModels();
 		//if (panelInterfaceList[0].schema == null)
 		//	Debug.Log("Listo!");
 		SetSemaforoDataToInterface();
-	}
+        StaticDataHolder.IndicatorPanelManagerIsInitialized = true;
+    }
 	
 	private void SetSemaforoDataToInterface()
 	/*
 		For each interface panel, we set the semaforos 
 	*/
 	{
-		foreach (PanelSemaforoData panel in panelInterfaceList)
+		foreach (IndicatorsPanelData panel in panelInterfaceList)
 		{
 			foreach (SemaforoData semaforo in panel.listSemaforos)
 			{
 				// Get the model
+				SemaforoData model = panelSemaforoList.Find(x => (x.id == semaforo.id));
 				//Debug.Log("ID: "+semaforo.id);
 				//Debug.Log("KEY: "+model.key);
-				SemaforoData model = panelSemaforoList.Find(x => (x.id == semaforo.id));
 				if (model==null){
 					ErrorManager.NewErrorMessage("ERROR: No semaforo found for semaforo ID '"+semaforo.id+"'. Check if the semaforo exists in "+VMDCPaths.panelSemaforoModelsPath);
 					break;
@@ -67,12 +70,12 @@ public class IndicatorPanelManager : MonoBehaviour
 	}
 	
 	
-	public PanelSemaforoData GetPanelData(string type)
+	public IndicatorsPanelData GetPanelData(string type)
 	/*
 		This function allows the PanelSemaforo to know his settings depending of his type
 	*/
 	{
-		PanelSemaforoData data = panelInterfaceList.Find(x => x.id.Contains(type));
+		IndicatorsPanelData data = panelInterfaceList.Find(x => x.id.Contains(type));
 		if (data==null)
 				ErrorManager.NewErrorMessage("ERROR: No info found for panel slot type '"+type+"'. Check if the type exists in "+VMDCPaths.interfacesSemaforoModelsPath);
 		return data;

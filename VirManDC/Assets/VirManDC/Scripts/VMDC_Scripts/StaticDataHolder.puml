@@ -1,0 +1,5 @@
+@startuml
+class StaticDataHolder <<static>> {
+    + {static} DebugMode : int
+}
+@enduml

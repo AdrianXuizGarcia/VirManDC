@@ -1,0 +1,13 @@
+@startuml
+class ExitMenuController {
+    + menuPanel : GameObject
+    - isInMenu : bool = true
+    + returnToMenuButton : GameObject
+    + OpenCloseMenu() : void
+    + ReturnToStartMenu() : void
+    + ExitApp() : void
+    + ExitedStartMenu() : void
+    + EnteredStartMenu() : void
+}
+MonoBehaviour <|-- ExitMenuController
+@enduml

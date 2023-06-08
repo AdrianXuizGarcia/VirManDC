@@ -27,12 +27,14 @@ public class Inicio : MonoBehaviour
             architectureGeneralManager.Initialize();
             architectureGeneralManager.SetObjectsFromData();
         }
-        if (slotDFAM && callForZabbixData) {
-            StartCoroutine(UpdateDataCoroutine());
+        //if (slotDFAM && callForZabbixData) {
+        if (!StaticDataHolder.architectureMode) {
+            //Debug.Log("es " + StaticDataHolder.architectureMode);
+            StartCoroutine(InitDataCoroutine());
         }
     }
 
-    private IEnumerator UpdateDataCoroutine(){
+    private IEnumerator InitDataCoroutine(){
         yield return StartCoroutine(slotDFAM.UpdateHostsData());
         //Debug.Log("Data updated!");
         //Debug.Log(slotDFAM.hostsData);

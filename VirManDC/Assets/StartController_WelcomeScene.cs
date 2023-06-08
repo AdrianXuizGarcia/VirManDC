@@ -8,6 +8,7 @@ using VMDC.Dtos;
 public class StartController_WelcomeScene : MonoBehaviour
 {
     public GameObject guiInfoPanel;
+    public GameObject guiChangeArchitecturePanel;
     public GameObject loadingBar;
     public GameObject signInButton;
     public float rotationGui = 24;
@@ -23,9 +24,11 @@ public class StartController_WelcomeScene : MonoBehaviour
     void Start()
     {
         guiInfoPanel.SetActive(false);
+        guiChangeArchitecturePanel.SetActive(false);
         loadingBar.SetActive(false);
         signInButton.SetActive(false);
         guiInfoPanel.transform.Rotate(0.0f, rotationGui, 0.0f);
+        guiChangeArchitecturePanel.transform.Rotate(0.0f, -rotationGui, 0.0f);
 
         // No conection needed
         ZabbixConfigFile.SetDefaultConfigFromDefaultFile();

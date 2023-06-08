@@ -1,23 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class ZabbixDataPanelController : MonoBehaviour
 {
-    private SlotData slotData;
-    public TextMeshProUGUI warningText;
+    public GameObject panelGameobject;
+    public GameObject prefabTest;
+    public GameObject baseToSpawnPrefabTest;
+    public int numberOfInstances = 15;
+    private bool panelIsOpen = false;
 
-    public void AsignSlotData(SlotData referenceSlotData){
-        slotData = referenceSlotData;
+    void Start() {
+        for(int i = 0; i < numberOfInstances; i++)
+        {
+            Instantiate(prefabTest, baseToSpawnPrefabTest.transform);
+        }
+        panelGameobject.SetActive(panelIsOpen);
     }
 
-    public void UpdateZabbixPanelData()
-    {
-        warningText.text = "Hostname: " + slotData.hostname;
-        warningText.text += "<br>IP: " + slotData.ip;
-        warningText.text += "<br>Host ID: " + slotData.hostID;
-        warningText.text += "<br>Host: " + slotData.host;
-        warningText.text += "<br>Description: " + slotData.descriptionHost;
+    public void SwapPanelState(){
+        panelGameobject.SetActive(!panelIsOpen);
+        /*if (panelIsOpen)
+            SetButton_ReadyToClose();
+        else 
+            SetButton_ReadyToOpen();*/
+        panelIsOpen = !panelIsOpen;
     }
 }

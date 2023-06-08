@@ -220,8 +220,8 @@ public class ArchitectureObjectsManager : MonoBehaviour
         slot_instance.name = slot_data.name;
 		
 		// We scale up the "graphic" part of the rack to match his size
-		Vector3 slotScale = slot_instance.transform.GetChild(1).GetChild(0).gameObject.transform.localScale;
-		slot_instance.transform.GetChild(1).GetChild(0).gameObject.transform.localScale = new Vector3(1,slotScale.y * slot_data.size,1);
+		Vector3 slotScale = slot_instance.transform.GetChild(1).GetChild(0).GetChild(0).gameObject.transform.localScale;
+		slot_instance.transform.GetChild(1).GetChild(0).GetChild(0).gameObject.transform.localScale = new Vector3(1,slotScale.y * slot_data.size,1);
 		//Debug.Log(slotScale);
         ////slot_instance.transform.GetChild(1).GetChild(0).gameObject.transform.localScale = new Vector3(1,slot_data.size,1);
         // ---> end diferent ways <---
@@ -251,11 +251,9 @@ public class ArchitectureObjectsManager : MonoBehaviour
 		return slot_instance;
 	}
 
-	// TODO: NOT CALLED
-	private void AsignSlotData(SlotDataAndControl slot, RackSlotDto slot_data)
-	/*
+	/*private void AsignSlotData(SlotDataAndControl slot, RackSlotDto slot_data)
 		Asign slot data from RackSlotDto and HostsData to SlotDataAndControl component.
-	*/
+	
 	{
 		slot.slotName = slot_data.name;
 		slot.slotNum = slot_data.slotNum;
@@ -270,7 +268,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
 		
 		// Get the data from the API
 		///slotDFAM.SetHostsDataToSlotData(slot, slot.hostID, slot.ip);
-	}
+	}*/
 	
 	/*private void ApplyCameraSettings(ArchitectureRawData data)
 	{

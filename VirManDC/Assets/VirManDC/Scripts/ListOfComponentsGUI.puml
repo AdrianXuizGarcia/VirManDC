@@ -1,0 +1,7 @@
+@startuml
+class ListOfComponentsGUI {
+    + slotName : GameObject
+    + changeSlotName(newName:string) : void
+}
+MonoBehaviour <|-- ListOfComponentsGUI
+@enduml

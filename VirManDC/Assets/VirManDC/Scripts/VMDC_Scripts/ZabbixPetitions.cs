@@ -47,9 +47,10 @@ public class ZabbixPetitions : MonoBehaviour
 			// WIP
 			string responseString = "Default";
 			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
-            ResponseItems values = JsonUtility.FromJson<ResponseItems>(responseString);
-			
-			if (values.result.Count==0)
+            ResponseItems values = JsonConvert.DeserializeObject<ResponseItems>(responseString);
+			Debug.Log("Response: "+responseString);
+        	//Debug.Log("LIst: "+values.result.ToString());
+       		if (values.result.Count==0)
 				Debug.Log("<color=red>ERROR</color>: No data returned by the Zabbix API for the application "+nameApplication+" on host "+hostID);
 			callback(SetResponseToInfoApi(values.result));
 		}

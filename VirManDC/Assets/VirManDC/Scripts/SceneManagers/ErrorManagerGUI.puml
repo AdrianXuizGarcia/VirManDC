@@ -1,0 +1,19 @@
+@startuml
+class ErrorManagerGUI {
+    + logInErrorScroll : GameObject
+    - logInErrorMessage : Text
+    + optionsErrorScroll : GameObject
+    - optionsErrorMessage : Text
+    + generalErrorMessage : GameObject
+    - errorText : Text
+    + GUIlogin : GameObject
+    + GUIoptions : GameObject
+    - Awake() : void
+    - OnDestroy() : void
+    - ErrorLog(error:string) : void
+    - Initialize() : void
+    + NewErrorMessage(s:string) : void
+    - ErrorInRed(s:string) : string
+}
+MonoBehaviour <|-- ErrorManagerGUI
+@enduml

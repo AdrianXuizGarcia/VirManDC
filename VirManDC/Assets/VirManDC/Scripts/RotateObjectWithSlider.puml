@@ -1,0 +1,9 @@
+@startuml
+class RotateObjectWithSlider {
+    - prevRotation : float
+    + objectToRotate : GameObject
+    - rotationPivot : Transform
+    + OnSliderUpdatedRotation(eventData:SliderEventData) : void
+}
+MonoBehaviour <|-- RotateObjectWithSlider
+@enduml
