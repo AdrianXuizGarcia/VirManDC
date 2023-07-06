@@ -39,7 +39,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
 	public Transform originPointToSpawn;
     public GameObject scalePivotBase;
 	public GameObject rotationPivotBase;
-
+    public SlotListManager slotListManager;
     private ArchitectureRawData rawData;
 
     void Start()
@@ -138,6 +138,8 @@ public class ArchitectureObjectsManager : MonoBehaviour
                     }
                     // Set data from architecture into the rack data controller
                     slot_instance.GetComponentInChildren<SlotData>().SetArchitectureData(slot);
+					// Add reference for global uses (like )
+					slotListManager.AddNewSlotReference(slot_instance);
                 }
 
                 // Fill empty slots with covers
@@ -145,7 +147,8 @@ public class ArchitectureObjectsManager : MonoBehaviour
 
 				// Instantiation is over, so we send the signal to the suscribers
                 RackBasicData rackBasicData = new RackBasicData(rack_instanciado.transform, rack_instanciado.name);
-				OnRackInstantiationEnd?.Invoke(rackBasicData);
+                
+                OnRackInstantiationEnd?.Invoke(rackBasicData);
                 //OnRackInstantiationEnd?.Invoke(rack_instanciado.transform);
             }
 

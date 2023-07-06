@@ -3,32 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using VMDC.AuxiliarConfiguration;
+using TMPro;
 
 public class LogInUIElementsController : MonoBehaviour
 {
-	public Text serverIpText;
+	public TextMeshPro serverIpText;
+	public TextMeshPro zabbixAPiversionText;
 	public Button buttonLogIn;
 	public GameObject loadingCircle;
 	public InputField username;
 	public InputField password;
-	public Text errorText;
+	public TextMeshPro errorText;
 	
 	private bool isLoading;
-	
-    void Start()
-    {
-      UpdateServerIPText();
-    }
-	
-	void Update()
-	{
-		if (!isLoading)
-			CheckInputFields();
-	}
 	
 	public void UpdateServerIPText(){
 		//serverIpText.text = serverIpText.text + " " + ZabbixConfig.ipServer;
 		serverIpText.text = "Server IP: " + ZabbixConfig.ipServer;
+	}
+
+	public void UpdateZabbixAPIText(string version){
+		//serverIpText.text = serverIpText.text + " " + ZabbixConfig.ipServer;
+		zabbixAPiversionText.text = "Zabbix API version: " + version;
 	}
 	
 	public void StartLogIn(){

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using VMDC.Constants;
 using VMDC.Dtos;
 
+[RequireComponent(typeof(ToggleGroup))]
 public class IndicatorPanelController : MonoBehaviour
 /*
 	There is one script instance for each slot
@@ -14,12 +15,14 @@ public class IndicatorPanelController : MonoBehaviour
 	private IndicatorPanelManager indicatorPanelManager;
 	private IndicatorsPanelData indicatorsPanelData;
     private List<GameObject> indicatorsList = new List<GameObject>();
+	//ToggleGroup toggleGroup;
 
 	public GameObject indicatorsSpawnPoint;
 
     public List<GameObject> indicatorsToDeactiveAtSTart;
 
-	void Start() {
+    void Start() {
+        //toggleGroup = GetComponent<ToggleGroup>();
         foreach (GameObject indicator in indicatorsToDeactiveAtSTart)
         {
             indicator.SetActive(false);
@@ -69,9 +72,6 @@ public class IndicatorPanelController : MonoBehaviour
 		Note2: If the hierarch of the items change, this need to be changed too
 	*/
 	{
-		// Calculate the distance between the others semaforos
-		float distance = 1.6f/listSemaforos.Count;
-		float i = distance;
 		int id = 0;
 		foreach(SemaforoData panel in listSemaforos){
 			// Load the semaforo prefab used as base
@@ -103,10 +103,14 @@ public class IndicatorPanelController : MonoBehaviour
 				indicator.GetComponent<IndicatorController>().buttonID = -666;
 			}*/
 			indicatorsList.Add(indicator);
-				
-			//i+=0.4f;
-			i+=distance;
-		}
+            //toggleGroup.RegisterToggle(indicator.GetComponentInChildren<Toggle>());
+            Toggle buttoggle = indicator.GetComponentInChildren<Toggle>();
+            buttoggle.group = GetComponent<ToggleGroup>();
+            //Debug.Log(buttoggle.group);
+            //indicator.GetComponentInChildren<Toggle>().group = toggleGroup;
+
+            //i+=0.4f;
+        }
 	}
 
 

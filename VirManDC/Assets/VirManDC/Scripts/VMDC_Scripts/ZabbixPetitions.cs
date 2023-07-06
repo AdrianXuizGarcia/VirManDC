@@ -388,6 +388,46 @@ public class ZabbixPetitions : MonoBehaviour
 					callback(deserializedResponse);
 				}
 		}
+
+		
+		// API VERSION PETITION
+		public IEnumerator MakeApiVersionPetition(Action<string> callback,bool showLog=false)
+		/* 
+			Return null if we cant get a response from the server.
+			Return "" (empty string) if the response is not good.
+			Return the response if its correct.
+		*/
+		{
+			Dictionary<string, System.Object> dic = new Dictionary<string, System.Object>();
+			Request r1 = new Request("apiinfo.version", dic, 1, null);
+			string responseString = "Default";
+			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux,showLog));
+			/*BasePetition bp = new BasePetition();
+			bp.jsonrpc = "2.0";
+			bp.method = "user.login";
+			bp.@params = new LogInPetitionParams(user, password);
+			bp.id = "1";
+			//bp.auth = null;
+			string responseString = "Default";
+			yield return StartCoroutine(MakePetition(bp,(string aux) => responseString=aux));*/
+			if (showLog)
+				Debug.Log("Response:" + responseString);
+			if (responseString=="")
+				callback(null);
+			else {
+				string deserializedResponse = JsonConvert.DeserializeObject<ResponseLoggin>(responseString).result;
+				if (showLog)
+					Debug.Log("Response:" + deserializedResponse);
+				if (deserializedResponse==null){
+					ErrorManager.NewErrorMessage("The API Zabbix was reachable, but something went wrong.");
+					ErrorManager.NewErrorMessage($"Detailed Error returned by API Zabbix: {responseString}");			
+					callback("");
+				}					
+				else 
+					callback(deserializedResponse);
+				}
+		}
+
 		
 		// MAIN METHOD
 		public IEnumerator MakePetition(Request zbxRequest, Action<string> callback,bool showLog=false)

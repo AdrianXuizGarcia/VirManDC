@@ -35,7 +35,7 @@ namespace VMDC.Constants
 		public static string interfacesSemaforoModelsName = "InterfacesSemaforoModels.xml";
 		public static string interfacesSemaforoModelsPath = Path.Combine(extraFilesDirPath,interfacesSemaforoModelsName);
 		public static string semaforoPrefabPath = "OthersModels/semaforoModel"; //deprecated
-		public static string indicatorPrefabPath = "UI/Indicator_space"; //deprecated
+		public static string indicatorPrefabPath = "UI/Indicator_space_v2";
 
 	}
 	public static class VMDCErrorCodes {

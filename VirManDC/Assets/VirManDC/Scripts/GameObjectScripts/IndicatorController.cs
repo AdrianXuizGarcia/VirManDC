@@ -12,14 +12,19 @@ public class IndicatorController : MonoBehaviour
 
     //[Header("0 - General, 1 - CPU, 2 - Disks, 3 - Memory")]
     public int buttonID;
-    private ScriptPanelInfo scriptPanel;
-    private KeyData buttonKeyData;
+    //private ScriptPanelInfo scriptPanel;
+    private KeyData buttonKeyData; // Shared between all buttons. Not problem, is little
     public Image fillIconImage;
 	public TextMeshProUGUI icon_text;
     public Behaviour icon_halo;
     public GameObject errorIcon;
     // For debugging (?)
     public string keySemaforo;
+    private SlotComponentsReferences slotComponentsReferences;
+
+    void Start(){
+        slotComponentsReferences = this.GetComponentInParent<SlotComponentsReferences>();
+    }
 
     /// <summary>
     ///This methods sets the data located in the SlotDataAndControl in the parent object
@@ -50,11 +55,14 @@ public class IndicatorController : MonoBehaviour
     private IEnumerator UpdateIconData()
 	{
 		if (buttonKeyData.keyValue!=null) {
-			float value = (float)Math.Round(float.Parse(buttonKeyData.keyValue, CultureInfo.InvariantCulture),2);
-			float perCent = (value * 100)/buttonKeyData.keyModel.topLimit;
-			icon_text.text = perCent.ToString();
-			if (buttonKeyData.keyModel.topLimit==100)
-				icon_text.text = icon_text.text + "%";
+            float value = (float)Math.Round(float.Parse(buttonKeyData.keyValue, CultureInfo.InvariantCulture),2);
+            float perCent = (value * 100)/buttonKeyData.keyModel.topLimit;
+            string perCentString = ((float)Math.Round(perCent, 2)).ToString();
+            //icon_text.text = perCent.ToString();
+            icon_text.text = perCentString;
+            //if (buttonKeyData.keyModel.topLimit==100)
+            //	icon_text.text = icon_text.text + "%";
+            icon_text.text = icon_text.text + "%";
 			fillIconImage.fillAmount = perCent/100;
 			/*icon_text.text=(Math.Round(float.Parse(buttonKeyData.keyValue, CultureInfo.InvariantCulture),2)).ToString() + "%";
 			icon_image.fillAmount = float.Parse(buttonKeyData.keyValue, CultureInfo.InvariantCulture)/100;*/
@@ -67,25 +75,9 @@ public class IndicatorController : MonoBehaviour
 		yield return null;
 	}
 
-    /*public IEnumerator UpdateDataButtonAndPanel(){
-		//StopCoroutine("UpdateDataButtonAndPanel");
-		yield return StartCoroutine("UpdateDataButton");
-		
-		DataApiContainer dataSlot = slotDataAndControl.dataApiContainer;
-		scriptPanel.ClearList();
-		// Depending of the type of the semaforo, we add a button or not
-		if (isVMButton){
-			//Debug.Log("Inside:");
-			//foreach(VMData vm in slotDataAndControl.virtualMachinesList)
-			//	Debug.Log(vm.hostname);
-			//if (!vmDone)
-			StartCoroutine(AddVMToPanel(slotDataAndControl.virtualMachinesList));
-			yield return null;
-		} else {
-			StartCoroutine(AddDataToPanel(dataSlot.appDataList[buttonID]));
-			buttonKeyData=dataSlot.keyDataList[buttonID];
-			yield return StartCoroutine(UpdateIconData());
-		}
-		
-	}*/
+	public void ChangeFocusedIndicator(){
+        if(slotComponentsReferences)
+            slotComponentsReferences.SwapDataPanelPage(buttonID);
+        //x.ChangeFocusedIndicator(buttonID);
+    }
 }

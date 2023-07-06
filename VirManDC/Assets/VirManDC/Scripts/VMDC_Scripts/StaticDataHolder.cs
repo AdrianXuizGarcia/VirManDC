@@ -8,5 +8,6 @@ public static class StaticDataHolder
     public static bool IndicatorPanelManagerIsInitialized = false;
 
     public static string architectureName = VMDCPaths.architectureName;
+    public static string ZabbixServerAPIversion;
 
 }

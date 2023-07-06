@@ -7,9 +7,9 @@ using TMPro;
 
 public class ErrorManagerGUI : MonoBehaviour
 {
-	public GameObject logInErrorScroll;
-	private Text logInErrorMessage;
-	public GameObject optionsErrorScroll;
+	public GameObject errorCanvas;
+    private TextMeshProUGUI displayText;
+    public GameObject optionsErrorScroll;
 	private Text optionsErrorMessage;
 	public GameObject generalErrorMessage;
 	private Text errorText;
@@ -20,7 +20,7 @@ public class ErrorManagerGUI : MonoBehaviour
 	
 	void Awake()
 	{
-        //Initialize();
+        Initialize();
         ErrorManager.OnNewError += ErrorLog;
     }
 
@@ -34,11 +34,13 @@ public class ErrorManagerGUI : MonoBehaviour
     }
 	
 	private void Initialize(){
-		errorText = generalErrorMessage.GetComponentInChildren<Text>();
-		logInErrorMessage = logInErrorScroll.GetComponentInChildren<Text>();
-		optionsErrorMessage = optionsErrorScroll.GetComponentInChildren<Text>();
-		//initialized = true;
-	}
+		//errorText = generalErrorMessage.GetComponentInChildren<Text>();
+		//logInErrorMessage = logInErrorScroll.GetComponentInChildren<Text>();
+		displayText = optionsErrorScroll.GetComponent<TextMeshProUGUI>();
+		errorCanvas.SetActive(false);
+        ClearLog();
+        //initialized = true;
+    }
 	
 	public void NewErrorMessage(string s)
 	// If the LogIn UI is still active, print
@@ -72,9 +74,9 @@ public class ErrorManagerGUI : MonoBehaviour
 				errorText.text = errorText.text+"\n"+s;
 		}
 		Debug.Log(s);*/
-		if(!optionsErrorScroll.activeSelf)
-            optionsErrorScroll.SetActive(true);
-        TextMeshProUGUI displayText = optionsErrorScroll.GetComponent<TextMeshProUGUI>();
+		if(!errorCanvas.activeSelf)
+            errorCanvas.SetActive(true);
+        //TextMeshProUGUI displayText = optionsErrorScroll.GetComponent<TextMeshProUGUI>();
         displayText.text = displayText.text+"\n"+s;
         //Debug.Log("SO: " + displayText.text);
     }
@@ -85,5 +87,10 @@ public class ErrorManagerGUI : MonoBehaviour
 		if (position < 0)
 			return s;
 		return "<color=red>"+s.Substring(0,position)+"</color>"+s.Substring(position+1);
+	}
+
+	public void ClearLog()
+	{
+		displayText.text = "";
 	}
 }

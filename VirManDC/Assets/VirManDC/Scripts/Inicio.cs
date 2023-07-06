@@ -31,6 +31,7 @@ public class Inicio : MonoBehaviour
         if (!StaticDataHolder.architectureMode) {
             //Debug.Log("es " + StaticDataHolder.architectureMode);
             StartCoroutine(InitDataCoroutine());
+            //StartCoroutine(MakeApiVersionPetitionCo());
         }
     }
 
@@ -39,7 +40,13 @@ public class Inicio : MonoBehaviour
         //Debug.Log("Data updated!");
         //Debug.Log(slotDFAM.hostsData);
     }
-
+    /*
+    private IEnumerator MakeApiVersionPetitionCo(){
+        yield return StartCoroutine(slotDFAM.MakeApiVersionPetition());
+        //Debug.Log("Data updated!");
+        //Debug.Log(slotDFAM.hostsData);
+    }
+    */
     
 
 }

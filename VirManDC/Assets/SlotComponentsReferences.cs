@@ -6,6 +6,7 @@ public class SlotComponentsReferences : MonoBehaviour
 {
     public SlotData slotDataReference;
     public BehaviourSlotController behaviourSlotController;
+    public TestDataPanelController dataPanelController;
 
     public SlotData GetSlotDataReference(){
         return slotDataReference;
@@ -17,6 +18,10 @@ public class SlotComponentsReferences : MonoBehaviour
 
     public void NewPetitionForMainData(){
         behaviourSlotController.UpdateMainData();
+    }
+
+    public void SwapDataPanelPage(int newPage){
+        dataPanelController.SwapPage(newPage);
     }
     
 }

@@ -12,6 +12,7 @@ public class BehaviourSlotController : MonoBehaviour
     public SlotControl slotControlReference;
 
     public IndicatorPanelController indicatorPanelControllerReference;
+    public TestDataPanelController testDataPanelController;
 
 
     //TODO: Do a nice call, this executes all at once at first
@@ -85,8 +86,11 @@ public class BehaviourSlotController : MonoBehaviour
 		// Can be null, if for example we have only VM
 		if (slotDataReference.dataApiSchema!=null)
 			yield return StartCoroutine(slotDFAM.GetMainDataFromApi(slotDataReference.dataApiSchema,slotDataReference.hostID, (DataApiContainer aux)=>slotDataReference.dataApiContainer=aux));
+        //TODO: What happens if null
 		Debug.Log("Waiting for semaforos update...");
 		yield return StartCoroutine(indicatorPanelControllerReference.UpdateDataButtons(slotDataReference.dataApiContainer.keyDataList));
+        Debug.Log("Waiting for data panel update...");
+        yield return StartCoroutine(testDataPanelController.Init(slotDataReference.dataApiContainer.appDataList));
         Debug.Log("Data retrieved!");
         //TODO Check this:
         loadingButtonsUntilReadyController.OnDataRetrieved(true);

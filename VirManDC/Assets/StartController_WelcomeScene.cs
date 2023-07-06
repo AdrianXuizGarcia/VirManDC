@@ -9,22 +9,22 @@ public class StartController_WelcomeScene : MonoBehaviour
 {
     public GameObject guiInfoPanel;
     public GameObject guiChangeArchitecturePanel;
+    public GameObject guiOptions;
     public GameObject loadingBar;
     public GameObject signInButton;
     public float rotationGui = 24;
-    public TextMeshPro serverIPText;
 
     public ZabbixServerStatusIconController zabbixServerStatusIconController;
     public ZabbixPetitions apiPetitions;
     public SlotDataFromAPI_Manager slotDFAM;
 
-    //TODO delete
-    public TextMeshProUGUI text;
+    public LogInUIElementsController logInUIElementsController;
 
     void Start()
     {
         guiInfoPanel.SetActive(false);
         guiChangeArchitecturePanel.SetActive(false);
+        guiOptions.SetActive(false);
         loadingBar.SetActive(false);
         signInButton.SetActive(false);
         guiInfoPanel.transform.Rotate(0.0f, rotationGui, 0.0f);
@@ -34,7 +34,8 @@ public class StartController_WelcomeScene : MonoBehaviour
         ZabbixConfigFile.SetDefaultConfigFromDefaultFile();
 		ZabbixConfigFile.setConfig();
 
-        serverIPText.text += ZabbixConfig.ipServer;
+        logInUIElementsController.UpdateServerIPText();
+        StartCoroutine(GetZabbixAPIVersion());
 
         // Need to conect
         StartCoroutine(MakeLogInPetition());
@@ -56,7 +57,7 @@ public class StartController_WelcomeScene : MonoBehaviour
         signInButton.SetActive(true);
         zabbixServerStatusIconController.SetStatus(true);
         Debug.Log("Conected to server.");
-        StartCoroutine(UpdateWarningsCoroutine());
+        //StartCoroutine(UpdateWarningsCoroutine());
     }
 
     private void ConectionIsBad(){
@@ -64,6 +65,18 @@ public class StartController_WelcomeScene : MonoBehaviour
         //ErrorManager.NewErrorMessage("Error conecting to server");
     }
 
+
+    public IEnumerator GetZabbixAPIVersion()
+	{
+		string version = "";
+        // 10566 es webcitic
+		yield return StartCoroutine(slotDFAM.MakeApiVersionPetition((string aux)=>version=aux));
+        logInUIElementsController.UpdateZabbixAPIText(version);
+
+    }
+
+    /*
+    Prueba de warning
     public IEnumerator UpdateWarningsCoroutine()
 	{
 		List<WarningLastData> warningData = null;
@@ -73,6 +86,6 @@ public class StartController_WelcomeScene : MonoBehaviour
 		if (warningData!=null)
 			text.text=warningData[0].warningDescription;
 		
-	}
+	}*/
 
 }

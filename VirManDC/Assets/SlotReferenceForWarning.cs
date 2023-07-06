@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SlotReferenceForWarning : MonoBehaviour
 {
+  //! DEPRECATED
     private SlotDataFromAPI_Manager slotDataFromAPI_Manager;
     // Start is called before the first frame update
     void Start()

@@ -52,6 +52,7 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 		StartCoroutine(GetAllWarningsData_Co());
 	}
 
+	//TODO: cambiar por lista de slots referenciados, en vez de find global?
 	public IEnumerator GetAllWarningsData_Co(){
 		//Debug.Log("searching for behaviours...");
 		yield return StartCoroutine(GetListBehaviour());
@@ -66,6 +67,13 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 		yield return null;
 	}
 	
+
+	public IEnumerator MakeApiVersionPetition(Action<string> callback){
+        string response = "";
+        yield return StartCoroutine(apiPetitions.MakeApiVersionPetition((string aux) => response=aux));
+        //Debug.Log(log);
+        callback(response);
+    }
 
 	
 	public IEnumerator UpdateHostsData()

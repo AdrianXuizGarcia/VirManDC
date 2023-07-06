@@ -10,20 +10,31 @@ public class ZabbixDataPanelController : MonoBehaviour
     public int numberOfInstances = 15;
     private bool panelIsOpen = false;
 
-    void Start() {
-        for(int i = 0; i < numberOfInstances; i++)
+    /*public void InitializeData(){
+        UpdateData();
+    }
+
+    public void UpdateData(data) {
+        DeleteDataObjects();
+        SpawnDataObjectsFromData(data);
+        ShowOnlyActiveButton(0 by default);
+
+
+        /*for(int i = 0; i < numberOfInstances; i++)
         {
+            int j = i * 10;
             Instantiate(prefabTest, baseToSpawnPrefabTest.transform);
+            prefabTest.GetComponent<DataPanelElementController>().SetValues("Hola " + i, "Values for indicator", j.ToString());
         }
-        panelGameobject.SetActive(panelIsOpen);
+        panelGameobject.SetActive(panelIsOpen);*
     }
 
     public void SwapPanelState(){
         panelGameobject.SetActive(!panelIsOpen);
-        /*if (panelIsOpen)
-            SetButton_ReadyToClose();
-        else 
-            SetButton_ReadyToOpen();*/
         panelIsOpen = !panelIsOpen;
     }
+    private void DeleteDataObjects(){
+        Empty
+    }*/
+
 }
