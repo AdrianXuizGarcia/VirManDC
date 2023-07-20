@@ -275,6 +275,29 @@ public class ZabbixPetitions : MonoBehaviour
         }
 		
 		
+		// CUSTOM SCRIPT PETITION
+		public IEnumerator executeScriptOnHost(string hostid, int scriptid, Action<string> callback)
+		/*
+			This function returns the HostGroupID of the hostname
+		*/
+        {
+			// Define and make the API Petition
+			Dictionary<string, System.Object> dic = new Dictionary<string, System.Object>();
+            dic.Add("hostid", hostid);
+            dic.Add("scriptid", scriptid);
+            Request r1 = new Request("script.execute", dic, 1, ZabbixConfig.authKey);
+			string responseString = "Default";
+			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
+			ResponseScriptExecute values = JsonConvert.DeserializeObject<ResponseScriptExecute>(responseString);
+			// For debugging
+			Debug.Log("Respuesta json de script.execute con hostid "+hostid+" y scriptid "+scriptid+": ");
+			Debug.Log(JsonConvert.SerializeObject(values, Formatting.Indented));
+			// Once we have the response, send it back
+			if (values.result is null)
+				callback(null);
+			else
+				callback(values.result.value);
+        }
 		// VMS FROM HOST PETITION
 		public IEnumerator getVMfromHostGroupID(string hostgroupId, string key, Action<List<VMData>> callback)
 		/*
@@ -363,14 +386,6 @@ public class ZabbixPetitions : MonoBehaviour
 			Request r1 = new Request("user.login", dic, 1, null);
 			string responseString = "Default";
 			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux,showLog));
-			/*BasePetition bp = new BasePetition();
-			bp.jsonrpc = "2.0";
-			bp.method = "user.login";
-			bp.@params = new LogInPetitionParams(user, password);
-			bp.id = "1";
-			//bp.auth = null;
-			string responseString = "Default";
-			yield return StartCoroutine(MakePetition(bp,(string aux) => responseString=aux));*/
 			if (showLog)
 				Debug.Log("Response:" + responseString);
 			if (responseString=="")

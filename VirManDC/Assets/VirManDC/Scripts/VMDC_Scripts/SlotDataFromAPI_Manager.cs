@@ -100,6 +100,15 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 			yield return StartCoroutine(apiPetitions.getVMfromHostGroupID(hostgroupID, key,(List<VMData> aux) => vmList=aux));
 		callback(vmList);
 	}
+
+	public IEnumerator ExecuteScriptOnHostID(string hostid, int serverid,Action<string> callback)
+	{
+		string response = "";
+		yield return StartCoroutine(apiPetitions.executeScriptOnHost(hostid,serverid,(string aux) => response=aux));
+		if (response is null)
+            ErrorManager.NewErrorMessage("ERROR: The instruction couldnt be executed");
+        callback(response);
+	}
 	
 	/// <summary>
 	/// This function sets the dataHost parameters into the SlotDataAndControl
@@ -146,70 +155,4 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 		return (foundHostData!=null);
     }
 
-	/*private void GetHostIDFromIP(SlotData slotData, string ip)
-	
-		//Search the IP in the list of hosts, and asign the data
-	
-	{
-		// Note: IP must be unique
-		//Debug.Log("Getting id from ip "+ip);
-		foreach (HostZabbixData hostData in hostsData.listHosts)
-		{
-			if (hostData.hostIP == ip)
-			{
-				slotData.hostID = hostData.hostID;
-				slotData.hostname = hostData.hostname;
-				slotData.host = hostData.host;
-				slotData.descriptionHost = hostData.descriptionHost;
-				return;
-			}
-		}
-	}
-	
-	private void GetIPFromHostID(SlotDataAndControl slotDaC, string hostID)
-	{
-		//Debug.Log("Getting ip from id "+hostID);
-		foreach (HostZabbixData hostData in hostsData.listHosts)
-		{
-			if (hostData.hostID == hostID)
-			{
-				slotDaC.ip = hostData.hostIP;
-				slotDaC.hostname = hostData.hostname;
-				slotDaC.host = hostData.host;
-				slotDaC.descriptionHost = hostData.descriptionHost;
-				return;
-			}
-		}
-	}*/
-	
-	public List<SlotDataAndControl> GetVirtualSlots()
-	// WIP
-	{
-		// TODO, NOW IS A MOCK
-		/*
-		List<SlotDataAndControl> virtualSlotList = new List<SlotDataAndControl>();
-		
-		SlotDataAndControl slotvirtual_1 = new SlotDataAndControl();
-		SlotDataAndControl slotvirtual_2 = new SlotDataAndControl();
-		SlotDataAndControl slotvirtual_3 = new SlotDataAndControl();
-		slotvirtual_1.slotName = "slotVirtual_1";
-		slotvirtual_2.slotName = "CerebroMock_2";
-		slotvirtual_3.slotName = "LELELOE_3";
-		DataApiContainer data1 = new DataApiContainer();
-		List<InfoApi> items1 = new List<InfoApi>();
-		for (int i = 0; i<10; i++)
-			items1.Add(new InfoApi("key1","name","looooooooooooooool","10"));
-		data1.generalItems = items1;
-		KeyValues keyValues = new KeyValues();
-		keyValues.generalValue = new KeyValue("10",100f);
-		//keyValues.generalKey = "lol";
-		data1.keyValues = keyValues;
-		slotvirtual_1.dataApiContainer = data1;
-		virtualSlotList.Add(slotvirtual_1);
-		virtualSlotList.Add(slotvirtual_2);
-		virtualSlotList.Add(slotvirtual_3);
-		return virtualSlotList;
-		*/
-		return null;
-	}
 }

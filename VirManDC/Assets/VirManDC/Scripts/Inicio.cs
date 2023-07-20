@@ -31,6 +31,9 @@ public class Inicio : MonoBehaviour
         if (!StaticDataHolder.architectureMode) {
             //Debug.Log("es " + StaticDataHolder.architectureMode);
             StartCoroutine(InitDataCoroutine());
+            //StartCoroutine(InitScriptCoroutine("10829",1)); // For testing
+            //StartCoroutine(InitScriptCoroutine("10829",4)); // For testing
+            //StartCoroutine(InitScriptCoroutine("10829",3)); // For testing
             //StartCoroutine(MakeApiVersionPetitionCo());
         }
     }
@@ -38,6 +41,13 @@ public class Inicio : MonoBehaviour
     private IEnumerator InitDataCoroutine(){
         yield return StartCoroutine(slotDFAM.UpdateHostsData());
         //Debug.Log("Data updated!");
+        //Debug.Log(slotDFAM.hostsData);
+    }
+
+    private IEnumerator InitScriptCoroutine(string hostid, int scriptid){
+        string response = "";
+        yield return StartCoroutine(slotDFAM.ExecuteScriptOnHostID(hostid,scriptid,(string aux) => response=aux));
+        Debug.Log("Response at end: "+response);
         //Debug.Log(slotDFAM.hostsData);
     }
     /*

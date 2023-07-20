@@ -13,6 +13,8 @@ public class FrontSlotController : MonoBehaviour
     [SerializeField]
     private WarningController warningController;
     [SerializeField]
+    private MainDataController mainDataController;
+    [SerializeField]
     private ObjectManipulator objectManipulator;
     public GameObject resetPositionButton;
 
@@ -29,6 +31,7 @@ public class FrontSlotController : MonoBehaviour
     public void OpenSlot(){
         if(!StaticDataHolder.architectureMode){
             warningController.NewPetitionForWarningData();
+            mainDataController.NewPetitionForMainData();
         }
         basicMenuGUI.SetActive(true);
         objectManipulator.enabled = true;

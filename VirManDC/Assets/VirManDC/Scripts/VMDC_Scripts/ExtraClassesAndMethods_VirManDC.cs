@@ -62,11 +62,11 @@ namespace AuxiliarMethods
 			return item;
 		}
 		
-		
+		/// <summary>
+        /// Load and return the list of the PanelSemaforoModels from the XML
+        /// </summary>
+        /// <returns></returns>
 		public static List<SemaforoData> LoadPanelSemaforoModels()
-		/* 
-			Load and return the list of the PanelSemaforoModels from the XML
-		*/
 		{
 			XmlReader reader = XmlReader.Create(VMDCPaths.panelSemaforoModelsPath);
 			List<SemaforoData> panelSemaforoList = new List<SemaforoData>();
@@ -97,6 +97,34 @@ namespace AuxiliarMethods
 				}
 			}		
 			return panelSemaforoList;
+		}
+
+		/// <summary>
+        /// Load and return the list of the ZabbixScript from the XML
+        /// </summary>
+        /// <returns></returns>
+		public static List<ZabbixScriptData> LoadZabbixScriptList()
+		{
+			XmlReader reader = XmlReader.Create(VMDCPaths.zabbixScriptListPath);
+			List<ZabbixScriptData> zabbixScriptList = new List<ZabbixScriptData>();
+			
+			while (reader.Read())
+			{
+				// Read Model: first the attributes
+				if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "zabbixscript"){
+					ZabbixScriptData zabbixScriptData = new ZabbixScriptData();
+					zabbixScriptData.scriptid = int.Parse(reader.GetAttribute(0));
+					// For the rest of the elements, we read each node
+					while (reader.NodeType != XmlNodeType.EndElement){
+						reader.Read();
+						if (reader.Name.ToLower() == "showname")
+							zabbixScriptData.scripshowname =getItemFromReader(reader);
+					}
+					zabbixScriptList.Add(zabbixScriptData);
+					reader.Read();
+				}
+			}		
+			return zabbixScriptList;
 		}
 		
 		

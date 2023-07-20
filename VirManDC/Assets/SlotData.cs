@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using VMDC.Dtos;
 
@@ -9,6 +7,7 @@ public class SlotData : MonoBehaviour
     public string slotName;
     public string type;
     public string slotID; // can be hostid or ip
+    public bool isHypervisor;
 
     [Header("ZABBIX DATA")]
     public string hostID;
@@ -22,9 +21,14 @@ public class SlotData : MonoBehaviour
 	public DataApiContainer dataApiContainer;
 	public string hostGroupID; // for waht?
 
+    /// <summary>
+    /// Set the slot dto data to the data class
+    /// </summary>
+    /// <param name="dto">Slot data</param>
     public void SetArchitectureData(RackSlotDto dto){
         slotName = dto.name;
         slotID = dto.slotID;
         type = dto.type;
+        isHypervisor = dto.isHypervisor;
     }
 }

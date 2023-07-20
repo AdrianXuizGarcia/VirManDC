@@ -91,7 +91,8 @@ namespace VMDC.Dtos
 		public string type;
 		public string model;
 		public int posY;
-	}
+        public bool isHypervisor;
+    }
 	
 	public class RackModelData
 	/*
@@ -251,4 +252,9 @@ namespace VMDC.Dtos
         public Transform transform;
         public string rackName;
     }
+
+	public class ZabbixScriptData {
+        public int scriptid;
+        public string scripshowname;
+	}
 }

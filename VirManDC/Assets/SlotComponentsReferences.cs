@@ -6,7 +6,8 @@ public class SlotComponentsReferences : MonoBehaviour
 {
     public SlotData slotDataReference;
     public BehaviourSlotController behaviourSlotController;
-    public TestDataPanelController dataPanelController;
+    public TestDataPanelController dataPanelController; // TODO: CHange
+    public ScriptListPanelController scriptListPanelController;
 
     public SlotData GetSlotDataReference(){
         return slotDataReference;
@@ -22,6 +23,10 @@ public class SlotComponentsReferences : MonoBehaviour
 
     public void SwapDataPanelPage(int newPage){
         dataPanelController.SwapPage(newPage);
+    }
+
+    public IEnumerator NewPetitionForScriptExecution(string hostid, int scriptid){
+        yield return StartCoroutine(scriptListPanelController.NewScriptExecution_Co(hostid,scriptid));
     }
     
 }

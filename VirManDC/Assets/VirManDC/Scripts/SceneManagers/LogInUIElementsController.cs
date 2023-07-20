@@ -15,7 +15,7 @@ public class LogInUIElementsController : MonoBehaviour
 	public InputField password;
 	public TextMeshPro errorText;
 	
-	private bool isLoading;
+	//private bool isLoading;
 	
 	public void UpdateServerIPText(){
 		//serverIpText.text = serverIpText.text + " " + ZabbixConfig.ipServer;
@@ -28,13 +28,13 @@ public class LogInUIElementsController : MonoBehaviour
 	}
 	
 	public void StartLogIn(){
-		isLoading = true;
+		//isLoading = true;
 		ManageAllInputs(false);
 		loadingCircle.SetActive(true);
 	}
 	
 	public void EndLogIn(){
-		isLoading = false;
+		//isLoading = false;
 		ManageAllInputs(true);
 		loadingCircle.SetActive(false);
 	}

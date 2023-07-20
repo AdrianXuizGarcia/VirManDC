@@ -57,6 +57,19 @@ namespace ResponseAPIClasses
 		//public string internal { get; set; }
 	}
 	
+	public class ResponseScriptExecute
+	{
+		public string jsonrpc = "2.0";
+		public ScriptExecuteData result { get; set; }
+		public int id { get; set; }
+	}
+
+	public class ScriptExecuteData
+	{
+		public string response { get; set; }
+		public string value { get; set; }
+	}
+
 	public class Request
 	{
 		public string jsonrpc = "2.0";

@@ -52,7 +52,7 @@ public class ArchitectureXmlManager
 			{
 				//Debug.Log(reader.Name);
 				// Read first line. Contains the place definition (size)
-				if (reader.Name.ToLower() == "placedescription") {
+				/*if (reader.Name.ToLower() == "placedescription") {
 						data.scalePosX = float.Parse(reader.GetAttribute(0),CultureInfo.InvariantCulture);
 						data.scaleX = float.Parse(reader.GetAttribute(1),CultureInfo.InvariantCulture);
 						data.scalePosZ = float.Parse(reader.GetAttribute(2),CultureInfo.InvariantCulture);
@@ -75,7 +75,7 @@ public class ArchitectureXmlManager
 							cameraSettings.rotation = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 					}
 					data.cameraSettings = cameraSettings;
-				}
+				}*/
 				// If isnt a rack
 				if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "other"){
 					OtherDto other = new OtherDto();
@@ -132,6 +132,7 @@ public class ArchitectureXmlManager
 							slot.size = int.Parse(reader.GetAttribute(2));
 							slot.model = reader.GetAttribute(3);
 							slot.type = reader.GetAttribute(4);
+							slot.isHypervisor = bool.Parse(reader.GetAttribute(5));
 							// For the rest of the elements, we read each node
 							while (reader.NodeType != XmlNodeType.EndElement){
 								reader.Read();
@@ -180,8 +181,6 @@ public class ArchitectureXmlManager
 		This function only reads data and put it on the ArchitectureData object.
 	*/
 	{
-		
-		
 		try
 		{
 			XmlReader reader = XmlReader.Create(VMDCPaths.modelsRackPath);

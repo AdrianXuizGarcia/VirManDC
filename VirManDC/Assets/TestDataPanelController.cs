@@ -18,30 +18,19 @@ public class TestDataPanelController : MonoBehaviour
     private int actualIndicatorPage = 0;
     private int numOfPages = -1;
 
-    //? Delete later
-    /*void Start(){
-    List<List<GameObject>> listsDataElementTemp = new List<List<GameObject>>();
-        listsDataElementTemp.Add(new List<GameObject>());
-        listsDataElementTemp.Add(new List<GameObject>());
-        listsDataElementTemp.Add(new List<GameObject>());
-        Init(listsDataElementTemp);
-    }*/
-
     public IEnumerator Init(List<List<InfoApi>> listOfElements) {
         DeactivateAnyChilds();
         ResetUIScroll();
         DeleteAllDataObjects();
-        //listsDataElement = listOfElements; // TODO: Instead of gameobjects, data file
+        //listsDataElement = listOfElements;
         numOfPages = listOfElements.Count;
         for (int i = 0; i < numOfPages; i++)
         {
             listsDataElement.Add(new List<GameObject>());
             for (int j = 0; j < listOfElements[i].Count; j++)
             {
-                int k = j * 10;
                 GameObject elementInstance = Instantiate(prefabTest, baseToSpawnPrefabTest.transform);
                 listsDataElement[i].Add(elementInstance);
-                //elementInstance.GetComponent<DataPanelElementController>().SetValues("Hola " + i, "Values for indicator", k.ToString());
                 string valueParsed = listOfElements[i][j].lastValue;
                 if (float.TryParse(valueParsed, out _))
 					valueParsed = Math.Round(float.Parse(listOfElements[i][j].lastValue, CultureInfo.InvariantCulture),2).ToString();

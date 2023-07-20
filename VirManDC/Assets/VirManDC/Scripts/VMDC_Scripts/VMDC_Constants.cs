@@ -11,11 +11,14 @@ namespace VMDC.Constants
 		// Path for the logFile output
 		public static string logFilePath = Path.Combine(extraFilesDirPath,"logData.log");
 		
-		public static string architectureName = "Architecture_SalaCPD.xml";
+		public static string architectureName = "Architecture_CITIC_CPD.xml";
 		public static string architecturePath = Path.Combine(extraFilesDirPath,architectureName);
 		//public static string architecturePath = Path.Combine(extraFilesDirPath,StaticDataHolder.architectureFileName);
 		public static string modelsRackName = "RackDataModels.xml";
 		public static string modelsRackPath = Path.Combine(extraFilesDirPath,modelsRackName);
+
+		public static string zabbixScriptListName = "zabbixScripts.xml";
+		public static string zabbixScriptListPath = Path.Combine(extraFilesDirPath,zabbixScriptListName);
 		
 		//public static string configFilePath = extraFilesDirPath+"/VMDCConfiguration.config";
 		public static string configFilePath = Path.Combine(Application.persistentDataPath,"VMDCConfiguration.config");

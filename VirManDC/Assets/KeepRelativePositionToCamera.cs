@@ -13,7 +13,7 @@ public class KeepRelativePositionToCamera : MonoBehaviour
 
     void Start(){
         cameraTransform = Camera.main.transform;
-        mainTransform.Rotate(initialRotation);
+        //mainTransform.Rotate(initialRotation);
     }
 
     public void SwapState(){

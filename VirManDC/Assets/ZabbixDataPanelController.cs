@@ -8,7 +8,7 @@ public class ZabbixDataPanelController : MonoBehaviour
     public GameObject prefabTest;
     public GameObject baseToSpawnPrefabTest;
     public int numberOfInstances = 15;
-    private bool panelIsOpen = false;
+    //private bool panelIsOpen = false;
 
     /*public void InitializeData(){
         UpdateData();
