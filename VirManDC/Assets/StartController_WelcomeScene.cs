@@ -44,7 +44,7 @@ public class StartController_WelcomeScene : MonoBehaviour
     private IEnumerator MakeLogInPetition(){
 		//Debug.Log("Conecting to server...");
 		string responseString = "default";
-		yield return StartCoroutine(apiPetitions.MakeLogInPetition("Admin","zabbix",(string aux) => responseString=aux));
+		yield return StartCoroutine(apiPetitions.MakeLogInPetition("Admin","d1@8#y2FFHl3",(string aux) => responseString=aux));
         if (responseString=="" || responseString==null){
             ConectionIsBad();
         } else {

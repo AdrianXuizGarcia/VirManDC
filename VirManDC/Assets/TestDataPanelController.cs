@@ -99,8 +99,9 @@ public class TestDataPanelController : MonoBehaviour
     }
 
     private void ResetUIScroll(){
-        if(baseToSpawnPrefabTest)
-            baseToSpawnPrefabTest.GetComponentInParent<ScrollRect>().verticalNormalizedPosition = 1f; // Patch to reset Scroll UI
+        ScrollRect temp = baseToSpawnPrefabTest.GetComponentInParent<ScrollRect>();
+        if(temp)
+            temp.verticalNormalizedPosition = 1f; // Patch to reset Scroll UI
     }
 
     /// <summary>

@@ -52,7 +52,7 @@ public class ArchitectureXmlManager
 			{
 				//Debug.Log(reader.Name);
 				// Read first line. Contains the place definition (size)
-				/*if (reader.Name.ToLower() == "placedescription") {
+				if (reader.Name.ToLower() == "placedescription") {
 						data.scalePosX = float.Parse(reader.GetAttribute(0),CultureInfo.InvariantCulture);
 						data.scaleX = float.Parse(reader.GetAttribute(1),CultureInfo.InvariantCulture);
 						data.scalePosZ = float.Parse(reader.GetAttribute(2),CultureInfo.InvariantCulture);
@@ -60,6 +60,7 @@ public class ArchitectureXmlManager
 						data.rotPosX = float.Parse(reader.GetAttribute(4),CultureInfo.InvariantCulture);
 						data.rotPosZ = float.Parse(reader.GetAttribute(5),CultureInfo.InvariantCulture);
 				}
+				/*
 				// Read the camera seetings
 				if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "camerasettings") {
 					CameraSettings cameraSettings = new CameraSettings();
@@ -104,9 +105,7 @@ public class ArchitectureXmlManager
 					rack.rackID = int.Parse(reader.GetAttribute(0));
 					rack.name = reader.GetAttribute(1);
 					rack.model = reader.GetAttribute(2);
-					rack.modelB = reader.GetAttribute(3);
-					rack.graphicsM = reader.GetAttribute(4);
-					rack.graphicsBM = reader.GetAttribute(5);
+					rack.graphics = reader.GetAttribute(3);
 					// For the rest of the elements, we read each node
 					while (reader.NodeType != XmlNodeType.EndElement){
 						reader.Read();

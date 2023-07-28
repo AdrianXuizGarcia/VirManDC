@@ -19,7 +19,8 @@ public class BehaviourSlotController : MonoBehaviour
     public void Start(){
         if (!slotDFAM)
             slotDFAM = GameObject.FindWithTag("API_Controller").GetComponent<SlotDataFromAPI_Manager>();
-        StartCoroutine(Initialize_Co());
+        if (!slotControlReference.slotIsDeactivated)
+            StartCoroutine(Initialize_Co());
         //zabbixDataPanelController.AsignSlotData(slotDataReference);
     }
 

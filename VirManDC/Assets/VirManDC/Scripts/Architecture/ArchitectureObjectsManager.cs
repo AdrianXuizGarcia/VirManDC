@@ -24,7 +24,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
 {
     public static ArchitectureObjectsManager Instance;
 	public static event Action<RackBasicData> OnRackInstantiationEnd;
-	public static event Action<Transform> OnRackPicked;
+	//public static event Action<Transform> OnRackPicked;
     private const string slotPrefix = "slotAnim_";
 	//private const string slotsSpritesPath = "SlotSprites/";
 
@@ -117,6 +117,11 @@ public class ArchitectureObjectsManager : MonoBehaviour
 
                 foreach (RackSlotDto slot in rackData.rackSlots)
                 {
+                    if (slot.posY>=rack_model_data.size)
+                    {
+                        ErrorManager.NewErrorMessage("Slot '"+slot.name+"' cant be spawned because its positioned outside of the rack. Check the size of '"+rack_model_data.model+"'");
+                        break;
+                    }
                     // Instantiate the slot within the rack position
                     GameObject slot_instance = InstantiateSlot(slot, spawnSlotTransform);
                     //Debug.Log(rack_instanciado.transform.GetChild(2).transform);
@@ -138,6 +143,9 @@ public class ArchitectureObjectsManager : MonoBehaviour
                     }
                     // Set data from architecture into the rack data controller
                     slot_instance.GetComponentInChildren<SlotData>().SetArchitectureData(slot);
+					// Set data from architecture into the rack data controller
+					if (Int16.Parse(slot.slotID) == 0)
+                    	slot_instance.GetComponentInChildren<SlotControl>().slotIsDeactivated = true;
 					// Add reference for global uses (like )
 					slotListManager.AddNewSlotReference(slot_instance);
                 }
@@ -155,12 +163,17 @@ public class ArchitectureObjectsManager : MonoBehaviour
         } catch (Exception e) {Debug.Log(e);}
     }
 	
+	/// <summary>
+    /// This function control the Instantiate of the item and returns null + Error message if something went wrong.
+	/// Resources.Load() returns null if the GameObject is not found. 
+	/// The name of the object must be "otherModel_definition". 
+    /// </summary>
+    /// <param name="other"></param>
+    /// <param name="other_pos"></param>
+    /// <param name="other_rot"></param>
+    /// <param name="parent"></param>
+    /// <returns></returns>
 	private GameObject InstantiateOther(OtherDto other, Vector3 other_pos, Quaternion other_rot,Transform parent)
-	/* 
-		This function control the Instantiate of the item and returns null + Error message if something went wrong.
-		Resources.Load() returns null if the GameObject is not found. 
-		The name of the object must be "otherModel_definition". 
-	*/
 	{
 		GameObject other_prefab = Resources.Load<GameObject>(VMDCPaths.othersModelsPath+other.model+"_"+other.graphics);
 		if (other_prefab == null)
@@ -171,30 +184,37 @@ public class ArchitectureObjectsManager : MonoBehaviour
 		return Instantiate(other_prefab,other_pos,other_rot,parent) as GameObject;
 	}
 	
+	/// <summary>
+    /// This function control the Instantiate of the rack and returns null + Error message if something went wrong.
+	/// Resources.Load() returns null if the GameObject is not found. 
+	/// The name of the object must be "rackModel_definition".
+    /// </summary>
+    /// <param name="rackData"></param>
+    /// <param name="rack_pos"></param>
+    /// <param name="rack_rot"></param>
+    /// <param name="parent"></param>
+    /// <returns></returns>
 	private GameObject InstantiateRack(RackDto rackData, Vector3 rack_pos, Quaternion rack_rot, Transform parent)
-	/* 
-		This function control the Instantiate of the rack and returns null + Error message if something went wrong.
-		Resources.Load() returns null if the GameObject is not found. 
-		The name of the object must be "rackModel_definition".
-	*/
 	{
-		GameObject rack_prefab = Resources.Load<GameObject>(VMDCPaths.racksModelsPath+rackData.model+"_"+rackData.graphicsM);
+		GameObject rack_prefab = Resources.Load<GameObject>(VMDCPaths.racksModelsPath+rackData.model+"_"+rackData.graphics);
 		if (rack_prefab == null)
 		{
-			ErrorManager.NewErrorMessageThrowException("The model '"+rackData.model+"_"+rackData.graphicsM+"' was not found in the path '"+VMDCPaths.racksModelsPath+"'.");
+			ErrorManager.NewErrorMessageThrowException("The model '"+rackData.model+"_"+rackData.graphics+"' was not found in the path '"+VMDCPaths.racksModelsPath+"'.");
 			return null;
 		}
 		return Instantiate(rack_prefab,rack_pos,rack_rot,parent) as GameObject;
 	}
 	
-	
+	/// <summary>
+    /// This function control the Instantiate of the slot and returns null + Error message if something went wrong.
+	/// Resources.Load() returns null if the GameObject is not found. 
+	/// The name of the object must be "rackSlotPrefix_sizeU".
+	/// Beware: changes on the slotPrefab structure may need adjustements here.
+    /// </summary>
+    /// <param name="slot_data"></param>
+    /// <param name="parentTransform"></param>
+    /// <returns></returns>
 	private GameObject InstantiateSlot(RackSlotDto slot_data, Transform parentTransform)
-	/* 
-		This function control the Instantiate of the slot and returns null + Error message if something went wrong.
-		Resources.Load() returns null if the GameObject is not found. 
-		The name of the object must be "rackSlotPrefix_sizeU".
-		Beware: changes on the slotPrefab structure may need adjustements here.
-	*/
 	{
 	    Sprite spriteAssigned = null;
         /*
@@ -244,43 +264,9 @@ public class ArchitectureObjectsManager : MonoBehaviour
 			ErrorManager.NewErrorMessageThrowException("The model '"+slot_data.model+"' couldnt be found.");
 		else
 			spriteRenderer.sprite = spriteAssigned;
-		
-		// Asign slot data to SlotDataAndControl script
-		////AsignSlotData(slot_instance.GetComponent<SlotDataAndControl>(),slot_data);
-		
-		// Asign the canvas correspondent to the slot type
-		//AsignCanvasFromType(slot_instance,slot_data);
 
 		return slot_instance;
 	}
-
-	/*private void AsignSlotData(SlotDataAndControl slot, RackSlotDto slot_data)
-		Asign slot data from RackSlotDto and HostsData to SlotDataAndControl component.
-	
-	{
-		slot.slotName = slot_data.name;
-		slot.slotNum = slot_data.slotNum;
-		slot.type = slot_data.type;
-		
-		// Depending of the type of id, we set IP or hostID
-		String slotID = slot_data.slotID;
-		if (slotID.Contains("."))
-			slot.ip = slotID;
-		else
-			slot.hostID = slotID;
-		
-		// Get the data from the API
-		///slotDFAM.SetHostsDataToSlotData(slot, slot.hostID, slot.ip);
-	}*/
-	
-	/*private void ApplyCameraSettings(ArchitectureRawData data)
-	{
-		if (data.cameraSettings!=null) {
-			mainCamera.transform.position = new Vector3(data.cameraSettings.posX, data.cameraSettings.posY, data.cameraSettings.posZ);
-			mainCamera.transform.Rotate(new Vector3(0, data.cameraSettings.rotation, 0));	
-		} else 
-			ErrorManager.NewErrorMessage("The camera data Settings could not be readed.");
-	}*/
 	
 	private void FillEmptySlotsOfRack(bool[] filledSlotsList,Transform parentTransform, RackModelData rack_model_data)
 	{
@@ -308,136 +294,4 @@ public class ArchitectureObjectsManager : MonoBehaviour
 		}
 	}
 
-
-
-
-
-	public void SetPickedRack(int rackID)
-	{
-        // Get the HostData from the Api
-        // <-> yield return StartCoroutine(slotDFAM.UpdateHostsData());
-        // Scale up the floor to match the racks
-        // <-> floor.transform.localScale = new Vector3(data.sizeX, floor.transform.localScale.y, data.sizeZ);
-        // Apply the camera settings (if readed correctly)
-        // <-> ApplyCameraSettings(data);
-
-        try {
-			// We get the RackModelData from the ArchitectureRawData of the rack's model
-			RackDto rackData = rawData.racks.Find(x => x.rackID==rackID);
-
-			// Set the position and rotation of the rack, and instantiate it
-			Vector3 rack_pos = originPointToSpawn.position;
-
-            //Debug.Log(rackData.name +":"+  rackData.posX* rack_model_data.espacioRackX+":" + rackData.posZ* rack_model_data.espacioRackZ);
-            Quaternion rack_rot = originPointToSpawn.rotation;
-
-            GameObject rack_instanciado = InstantiateRack2(rackData, rack_pos, rack_rot,originPointToSpawn.transform);
-
-			// Change the name of the GameObject (useful for debugging, not necessary)
-			// --> Only works for old prefab, maybe useful for new changes 
-			//rack_instanciado.transform.Find ("rack_Cube/Canvas/Text").GetComponent<Text>().text = rack.rackID.ToString();
-			rack_instanciado.name = rackData.name;
-
-			// Create a filledSlots list to calculate later the filling with covers
-			RackModelData rack_model_data = rawData.modelsRack.Find(x => x.model.Contains(rackData.model));
-			bool[] filledSlotsList = new bool[rack_model_data.size];
-
-			foreach (RackSlotDto slot in rackData.rackSlots)
-			{
-				// Instantiate the slot within the rack position
-				GameObject slot_instance = InstantiateSlot2(slot, rack_instanciado.transform.GetChild(2).transform);
-				//Debug.Log(rack_instanciado.transform.GetChild(2).transform);
-				// Set the slot on the "begining" Y (which is not the same as the rack)
-				slot_instance.transform.Translate(Vector3.up * rack_model_data.espacioInicioServers1u);
-				// Translate upwards the slot to his Y position
-				slot_instance.transform.Translate(Vector3.up * slot.posY * (rack_model_data.espacio1uY));
-				//// Move the canvas to the correct position
-				////GameObject canvas_instance = slot_instance.transform.GetChild(0).GetComponent<SlotRackInteraction>().GetPanelCanvas();
-				////canvas_instance.transform.position += new Vector3(0, rack_model_data.espacioInicioCanvas1u * slot.size, 0);
-				// Set the slot as a child of the rack
-				slot_instance.transform.SetParent(rack_instanciado.transform.GetChild(2).transform);
-				// Mark the slots filled
-				for (int i = 0; i < slot.size; i++)
-				{
-					filledSlotsList[i + slot.posY] = true;
-				}
-
-			}
-
-			// Fill empty slots with covers
-			FillEmptySlotsOfRack(filledSlotsList, rack_instanciado.transform.GetChild(2).transform, rack_model_data);
-
-			// Instantiation is over, so we send the signal to the suscribers
-			RackBasicData rackBasicData = new RackBasicData(rack_instanciado.transform, rack_instanciado.name);
-			// TODO: Guardar la transform de la ubicacion del rack, no de la base
-			OnRackPicked?.Invoke(originPointToSpawn.transform);
-			//OnRackInstantiationEnd?.Invoke(rack_instanciado.transform);
-
-        } catch (Exception e) {Debug.Log(e);}
-    }
-
-	private GameObject InstantiateRack2(RackDto rackData, Vector3 rack_pos, Quaternion rack_rot, Transform parent)
-	/* 
-		This function control the Instantiate of the rack and returns null + Error message if something went wrong.
-		Resources.Load() returns null if the GameObject is not found. 
-		The name of the object must be "rackModel_definition".
-	*/
-	{
-		GameObject rack_prefab = Resources.Load<GameObject>(VMDCPaths.racksModelsPath+rackData.model+"_"+rackData.graphicsM);
-		if (rack_prefab == null)
-		{
-			ErrorManager.NewErrorMessage("The model '"+rackData.model+"_"+rackData.graphicsM+"' was not found in the path '"+VMDCPaths.racksModelsPath+"'.");
-			return null;
-		}
-		return Instantiate(rack_prefab,rack_pos,rack_rot,parent) as GameObject;
-	}
-
-	private GameObject InstantiateSlot2(RackSlotDto slot_data, Transform parentTransform)
-	/* 
-		This function control the Instantiate of the slot and returns null + Error message if something went wrong.
-		Resources.Load() returns null if the GameObject is not found. 
-		The name of the object must be "rackSlotPrefix_sizeU".
-		Beware: changes on the slotPrefab structure may need adjustements here.
-	*/
-	{
-	    Sprite spriteAssigned = null;
-
-        string nameServer = "Server";
-        GameObject slot_prefab = Resources.Load<GameObject>(VMDCPaths.slotsModelsPath+nameServer);
-		if (slot_prefab == null)
-		{
-			ErrorManager.NewErrorMessage("The model '"+nameServer+"' couldnt be found in the path \""+VMDCPaths.slotsModelsPath+"\".");
-			return null;
-		}
-		GameObject slot_instance = Instantiate(slot_prefab,parentTransform) as GameObject;
-        slot_instance.name = slot_data.name;
-		
-		// We scale up the "graphic" part of the rack to match his size
-		slot_instance.transform.GetChild(0).gameObject.transform.localScale = new Vector3(1,slot_data.size,1);
-		// ---> end diferent ways <---
-		
-		// Asign the sprite correspondent to the model
-		SpriteRenderer spriteRenderer = slot_instance.transform.GetChild(0).GetComponentInChildren<SpriteRenderer>();
-		foreach (Sprite i in sprites)
-		{
-			if (i.name == slot_data.model)
-			{
-				spriteAssigned = i;
-				break;
-			}
-		}
-		
-		if (spriteAssigned == null)
-			ErrorManager.NewErrorMessage("The model '"+slot_data.model+"' couldnt be found.");
-		else
-			spriteRenderer.sprite = spriteAssigned;
-		
-		// Asign slot data to SlotDataAndControl script
-		////AsignSlotData(slot_instance.GetComponent<SlotDataAndControl>(),slot_data);
-		
-		// Asign the canvas correspondent to the slot type
-		//AsignCanvasFromType(slot_instance,slot_data);
-
-		return slot_instance;
-	}
 }

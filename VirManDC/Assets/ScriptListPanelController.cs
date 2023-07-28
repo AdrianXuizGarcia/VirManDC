@@ -21,6 +21,7 @@ public class ScriptListPanelController : MonoBehaviour
         slotDataReference = this.GetComponentInParent<SlotComponentsReferences>().GetSlotDataReference();
         zabbixScriptList = XML_extraMethods.LoadZabbixScriptList();
         StartCoroutine(SpawnScriptElementList());
+        outputText.text = "";
     }
 
     private void DeactivateAnyChilds(){

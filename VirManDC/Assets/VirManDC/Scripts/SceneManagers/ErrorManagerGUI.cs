@@ -10,11 +10,6 @@ public class ErrorManagerGUI : MonoBehaviour
 	public GameObject errorCanvas;
     private TextMeshProUGUI displayText;
     public GameObject optionsErrorScroll;
-	private Text optionsErrorMessage;
-	public GameObject generalErrorMessage;
-	private Text errorText;
-	public GameObject GUIlogin;
-	public GameObject GUIoptions;
 	
 	//private bool initialized = false;
 	
@@ -43,51 +38,13 @@ public class ErrorManagerGUI : MonoBehaviour
     }
 	
 	public void NewErrorMessage(string s)
-	// If the LogIn UI is still active, print
-	// the error message there. 
-	// If the options UI is still active, print
-	// the error message there.
-	// In other cases, print it on the 
-	// in-scene error display 
 	{	
-		/* Check if its not been initialized
-		if (!initialized)
-			Initialize();
-		if (GUIoptions.activeSelf){
-			if (!optionsErrorScroll.activeSelf){
-				optionsErrorScroll.SetActive(true);
-				optionsErrorMessage.text = s;
-			} else 
-				optionsErrorMessage.text = optionsErrorMessage.text+"\n"+s;
-		} else if (GUIlogin.activeSelf){
-			if (!logInErrorScroll.activeSelf){
-				logInErrorScroll.SetActive(true);
-				logInErrorMessage.text = s;
-			} else 
-				logInErrorMessage.text = logInErrorMessage.text+"\n"+s;
-		} else {
-			if (!generalErrorMessage.activeSelf)
-			{
-				errorText.text = s;
-				generalErrorMessage.SetActive(true);
-			} else
-				errorText.text = errorText.text+"\n"+s;
-		}
-		Debug.Log(s);*/
 		if(!errorCanvas.activeSelf)
             errorCanvas.SetActive(true);
         //TextMeshProUGUI displayText = optionsErrorScroll.GetComponent<TextMeshProUGUI>();
         displayText.text = displayText.text+"\n"+s;
         //Debug.Log("SO: " + displayText.text);
     }
-
-    private string ErrorInRed(string s)
-	{
-		int position = s.IndexOf(":");
-		if (position < 0)
-			return s;
-		return "<color=red>"+s.Substring(0,position)+"</color>"+s.Substring(position+1);
-	}
 
 	public void ClearLog()
 	{

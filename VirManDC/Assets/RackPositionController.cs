@@ -11,12 +11,12 @@ public class RackPositionController : MonoBehaviour
     void Awake()
 	{
         RackPositionManager.OnResetPositionsRack += OnResetPositionsRack;
-        ArchitectureObjectsManager.OnRackPicked += OnRackPicked;
+        //ArchitectureObjectsManager.OnRackPicked += OnRackPicked;
     }
 
 	void OnDestroy() {
 		RackPositionManager.OnResetPositionsRack -= OnResetPositionsRack;
-        ArchitectureObjectsManager.OnRackPicked -= OnRackPicked;
+        //ArchitectureObjectsManager.OnRackPicked -= OnRackPicked;
 	}
 
     private void OnResetPositionsRack(){

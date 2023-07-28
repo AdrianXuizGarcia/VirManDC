@@ -67,9 +67,7 @@ namespace VMDC.Dtos
 		public int rackID;
 		public string name;
 		public string model;
-		public string modelB;
-		public string graphicsM;
-		public string graphicsBM;
+		public string graphics;
 		public float posX;
 		public float posY;
 		public float posZ;
@@ -83,7 +81,7 @@ namespace VMDC.Dtos
 	*/
 	{
 
-		public int slotNum;
+		public int slotNum; //? Not used
 		public string name;
 		public string slotID; // Can be IP or hostID
 		

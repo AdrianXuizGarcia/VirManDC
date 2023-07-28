@@ -433,7 +433,7 @@ public class ZabbixPetitions : MonoBehaviour
 				string deserializedResponse = JsonConvert.DeserializeObject<ResponseLoggin>(responseString).result;
 				if (showLog)
 					Debug.Log("Response:" + deserializedResponse);
-				if (deserializedResponse==null){
+				if (deserializedResponse is null){
 					ErrorManager.NewErrorMessage("The API Zabbix was reachable, but something went wrong.");
 					ErrorManager.NewErrorMessage($"Detailed Error returned by API Zabbix: {responseString}");			
 					callback("");
@@ -449,7 +449,7 @@ public class ZabbixPetitions : MonoBehaviour
 		// Return "" if an error occurred
 		{
 			// First we set the url 
-			var url = "http://" + ZabbixConfig.ipServer + "/" + ZabbixConfig.urlZabbixAPI;
+			var url = "https://" + ZabbixConfig.ipServer + "/" + ZabbixConfig.urlZabbixAPI;
 			//string jsonParams = JsonUtility.ToJson(zbxRequest);
 			string jsonParams = JsonConvert.SerializeObject(zbxRequest);
 			if (showLog)

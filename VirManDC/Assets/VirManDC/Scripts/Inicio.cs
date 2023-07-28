@@ -7,9 +7,6 @@ public class Inicio : MonoBehaviour
     public GameObject selectRack;
     public GameObject guiSlot;
 
-    public GameObject guiSlotServerTest;
-    public float rotationGui = 290;
-
     public bool callForArchitecture = true;
     public bool callForZabbixData = true;
     public SlotDataFromAPI_Manager slotDFAM;

@@ -22,8 +22,15 @@ public class KeepPositionAndRotationController : MonoBehaviour
     {
         if (active)
         {
-            mainTransform.LookAt(Camera.main.transform);
             mainTransform.position = pivotTransform.position;
+            //mainTransform.LookAt(Camera.main.transform);
+            mainTransform.rotation = Quaternion.LookRotation(pivotTransform.forward);
         }
+    }
+
+    public void SetNewPositionOnce(){
+        mainTransform.position = pivotTransform.position;
+        mainTransform.rotation = Quaternion.LookRotation(pivotTransform.forward);
+        
     }
 }

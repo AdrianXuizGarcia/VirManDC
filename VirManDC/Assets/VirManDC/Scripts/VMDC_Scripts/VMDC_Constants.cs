@@ -12,6 +12,7 @@ namespace VMDC.Constants
 		public static string logFilePath = Path.Combine(extraFilesDirPath,"logData.log");
 		
 		public static string architectureName = "Architecture_CITIC_CPD.xml";
+		//! public static string architectureName = "Architecture_SalaCPD.xml";
 		public static string architecturePath = Path.Combine(extraFilesDirPath,architectureName);
 		//public static string architecturePath = Path.Combine(extraFilesDirPath,StaticDataHolder.architectureFileName);
 		public static string modelsRackName = "RackDataModels.xml";
@@ -37,7 +38,6 @@ namespace VMDC.Constants
 		public static string panelSemaforoModelsPath = Path.Combine(extraFilesDirPath,panelSemaforoModelsName);
 		public static string interfacesSemaforoModelsName = "InterfacesSemaforoModels.xml";
 		public static string interfacesSemaforoModelsPath = Path.Combine(extraFilesDirPath,interfacesSemaforoModelsName);
-		public static string semaforoPrefabPath = "OthersModels/semaforoModel"; //deprecated
 		public static string indicatorPrefabPath = "UI/Indicator_space_v2";
 
 	}

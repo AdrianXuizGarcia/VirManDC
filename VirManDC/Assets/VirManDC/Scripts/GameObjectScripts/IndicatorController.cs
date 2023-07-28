@@ -35,18 +35,6 @@ public class IndicatorController : MonoBehaviour
 	public IEnumerator UpdateDataButton(List<KeyData> newKeyData)
     {
         buttonKeyData = newKeyData[buttonID];
-        Debug.Log("Data to update: " + newKeyData[buttonID].keyModel);
-        //if (!initialized)
-        //	Inicialize();
-
-        //indicatorPanelcontroller.RestoreErrorText();
-        //if (buttonDeactivated)
-        //	ActivateButton();
-
-        //if (!isVMButton){
-        //StartCoroutine(AddDataToPanel(dataSlot.appDataList[buttonID]));
-        //DataApiContainer dataSlot = slotDataAndControl.dataApiContainer;
-        //buttonKeyData=dataSlot.keyDataList[buttonID];
         yield return StartCoroutine(UpdateIconData());
 		//}
 		

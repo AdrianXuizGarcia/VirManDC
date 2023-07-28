@@ -21,6 +21,7 @@ public class WarningController : MonoBehaviour
 
 	void Start(){
         warningMainPanel.SetActive(false);
+        warningText.text = "No warnings detected";
     }
 	
 	private void SetColorViaSeverity(int severity)

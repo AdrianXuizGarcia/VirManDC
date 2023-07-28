@@ -8,7 +8,9 @@ public class FrontSlotController : MonoBehaviour
     [SerializeField]
     private GameObject basicMenuGUI;
     [SerializeField]
-    private SlotData slotData;
+    private SlotData referenceSlotData;
+    [SerializeField]
+    private SlotControl referenceSlotControl;
 
     [SerializeField]
     private WarningController warningController;
@@ -24,16 +26,20 @@ public class FrontSlotController : MonoBehaviour
     void Start(){
         basicMenuGUI.SetActive(false);
         listOfComponentsGUI = basicMenuGUI.GetComponentInChildren<ListOfComponentsGUI>();
-        listOfComponentsGUI.changeSlotName(slotData.slotName);
+        listOfComponentsGUI.changeSlotName(referenceSlotData.slotName);
         resetPositionButton.SetActive(false);
     }
 
     public void OpenSlot(){
-        if(!StaticDataHolder.architectureMode){
-            warningController.NewPetitionForWarningData();
-            mainDataController.NewPetitionForMainData();
+        if (!referenceSlotControl.slotIsDeactivated)
+        {
+            if (!StaticDataHolder.architectureMode)
+            {
+                warningController.NewPetitionForWarningData();
+                mainDataController.NewPetitionForMainData();
+            }
+            basicMenuGUI.SetActive(true);
         }
-        basicMenuGUI.SetActive(true);
         objectManipulator.enabled = true;
         resetPositionButton.SetActive(true);
     }

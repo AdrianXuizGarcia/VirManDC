@@ -1110,6 +1110,7 @@ Transform:
   - {fileID: 4602254514132186916}
   - {fileID: 5542182424554361183}
   - {fileID: 1365831552454047214}
+  - {fileID: 3098192420337516713}
   m_Father: {fileID: 2777576292021626864}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1187,7 +1188,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicMenuGUI: {fileID: 3080322251299951971}
-  slotData: {fileID: 5887204432197364957}
+  referenceSlotData: {fileID: 5887204432197364957}
+  referenceSlotControl: {fileID: 6668707397947931822}
   warningController: {fileID: 7026898675252002538}
   mainDataController: {fileID: 3786253488987473451}
   objectManipulator: {fileID: 5571216419330150195}
@@ -1312,7 +1314,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotIsDeactivated: 0
-  slotIsFocused: 0
 --- !u!1 &2815625029895170894
 GameObject:
   m_ObjectHideFlags: 0
@@ -2482,6 +2483,51 @@ MonoBehaviour:
   slotControlReference: {fileID: 6668707397947931822}
   indicatorPanelControllerReference: {fileID: 3735102626474555437}
   testDataPanelController: {fileID: 8992031618854946364}
+--- !u!1 &6406418336576810063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3098192420337516713}
+  - component: {fileID: 1960083584418399603}
+  m_Layer: 0
+  m_Name: DeactivatedSlotFrontController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3098192420337516713
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6406418336576810063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2777576290492509711}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1960083584418399603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6406418336576810063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0315e52523553844f81b51e23f9ceba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  referenceSlotControl: {fileID: 6668707397947931822}
+  imageFront: {fileID: 5860778776112794622}
 --- !u!1 &6675488706837102079
 GameObject:
   m_ObjectHideFlags: 0

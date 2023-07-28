@@ -12,8 +12,4 @@ public class DataBasicRackController : MonoBehaviour
     void Start(){
         objectsManager = GameObject.FindGameObjectWithTag("ArchitectureController").GetComponent<ArchitectureObjectsManager>();
     }
-    public void PickActiveRack()
-    {
-        objectsManager.SetPickedRack(rackID);
-    }
 }
