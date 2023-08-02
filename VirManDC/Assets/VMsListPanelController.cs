@@ -9,6 +9,7 @@ public class VMsListPanelController : MonoBehaviour
     public GameObject panelGameobject;
     public GameObject prefabTest;
     public GameObject baseToSpawnPrefabTest;
+    public int limitOfElementsToBeShown = 15;
     private List<GameObject> listVmsElement = new List<GameObject>();
     private bool panelIsOpen = false;
 
@@ -24,6 +25,7 @@ public class VMsListPanelController : MonoBehaviour
         DeactivateAnyChilds();
         ResetUIScroll();
         DeleteAllDataObjects();
+        int ElementsBeingShown = 0;
         for (int i = 0; i < listOfElements.Count; i++)
         {
             GameObject elementInstance = Instantiate(prefabTest, baseToSpawnPrefabTest.transform);
@@ -33,6 +35,8 @@ public class VMsListPanelController : MonoBehaviour
                     ,listOfElements[i].isVmActive
                     //valueParsed
                     );
+            if (ElementsBeingShown >= limitOfElementsToBeShown)
+                break;
         }
         panelGameobject.SetActive(panelIsOpen);
         yield return null;

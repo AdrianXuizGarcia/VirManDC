@@ -12,6 +12,7 @@ public class TestDataPanelController : MonoBehaviour
     public GameObject panelGameobject;
     public GameObject prefabTest;
     public GameObject baseToSpawnPrefabTest;
+    public int limitOfElementsToBeShown = 15;
     private List<List<GameObject>> listsDataElement = new List<List<GameObject>>();
     private bool panelIsOpen = false;
     private int actualIndicatorPage = 0;
@@ -21,14 +22,15 @@ public class TestDataPanelController : MonoBehaviour
         DeactivateAnyChilds();
         ResetUIScroll();
         DeleteAllDataObjects();
-        //listsDataElement = listOfElements;
         numOfPages = listOfElements.Count;
         for (int i = 0; i < numOfPages; i++)
         {
+            int ElementsBeingShown = 0;
             listsDataElement.Add(new List<GameObject>());
             for (int j = 0; j < listOfElements[i].Count; j++)
             {
                 GameObject elementInstance = Instantiate(prefabTest, baseToSpawnPrefabTest.transform);
+                ElementsBeingShown += 1;
                 listsDataElement[i].Add(elementInstance);
                 string valueParsed = listOfElements[i][j].lastValue;
                 if (float.TryParse(valueParsed, out _))
@@ -38,6 +40,8 @@ public class TestDataPanelController : MonoBehaviour
                     TruncateString(listOfElements[i][j].description,100), 
                     valueParsed
                     );
+                if (ElementsBeingShown >= limitOfElementsToBeShown)
+                    break;
             }
         }
         panelGameobject.SetActive(panelIsOpen);
