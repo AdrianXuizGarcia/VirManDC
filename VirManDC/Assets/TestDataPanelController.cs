@@ -13,7 +13,6 @@ public class TestDataPanelController : MonoBehaviour
     public GameObject prefabTest;
     public GameObject baseToSpawnPrefabTest;
     private List<List<GameObject>> listsDataElement = new List<List<GameObject>>();
-    public int numberOfInstances = 15;
     private bool panelIsOpen = false;
     private int actualIndicatorPage = 0;
     private int numOfPages = -1;

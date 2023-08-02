@@ -35099,9 +35099,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   errorCanvas: {fileID: 775220765}
   optionsErrorScroll: {fileID: 106469746}
-  generalErrorMessage: {fileID: 0}
-  GUIlogin: {fileID: 0}
-  GUIoptions: {fileID: 0}
 --- !u!1 &937179167
 GameObject:
   m_ObjectHideFlags: 0

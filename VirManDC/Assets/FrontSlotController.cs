@@ -6,10 +6,6 @@ using UnityEngine;
 public class FrontSlotController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject basicMenuGUI;
-    [SerializeField]
-    private SlotData referenceSlotData;
-    [SerializeField]
     private SlotControl referenceSlotControl;
 
     [SerializeField]
@@ -19,18 +15,16 @@ public class FrontSlotController : MonoBehaviour
     [SerializeField]
     private ObjectManipulator objectManipulator;
     public GameObject resetPositionButton;
-
-    //TODO
-    private ListOfComponentsGUI listOfComponentsGUI;
+    public ServerMenuBehaviourController serverMenuController;
+    public AudioSource audioSource;
 
     void Start(){
-        basicMenuGUI.SetActive(false);
-        listOfComponentsGUI = basicMenuGUI.GetComponentInChildren<ListOfComponentsGUI>();
-        listOfComponentsGUI.changeSlotName(referenceSlotData.slotName);
         resetPositionButton.SetActive(false);
     }
-
-    public void OpenSlot(){
+    /// <summary>
+    /// To be called from Front Button Controller
+    /// </summary>
+    public void InteractWithSlot(){
         if (!referenceSlotControl.slotIsDeactivated)
         {
             if (!StaticDataHolder.architectureMode)
@@ -38,16 +32,10 @@ public class FrontSlotController : MonoBehaviour
                 warningController.NewPetitionForWarningData();
                 mainDataController.NewPetitionForMainData();
             }
-            basicMenuGUI.SetActive(true);
+            serverMenuController.SwapStateMenu();
+            audioSource.PlayOneShot(audioSource.clip);
         }
         objectManipulator.enabled = true;
         resetPositionButton.SetActive(true);
-    }
-
-    public void ChangeMenuState(bool state){
-        // TODO: Fix interaction with close menu button
-        //basicMenuGUI.SetActive(!basicMenuGUI.activeSelf);
-        basicMenuGUI.SetActive(state);
-        //listOfComponentsGUI.changeSlotName(slotData.slotName);
     }
 }

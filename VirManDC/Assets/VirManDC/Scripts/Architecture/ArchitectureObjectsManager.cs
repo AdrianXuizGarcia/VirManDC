@@ -232,7 +232,8 @@ public class ArchitectureObjectsManager : MonoBehaviour
 
         // -----> this way is changing the scale of the slot_rack, always same model <----
         ////GameObject slot_prefab = Resources.Load<GameObject>(VMDCPaths.slotsModelsPath+"slotAnim_1-2U");
-        string nameServer = "BasicModel_Slot";
+        //! string nameServer = "BasicModel_Slot";
+		string nameServer = "AdvancedModel_Slot";
         GameObject slot_prefab = Resources.Load<GameObject>(VMDCPaths.slotsModelsPath+nameServer);
 		if (slot_prefab == null)
 		{

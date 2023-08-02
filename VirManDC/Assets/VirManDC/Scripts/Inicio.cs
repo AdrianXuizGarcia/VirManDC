@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Inicio : MonoBehaviour
 {
-    public GameObject selectRack;
-    public GameObject guiSlot;
 
     public bool callForArchitecture = true;
     public bool callForZabbixData = true;
@@ -15,9 +13,6 @@ public class Inicio : MonoBehaviour
 
     void Start()
     {
-        selectRack.SetActive(false);
-        //guiSlot.SetActive(false);
-
         //guiSlotServerTest.SetActive(false);
         //guiSlotServerTest.transform.Rotate(0.0f, rotationGui, 0.0f);
         if (architectureGeneralManager && callForArchitecture) {

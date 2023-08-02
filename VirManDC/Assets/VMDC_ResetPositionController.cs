@@ -6,6 +6,8 @@ public class VMDC_ResetPositionController : MonoBehaviour
 {
     public GameObject gameObjectToResetPosition;
     public GameObject pivotToSavePosition;
+    public GameObject mainPanel;
+    public GameObject resetPositionButton;
     private Transform positionToSave;
 
     void Start()
@@ -18,5 +20,7 @@ public class VMDC_ResetPositionController : MonoBehaviour
         //Debug.Log("x of new: " + gameObjectToResetPosition.position.x);
         gameObjectToResetPosition.transform.position = positionToSave.position;
         gameObjectToResetPosition.transform.rotation = positionToSave.rotation;
+        mainPanel.SetActive(false);
+        resetPositionButton.SetActive(false);
     }
 }

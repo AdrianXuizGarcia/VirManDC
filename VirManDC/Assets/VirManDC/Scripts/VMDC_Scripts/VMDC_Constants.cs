@@ -47,6 +47,7 @@ namespace VMDC.Constants
 	
 	public static class VMDCTags {
 		public const string VIRTUAL_MACHINE_TAG = "virtualMachine";
+		public const string SPAWN_CAMERA_TAG = "SpawnCamera";
 	}
 	
 }

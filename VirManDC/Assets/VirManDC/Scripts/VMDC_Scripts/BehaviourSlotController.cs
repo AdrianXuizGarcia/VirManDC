@@ -13,6 +13,7 @@ public class BehaviourSlotController : MonoBehaviour
 
     public IndicatorPanelController indicatorPanelControllerReference;
     public TestDataPanelController testDataPanelController;
+    public VMsListPanelController vmsListPanelController;
 
 
     //TODO: Do a nice call, this executes all at once at first
@@ -93,11 +94,26 @@ public class BehaviourSlotController : MonoBehaviour
         Debug.Log("Waiting for data panel update...");
         yield return StartCoroutine(testDataPanelController.Init(slotDataReference.dataApiContainer.appDataList));
         Debug.Log("Data retrieved!");
+        if (slotDataReference.isHypervisor){
+            /* First we get the data */
+            yield return StartCoroutine(slotDFAM.GetHostGroupID(slotDataReference.hostname, (string aux)=>slotDataReference.hostGroupID=aux));
+		    yield return StartCoroutine(slotDFAM.GetVMsData(slotDataReference.hostGroupID, GetVMKey(),(List<VMData> aux)=>slotDataReference.virtualMachinesList=aux));
+            /* Then we set the data to interfaces */
+            yield return StartCoroutine(vmsListPanelController.Init(slotDataReference.virtualMachinesList));
+            Debug.Log("List of VMs retrieved!");
+        }
         //TODO Check this:
         loadingButtonsUntilReadyController.OnDataRetrieved(true);
 		
 		// To inform the animation that this job is finished
 		//doneWithUpdating = true;	
+	}
+
+    private string GetVMKey()
+	// WIP: It should be readed from the keyModel of the Virtual Schema
+	{
+		//return slotDaC.dataApiSchema.apiSchemaList[slotDaC.dataApiSchema.apiSchemaList.Count-1].keyModel.key;
+		return "vmware.vm.cpu.usage[{$URL},{HOST.HOST}]";
 	}
 
 }

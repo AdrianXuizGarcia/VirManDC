@@ -1,29 +1,83 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using VMDC.Dtos;
 
 public class VMsListPanelController : MonoBehaviour
 {
     public GameObject panelGameobject;
     public GameObject prefabTest;
     public GameObject baseToSpawnPrefabTest;
-    public int numberOfInstances = 15;
+    private List<GameObject> listVmsElement = new List<GameObject>();
     private bool panelIsOpen = false;
 
     void Start() {
-        for(int i = 0; i < numberOfInstances; i++)
+        /*for(int i = 0; i < numberOfInstances; i++)
         {
             Instantiate(prefabTest, baseToSpawnPrefabTest.transform);
-        }
+        }*/
         panelGameobject.SetActive(panelIsOpen);
     }
 
-    public void SwapPanelState(){
+    public IEnumerator Init(List<VMData> listOfElements) {
+        DeactivateAnyChilds();
+        ResetUIScroll();
+        DeleteAllDataObjects();
+        for (int i = 0; i < listOfElements.Count; i++)
+        {
+            GameObject elementInstance = Instantiate(prefabTest, baseToSpawnPrefabTest.transform);
+            listVmsElement.Add(elementInstance);
+            elementInstance.GetComponentInChildren<VMButtonController>().SetValues(
+                    TruncateString(listOfElements[i].hostname, 50)
+                    ,listOfElements[i].isVmActive
+                    //valueParsed
+                    );
+        }
+        panelGameobject.SetActive(panelIsOpen);
+        yield return null;
+    }
+
+        public void SwapPanelState(){
         panelGameobject.SetActive(!panelIsOpen);
-        /*if (panelIsOpen)
-            SetButton_ReadyToClose();
-        else 
-            SetButton_ReadyToOpen();*/
         panelIsOpen = !panelIsOpen;
     }
+
+    private void DeactivateAnyChilds(){
+        for (int i = 0; i < baseToSpawnPrefabTest.transform.childCount; i++){
+            baseToSpawnPrefabTest.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    private void DeleteAllDataObjects(){
+        for (int i = 0; i < listVmsElement.Count; i++){
+            DeleteDataObjects(i);
+        }
+    }
+
+    private void DeleteDataObjects(int page){
+        foreach(GameObject element in listVmsElement)
+            Destroy(element);
+        listVmsElement.Clear();
+    }
+
+    private void ResetUIScroll(){
+        ScrollRect temp = baseToSpawnPrefabTest.GetComponentInParent<ScrollRect>();
+        if(temp)
+            temp.verticalNormalizedPosition = 1f; // Patch to reset Scroll UI
+    }
+
+    /// <summary>
+    /// Patch because Text Mesh Pro UI dont work correctly in this scenario
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="maxLength"></param>
+    /// <param name="truncationSuffix"></param>
+    /// <returns></returns>
+    public string TruncateString(string value, int maxLength, string truncationSuffix = "…"){
+        return value.Length > maxLength 
+            ? value.Substring(0, maxLength) + truncationSuffix 
+            : value;
+    }
+
 }

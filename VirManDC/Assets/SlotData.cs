@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using VMDC.Dtos;
 
@@ -19,7 +20,8 @@ public class SlotData : MonoBehaviour
     // For indicators and data
     public DataApiSchema dataApiSchema;
 	public DataApiContainer dataApiContainer;
-	public string hostGroupID; // for waht?
+	public string hostGroupID;
+    public List<VMData> virtualMachinesList;
 
     /// <summary>
     /// Set the slot dto data to the data class

@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotReferenceForWarning : MonoBehaviour
+public class AllWarningManager : MonoBehaviour
 {
-  //! DEPRECATED
     private SlotDataFromAPI_Manager slotDataFromAPI_Manager;
     // Start is called before the first frame update
     void Start()
@@ -14,7 +13,6 @@ public class SlotReferenceForWarning : MonoBehaviour
 
     public void GetAllWarningsData()
     {
-        Debug.Log("calling slot api");
         slotDataFromAPI_Manager.GetAllWarningsData();
     }
     

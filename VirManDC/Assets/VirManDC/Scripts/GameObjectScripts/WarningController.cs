@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.MixedReality.Toolkit.UI;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,16 +8,10 @@ using VMDC.Dtos;
 
 public class WarningController : MonoBehaviour
 {
-    public GameObject warningPanel;
 	public GameObject warningMainPanel;
-	public Text warningChangeButton;
     public TextMeshProUGUI warningText;
-	
-	private Color orange = new Color32(255, 128, 8, 230);
-	private Color red = new Color32(236, 9, 0, 230);
-	private Color blue = new Color32(0, 176, 236, 230);
-	
-	private List<WarningLastData> warningDataList;
+    public ButtonConfigHelper buttonConfigHelper;
+    private List<WarningLastData> warningDataList;
 	private int actualWarning = 1;
 
 	void Start(){
@@ -24,30 +19,15 @@ public class WarningController : MonoBehaviour
         warningText.text = "No warnings detected";
     }
 	
-	private void SetColorViaSeverity(int severity)
-	{
-		Image image = warningPanel.GetComponent<Image>();
-		if (severity>4) {
-			image.color = red;
-		} else if (severity>2) {
-			image.color = orange;
-		} else {
-			image.color = blue;
-		}
-	}
-	
-	public void ActivePanel(){
-		if (warningDataList != null)
-			warningPanel.SetActive(!warningPanel.activeSelf);
-	}
-	
 	public void UpdateWarningData (List<WarningLastData> newDataList){
 		warningDataList = newDataList;
 		// WIP
 		if (warningDataList == null){
-			warningMainPanel.SetActive(false);
+            SetButtonToAdjust("WarningWhite");
+            warningMainPanel.SetActive(false);
 		}
 		else {
+			SetButtonToAdjust("WarningRed");
 			UpdateUI();
 		}
 	}
@@ -69,10 +49,17 @@ public class WarningController : MonoBehaviour
 	}
 	
 	private void UpdateUI(){
-		WarningLastData warningData = warningDataList[actualWarning-1];
-		//SetColorViaSeverity(warningData.priority);
-        warningText.text = warningData.warningDescription;
-		//warningChangeButton.text = actualWarning+"/"+ warningDataList.Count;
-		warningMainPanel.SetActive(true);
+        //WarningLastData warningData = warningDataList[actualWarning-1];
+        warningText.text = "";
+        foreach (WarningLastData warningData in warningDataList)
+        {
+            warningText.text = warningText.text + "- " + warningData.warningDescription + "\n\n";
+        }
+        warningMainPanel.SetActive(true);
+	}
+
+	public void SetButtonToAdjust(string buttonName){
+		//ButtonConfigHelper buttonConfigHelper = gameObject.GetComponent<ButtonConfigHelper>();
+		buttonConfigHelper.SetQuadIconByName(buttonName);
 	}
 }

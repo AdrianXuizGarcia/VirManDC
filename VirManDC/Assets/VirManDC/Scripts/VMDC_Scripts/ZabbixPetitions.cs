@@ -48,7 +48,7 @@ public class ZabbixPetitions : MonoBehaviour
 			string responseString = "Default";
 			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
             ResponseItems values = JsonConvert.DeserializeObject<ResponseItems>(responseString);
-			Debug.Log("Response: "+responseString);
+			//Debug.Log("Response: "+responseString);
         	//Debug.Log("LIst: "+values.result.ToString());
        		if (values.result.Count==0)
 				Debug.Log("<color=red>ERROR</color>: No data returned by the Zabbix API for the application "+nameApplication+" on host "+hostID);
@@ -290,8 +290,8 @@ public class ZabbixPetitions : MonoBehaviour
 			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
 			ResponseScriptExecute values = JsonConvert.DeserializeObject<ResponseScriptExecute>(responseString);
 			// For debugging
-			Debug.Log("Respuesta json de script.execute con hostid "+hostid+" y scriptid "+scriptid+": ");
-			Debug.Log(JsonConvert.SerializeObject(values, Formatting.Indented));
+			//?Debug.Log("Respuesta json de script.execute con hostid "+hostid+" y scriptid "+scriptid+": ");
+			//?Debug.Log(JsonConvert.SerializeObject(values, Formatting.Indented));
 			// Once we have the response, send it back
 			if (values.result is null)
 				callback(null);
@@ -319,8 +319,8 @@ public class ZabbixPetitions : MonoBehaviour
 			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
 			ResponseIdHosts values = JsonConvert.DeserializeObject<ResponseIdHosts>(responseString);
 			// For debugging
-			//Debug.Log("Respuesta json de host.get: ");
-			//Debug.Log(JsonConvert.SerializeObject(values, Formatting.Indented));
+			//?Debug.Log("Respuesta json de host.get: ");
+			//?Debug.Log(JsonConvert.SerializeObject(values, Formatting.Indented));
 			// Once we have the response, set it to the VMData class
 			List<VMData> listVM = null;
 			yield return StartCoroutine(DefineVMFromResponse(values,key,(List<VMData> aux) => listVM=aux));
@@ -365,8 +365,8 @@ public class ZabbixPetitions : MonoBehaviour
 			yield return StartCoroutine(MakePetition(r1,(string aux) => responseString=aux));			
 			ResponseItems listItems =  JsonConvert.DeserializeObject<ResponseItems>(responseString);
 			// For debugging
-			//Debug.Log("Respuesta json de item.get: ");
-			//Debug.Log(JsonConvert.SerializeObject(listItems, Formatting.Indented));
+			//?Debug.Log("Respuesta json de item.get de la MV: ");
+			//?Debug.Log(JsonConvert.SerializeObject(listItems, Formatting.Indented));
 			
 			callback(listItems.result[0].lastvalue!="0");
 		}
