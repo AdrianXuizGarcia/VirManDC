@@ -1,8 +1,0 @@
-@startuml
-class TesterScript {
-    + ShowLog(log:string) : void
-    + ActivateItem(gameObject:GameObject) : void
-    + ChangeColor(newColor:string, gameObject:GameObject) : void
-}
-MonoBehaviour <|-- TesterScript
-@enduml

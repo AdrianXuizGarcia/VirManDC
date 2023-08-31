@@ -1,7 +1,0 @@
-@startuml
-class SubMenuButton {
-    + buttonType : MenuEventType
-    + color : Color
-}
-ScriptableObject <|-- SubMenuButton
-@enduml

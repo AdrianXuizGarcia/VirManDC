@@ -1,9 +1,0 @@
-@startuml
-class SubMenuLayoutFunctionality {
-    + panelType : MenuEventType
-    - _controller : ChangeSubMenuGUI
-    - Start() : void
-    + OnChangeSubmenu(buttonType:MenuEventType) : void
-}
-MonoBehaviour <|-- SubMenuLayoutFunctionality
-@enduml

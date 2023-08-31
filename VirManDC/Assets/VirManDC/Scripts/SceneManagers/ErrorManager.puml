@@ -1,9 +1,0 @@
-@startuml
-class ErrorManager {
-    + {static} Instance : ErrorManager
-    + {static}  <<event>> OnNewError : Action<string> 
-    - Awake() : void
-    + {static} NewErrorMessage(s:string) : void
-    + {static} NewErrorMessageThrowException(s:string) : void
-}
-@enduml

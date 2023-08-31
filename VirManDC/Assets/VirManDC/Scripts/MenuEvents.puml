@@ -1,8 +1,0 @@
-@startuml
-class ChangeSubmenuButtonEvent {
-}
-class ChangeSubmenuEvent {
-}
-"UnityEvent`3" "<Button,MenuEventType,Color>" <|-- ChangeSubmenuButtonEvent
-"UnityEvent`1" "<MenuEventType>" <|-- ChangeSubmenuEvent
-@enduml
