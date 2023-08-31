@@ -14,4 +14,10 @@ public class ZabbixServerStatusIconController : MonoBehaviour
         okIcon.SetActive(statusOk);
         errorIcon.SetActive(!statusOk);
     }
+
+    public void ResetStatus(){
+        loadingIcon.SetActive(true);
+        okIcon.SetActive(false);
+        errorIcon.SetActive(false);
+    }
 }

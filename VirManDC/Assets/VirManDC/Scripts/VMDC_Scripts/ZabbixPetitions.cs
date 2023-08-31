@@ -408,8 +408,8 @@ public class ZabbixPetitions : MonoBehaviour
 		// API VERSION PETITION
 		public IEnumerator MakeApiVersionPetition(Action<string> callback,bool showLog=false)
 		/* 
-			Return null if we cant get a response from the server.
-			Return "" (empty string) if the response is not good.
+			Return "Not found" if we cant get a response from the server.
+			Return "Error" (empty string) if the response is not good.
 			Return the response if its correct.
 		*/
 		{
@@ -428,7 +428,7 @@ public class ZabbixPetitions : MonoBehaviour
 			if (showLog)
 				Debug.Log("Response:" + responseString);
 			if (responseString=="")
-				callback(null);
+				callback("Not found");
 			else {
 				string deserializedResponse = JsonConvert.DeserializeObject<ResponseLoggin>(responseString).result;
 				if (showLog)
@@ -436,7 +436,7 @@ public class ZabbixPetitions : MonoBehaviour
 				if (deserializedResponse is null){
 					ErrorManager.NewErrorMessage("The API Zabbix was reachable, but something went wrong.");
 					ErrorManager.NewErrorMessage($"Detailed Error returned by API Zabbix: {responseString}");			
-					callback("");
+					callback("Error");
 				}					
 				else 
 					callback(deserializedResponse);

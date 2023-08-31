@@ -15,6 +15,7 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
     private BehaviourSlotController[] listBehaviour;
 
     public HostsZabbixData hostsData;
+	public SlotListManager slotListManager;
 	//private ErrorManager errorManager;
 	
 	void OnEnable()
@@ -53,7 +54,7 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 	}
 
 	//TODO: cambiar por lista de slots referenciados, en vez de find global?
-	public IEnumerator GetAllWarningsData_Co(){
+	/*public IEnumerator GetAllWarningsData_Co(){
 		//Debug.Log("searching for behaviours...");
 		yield return StartCoroutine(GetListBehaviour());
         //Debug.Log("Founded! now updating...");
@@ -65,8 +66,17 @@ public class SlotDataFromAPI_Manager : MonoBehaviour
 	private IEnumerator GetListBehaviour(){
 		listBehaviour = GameObject.FindObjectsOfType<BehaviourSlotController>();
 		yield return null;
-	}
-	
+	}*/
+
+	public IEnumerator GetAllWarningsData_Co(){
+		foreach(GameObject slot in slotListManager.slotReferencesList){
+			SlotControl slotControlReference =  slot.GetComponentInChildren<SlotControl>();
+            BehaviourSlotController behaviourSlotController = slot.GetComponentInChildren<BehaviourSlotController>();
+            if (!slotControlReference.slotIsDeactivated)
+				behaviourSlotController.UpdateWarningData();
+			yield return null;
+        }
+    }
 
 	public IEnumerator MakeApiVersionPetition(Action<string> callback){
         string response = "";

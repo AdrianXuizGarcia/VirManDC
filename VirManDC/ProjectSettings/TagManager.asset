@@ -12,6 +12,7 @@ TagManager:
   - MainCanvas
   - IndicatorPanelManager
   - SpawnCamera
+  - PivotForRack
   layers:
   - Default
   - TransparentFX

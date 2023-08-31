@@ -79,13 +79,15 @@ public class ArchitectureXmlManager
 				}*/
 				// If isnt a rack
 				if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "other"){
-					OtherDto other = new OtherDto();
-					other.otherID = int.Parse(reader.GetAttribute(0));
-					other.name = reader.GetAttribute(1);
-					other.model = reader.GetAttribute(2);
-					other.graphics = reader.GetAttribute(3);
-					// For the rest of the elements, we read each node
-					while (reader.NodeType != XmlNodeType.EndElement){
+                    OtherDto other = new OtherDto
+                    {
+                        otherID = int.Parse(reader.GetAttribute(0)),
+                        name = reader.GetAttribute(1),
+                        model = reader.GetAttribute(2),
+                        graphics = reader.GetAttribute(3)
+                    };
+                    // For the rest of the elements, we read each node
+                    while (reader.NodeType != XmlNodeType.EndElement){
 						reader.Read();
 						if (reader.Name.ToLower() == "posx")
 							other.posX = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
@@ -101,13 +103,15 @@ public class ArchitectureXmlManager
 				}
 				// Read Racks: first the attributes
 				if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "rack"){
-					RackDto rack = new RackDto();
-					rack.rackID = int.Parse(reader.GetAttribute(0));
-					rack.name = reader.GetAttribute(1);
-					rack.model = reader.GetAttribute(2);
-					rack.graphics = reader.GetAttribute(3);
-					// For the rest of the elements, we read each node
-					while (reader.NodeType != XmlNodeType.EndElement){
+                    RackDto rack = new RackDto
+                    {
+                        rackID = int.Parse(reader.GetAttribute(0)),
+                        name = reader.GetAttribute(1),
+                        model = reader.GetAttribute(2),
+                        graphics = reader.GetAttribute(3)
+                    };
+                    // For the rest of the elements, we read each node
+                    while (reader.NodeType != XmlNodeType.EndElement){
 						reader.Read();
 						if (reader.Name.ToLower() == "posx")
 							rack.posX = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
@@ -122,18 +126,20 @@ public class ArchitectureXmlManager
 					// Read Slots: first the attributes
 					while (reader.NodeType != XmlNodeType.EndElement) {
 						if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "slot"){
-							RackSlotDto slot = new RackSlotDto();
-							slot.slotNum = int.Parse(reader.GetAttribute(0));
-							slot.name = reader.GetAttribute(1);
-							/*// Special case size: if size is 1/2, we put a 0
-							string size = reader.GetAttribute(2);
-							if (size=="1/2") slot.size=0; else slot.size = int.Parse(size);*/
-							slot.size = int.Parse(reader.GetAttribute(2));
-							slot.model = reader.GetAttribute(3);
-							slot.type = reader.GetAttribute(4);
-							slot.isHypervisor = bool.Parse(reader.GetAttribute(5));
-							// For the rest of the elements, we read each node
-							while (reader.NodeType != XmlNodeType.EndElement){
+                            RackSlotDto slot = new RackSlotDto
+                            {
+                                slotNum = int.Parse(reader.GetAttribute(0)),
+                                name = reader.GetAttribute(1),
+                                /*// Special case size: if size is 1/2, we put a 0
+                                string size = reader.GetAttribute(2);
+                                if (size=="1/2") slot.size=0; else slot.size = int.Parse(size);*/
+                                size = int.Parse(reader.GetAttribute(2)),
+                                model = reader.GetAttribute(3),
+                                type = reader.GetAttribute(4),
+                                isHypervisor = bool.Parse(reader.GetAttribute(5))
+                            };
+                            // For the rest of the elements, we read each node
+                            while (reader.NodeType != XmlNodeType.EndElement){
 								reader.Read();
 								if (reader.Name.ToLower() == "slotid"){
 									slot.slotID = GetItemFromReader(reader);
@@ -200,10 +206,8 @@ public class ArchitectureXmlManager
 							modelData.espacioRackX = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
 						if (reader.Name.ToLower() == "spacerackz")
 							modelData.espacioRackZ = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
-						if (reader.Name.ToLower() == "spaceinitcanvas1u")
-							modelData.espacioInicioCanvas1u = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);
-						if (reader.Name.ToLower() == "sizeyrack")
-							modelData.size = int.Parse(GetItemFromReader(reader));
+						if (reader.Name.ToLower() == "slotscount")
+							modelData.slotsCount = int.Parse(GetItemFromReader(reader));
 						/*if (reader.Name.ToLower() == "scalerack1u")
 							modelData.scalerack1u = float.Parse(GetItemFromReader(reader),CultureInfo.InvariantCulture);*/
 					}

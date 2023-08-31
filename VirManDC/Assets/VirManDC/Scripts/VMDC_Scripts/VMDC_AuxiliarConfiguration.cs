@@ -12,34 +12,38 @@ namespace VMDC.AuxiliarConfiguration
 {
 	public class ZabbixConfigInfo
 	{
-		public ZabbixConfigInfo (string ip, string urlAPI, string urlFiles){
+		public ZabbixConfigInfo (string ip, string urlAPI, string urlFiles, string eUser, string ePass){
 			ipServer = ip;
 			urlZabbixAPI = urlAPI;
 			urlConfigurationFiles = urlFiles;
+			encryptedUser = eUser;
+			encryptedPass = ePass;
 		}
 
         public string ipServer;
         public string urlZabbixAPI;
         public string urlConfigurationFiles;
+		public string encryptedUser;
+		public string encryptedPass;
     }
 	
     public static class ZabbixConfigFile
     {
 		
-        public static bool setConfig()
+        public static bool SetConfig()
 		/*
 			This function returns false if the file didnt existed (in which case its created)
 			or if there is a problem with the reading of it (in which case its recreated).
 			Otherwise (everything is ok) it returns true.
 		*/
         {
-			if (!CheckIfFileExistsAndCreateIfNot())
-				return false;
+			/*if (!CheckIfFileExistsAndCreateIfNot())
+				return false;*/
 			try
             {
 				string jsonConfig = ReadFile(VMDCPaths.configFilePath);
 				ZabbixConfigInfo aux = JsonUtility.FromJson<ZabbixConfigInfo>(jsonConfig);
-				SetValues(aux.ipServer,aux.urlZabbixAPI,aux.urlConfigurationFiles);
+				SetValues(aux.ipServer,aux.urlZabbixAPI,aux.urlConfigurationFiles,aux.encryptedUser,aux.encryptedPass);
 				return true;
             }
             catch (Exception e)
@@ -51,11 +55,13 @@ namespace VMDC.AuxiliarConfiguration
             }
         }
 		
-		private static void SetValues(string ipServer, string urlZabbixAPI, string urlConfigurationFiles)
+		private static void SetValues(string ipServer, string urlZabbixAPI, string urlConfigurationFiles, string eUser, string ePass)
 		{
 			ZabbixConfig.ipServer = ipServer;
 			ZabbixConfig.urlZabbixAPI = urlZabbixAPI;
 			ZabbixConfig.urlConfigurationFiles = urlConfigurationFiles;
+			ZabbixConfig.encryptedUser = eUser;
+			ZabbixConfig.encryptedPass = ePass;
 		}
 		
 		private static bool CheckIfFileExistsAndCreateIfNot()
@@ -69,16 +75,16 @@ namespace VMDC.AuxiliarConfiguration
 			return true;
 		}
 		
-		public static bool SaveAndWriteNewConfiguration(string ipServer, string urlZabbixAPI, string urlConfigurationFiles)
+		public static bool SaveAndWriteNewConfiguration(string ipServer, string urlZabbixAPI, string urlConfigurationFiles,string eUser, string ePass)
 		{
-			SetValues(ipServer,urlZabbixAPI,urlConfigurationFiles);
+			SetValues(ipServer,urlZabbixAPI,urlConfigurationFiles, eUser, ePass);
 			return WriteVMDCConfigToFile(VMDCPaths.configFilePath);
 		}
 		
 		private static string ReadFile(string file)
         {	
             FileStream F = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.Read);
-            String line;
+            string line;
             try
             {   // Open the text file using a stream reader.
                 using (StreamReader sr = new StreamReader(F))
@@ -106,7 +112,8 @@ namespace VMDC.AuxiliarConfiguration
 		
 		private static bool WriteVMDCConfigToFile(string path)
         {	
-			ZabbixConfigInfo aux = new ZabbixConfigInfo(ZabbixConfig.ipServer,ZabbixConfig.urlZabbixAPI,ZabbixConfig.urlConfigurationFiles);
+			ZabbixConfigInfo aux = new ZabbixConfigInfo(ZabbixConfig.ipServer,
+			ZabbixConfig.urlZabbixAPI,ZabbixConfig.urlConfigurationFiles,ZabbixConfig.encryptedUser,ZabbixConfig.encryptedPass);
 			try {
 				using (StreamWriter file = File.CreateText(path))
 				{
@@ -161,6 +168,8 @@ namespace VMDC.AuxiliarConfiguration
         public static string ipServer { get; set; }
 		public static string urlZabbixAPI { get; set;}
 		public static string urlConfigurationFiles { get; set;}	
+		public static string encryptedUser { get; set;}	
+		public static string encryptedPass { get; set;}	
 	}
 	
 	public static class ZabbixConfigDefault

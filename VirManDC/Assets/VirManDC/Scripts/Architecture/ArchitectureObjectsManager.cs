@@ -111,13 +111,13 @@ public class ArchitectureObjectsManager : MonoBehaviour
 
                 // Create a filledSlots list to calculate later the filling with covers
                 //List<bool> emptySlotsList = new List<bool>(rack_model_data.size);
-                bool[] filledSlotsList = new bool[rack_model_data.size];
+                bool[] filledSlotsList = new bool[rack_model_data.slotsCount];
 
 				Transform spawnSlotTransform = rack_instanciado.transform.GetChild(2).transform.GetChild(0).transform;
 
                 foreach (RackSlotDto slot in rackData.rackSlots)
                 {
-                    if (slot.posY>=rack_model_data.size)
+                    if (slot.posY>=rack_model_data.slotsCount)
                     {
                         ErrorManager.NewErrorMessage("Slot '"+slot.name+"' cant be spawned because its positioned outside of the rack. Check the size of '"+rack_model_data.model+"'");
                         break;
@@ -128,7 +128,7 @@ public class ArchitectureObjectsManager : MonoBehaviour
                     // Set the slot on the "begining" Y (which is not the same as the rack)
                     slot_instance.transform.Translate(Vector3.up * rack_model_data.espacioInicioServers1u);
                     // Translate upwards the slot to his Y position
-                    slot_instance.transform.Translate(Vector3.up * slot.posY * (rack_model_data.espacio1uY));
+                    slot_instance.transform.Translate(rack_model_data.espacio1uY * slot.posY * Vector3.up);
 					// Adjustment for the scale
                     ////slot_instance.transform.Translate(Vector3.down * (rack_model_data.espacioInicioServers1u / rack_model_data.size));
                     //// Move the canvas to the correct position

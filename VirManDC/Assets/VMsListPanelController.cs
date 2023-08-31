@@ -32,6 +32,7 @@ public class VMsListPanelController : MonoBehaviour
             listVmsElement.Add(elementInstance);
             elementInstance.GetComponentInChildren<VMButtonController>().SetValues(
                     TruncateString(listOfElements[i].hostname, 50)
+                    ,listOfElements[i].hostID
                     ,listOfElements[i].isVmActive
                     //valueParsed
                     );

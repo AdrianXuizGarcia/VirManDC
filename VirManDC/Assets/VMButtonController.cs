@@ -6,24 +6,26 @@ using VMDC.Constants;
 public class VMButtonController : MonoBehaviour
 {
     public GameObject prefabToInstance;
-    private Transform pivotTransform;
     public TextMeshProUGUI serverName;
     public Image imageButton;
     public Color newButtonColorIfVMActive;
     private bool isVmActive;
-    
+    private string hostId;
 
     public void InstanceVMInterface(){
-        pivotTransform = GameObject.FindGameObjectWithTag(VMDCTags.SPAWN_CAMERA_TAG).transform;
-        Instantiate(prefabToInstance, pivotTransform);
-        //GameObject ob = Instantiate(prefabToInstance);
-        //ob.transform.position += new Vector3(-1, 0, 0);
+        Transform pivotTransform = GameObject.FindGameObjectWithTag(VMDCTags.SPAWN_CAMERA_TAG).transform;
+        GameObject ob = Instantiate(prefabToInstance, pivotTransform);
+        ob.transform.parent = GameObject.FindGameObjectWithTag("PivotForRack").transform;
+        // TODO: Need to also relaunch data server update, and instantiate indicators of vm
+        //SlotData data = ob.GetComponentInChildren<SlotData>();
+        //data.hostID = hostId;
     }
 
-    public void SetValues (string serverName,bool isVmActive)
+    public void SetValues (string serverName, string hostId, bool isVmActive)
     {
         this.serverName.text = serverName;
         this.isVmActive = isVmActive;
+        this.hostId = hostId;
         AsignColorToImageButton();
     }
 	

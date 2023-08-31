@@ -51,7 +51,7 @@ public class CheckConnection : MonoBehaviour
         }
 
 		ZabbixConfigFile.SetDefaultConfigFromDefaultFile();
-		ZabbixConfigFile.setConfig();
+		ZabbixConfigFile.SetConfig();
         Debug.Log(ZabbixConfig.ipServer);
         StartCoroutine(MakeLogInPetition());
     }

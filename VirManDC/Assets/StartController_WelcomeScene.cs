@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using AuxiliarMethods;
+using EncryptLibrary;
 using TMPro;
 using UnityEngine;
 using VMDC.AuxiliarConfiguration;
+using VMDC.Constants;
 using VMDC.Dtos;
 
 public class StartController_WelcomeScene : MonoBehaviour
@@ -11,7 +14,6 @@ public class StartController_WelcomeScene : MonoBehaviour
     public GameObject guiChangeArchitecturePanel;
     public GameObject guiOptions;
     public GameObject loadingBar;
-    public GameObject signInButton;
     public float rotationGui = 24;
 
     public ZabbixServerStatusIconController zabbixServerStatusIconController;
@@ -26,25 +28,61 @@ public class StartController_WelcomeScene : MonoBehaviour
         guiChangeArchitecturePanel.SetActive(false);
         guiOptions.SetActive(false);
         loadingBar.SetActive(false);
-        signInButton.SetActive(false);
+        logInUIElementsController.StartLogIn();
         guiInfoPanel.transform.Rotate(0.0f, rotationGui, 0.0f);
         guiChangeArchitecturePanel.transform.Rotate(0.0f, -rotationGui, 0.0f);
+        bool errorFound = false;
 
-        // No conection needed
-        ZabbixConfigFile.SetDefaultConfigFromDefaultFile();
-		ZabbixConfigFile.setConfig();
+        // Check if there is a problem with the configuration files
+        if (!Files_extraMethods.CheckOrCreateDirectoryAuxFiles()){
+			ErrorManager.NewErrorMessage("Essential directory '"+VMDCPaths.extraFilesDirPath+"' cannot be created");
+			logInUIElementsController.DeactivateInitialButtons();
+            errorFound = true;
+		}
+		string missingFile = Files_extraMethods.CheckIfAuxFilesMissing();
+		if (missingFile!=""){
+			ErrorManager.NewErrorMessage("Essential file '"+missingFile+"' on directory '"+VMDCPaths.extraFilesDirPath+"' was not found. Add it and restart the app");
+			logInUIElementsController.DeactivateInitialButtons();
+            errorFound = true;
+		}
+        missingFile = Files_extraMethods.CheckIfConfigurationFileMissing();
+        if (missingFile!=""){
+			ErrorManager.NewErrorMessage("Essential file '"+missingFile+"' on directory '"+Application.persistentDataPath+"' was not found. Add it and restart the app");
+			logInUIElementsController.DeactivateInitialButtons();
+            errorFound = true;
+		}
 
-        logInUIElementsController.UpdateServerIPText();
-        StartCoroutine(GetZabbixAPIVersion());
+        if (!errorFound)
+        {
+            // If all ok, activate at least the try architecture button
+            logInUIElementsController.ActivateTryArchitectureButton();
 
-        // Need to conect
-        StartCoroutine(MakeLogInPetition());
+            // No conection needed
+            ZabbixConfigFile.SetDefaultConfigFromDefaultFile();
+            ZabbixConfigFile.SetConfig();
+
+            // Need to conect
+            MakeLogInPetition();
+        } else {
+            logInUIElementsController.SetErrorTexts();
+            zabbixServerStatusIconController.SetStatus(false);
+        }
     }
 
-    private IEnumerator MakeLogInPetition(){
-		//Debug.Log("Conecting to server...");
-		string responseString = "default";
-		yield return StartCoroutine(apiPetitions.MakeLogInPetition("Admin","d1@8#y2FFHl3",(string aux) => responseString=aux));
+    public void MakeLogInPetition(){
+        zabbixServerStatusIconController.ResetStatus();
+        StartCoroutine(GetZabbixAPIVersion());
+        logInUIElementsController.UpdateServerIPText();
+        StartCoroutine(MakeLogInPetitionCo());
+    }
+
+    private IEnumerator MakeLogInPetitionCo(){
+		string responseString = "";
+		//yield return StartCoroutine(apiPetitions.MakeLogInPetition("Admin","d1@8#y2FFHl3",(string aux) => responseString=aux));
+        yield return StartCoroutine(apiPetitions.MakeLogInPetition(
+            StringCipher.Decrypt(ZabbixConfig.encryptedUser,VMDCEncrypt.PassPhrase),
+            StringCipher.Decrypt(ZabbixConfig.encryptedPass,VMDCEncrypt.PassPhrase),
+            (string aux) => responseString=aux));
         if (responseString=="" || responseString==null){
             ConectionIsBad();
         } else {
@@ -54,7 +92,7 @@ public class StartController_WelcomeScene : MonoBehaviour
 
     private void ConectionIsOk(string authKey){
         ZabbixConfig.authKey = authKey;
-        signInButton.SetActive(true);
+        logInUIElementsController.EndLogIn();
         zabbixServerStatusIconController.SetStatus(true);
         Debug.Log("Conected to server.");
         //StartCoroutine(UpdateWarningsCoroutine());
@@ -69,7 +107,6 @@ public class StartController_WelcomeScene : MonoBehaviour
     public IEnumerator GetZabbixAPIVersion()
 	{
 		string version = "";
-        // 10566 es webcitic
 		yield return StartCoroutine(slotDFAM.MakeApiVersionPetition((string aux)=>version=aux));
         logInUIElementsController.UpdateZabbixAPIText(version);
 

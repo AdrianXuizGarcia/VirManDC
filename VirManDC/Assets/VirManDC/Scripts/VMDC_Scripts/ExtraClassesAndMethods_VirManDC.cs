@@ -74,7 +74,7 @@ namespace AuxiliarMethods
 			while (reader.Read())
 			{
 				// Read Model: first the attributes
-				if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "panelsemaforo"){
+				if (reader.NodeType == XmlNodeType.Element && reader.Name.ToLower() == "indicatorpanel"){
 					SemaforoData semaforoData = new SemaforoData(int.Parse(reader.GetAttribute(0)));
 					//semaforoData.id = int.Parse(reader.GetAttribute(0));
 					// For the rest of the elements, we read each node
@@ -88,8 +88,6 @@ namespace AuxiliarMethods
 							semaforoData.key = getItemFromReader(reader);
 						if (reader.Name.ToLower() == "imagename")
 							semaforoData.imageName = getItemFromReader(reader);
-						if (reader.Name.ToLower() == "isvmbutton")
-							semaforoData.isVMButton = true;
 					}
 					panelSemaforoList.Add(semaforoData);
 					//Debug.Log("ID xml: "+semaforoData.key);
@@ -145,27 +143,27 @@ namespace AuxiliarMethods
 					panelSemaforoData.id = reader.GetAttribute(0);
 					while (reader.NodeType != XmlNodeType.EndElement){
 						reader.Read();
-						if (reader.Name.ToLower() == "panelbackgroundcolor")
-							panelSemaforoData.panelBackgroundColor =getItemFromReader(reader);
+						/*if (reader.Name.ToLower() == "panelbackgroundcolor")
+							panelSemaforoData.panelBackgroundColor = getItemFromReader(reader);
 						if (reader.Name.ToLower() == "screenbackgroundcolor")
-							panelSemaforoData.screenBackgroundColor =getItemFromReader(reader);
+							panelSemaforoData.screenBackgroundColor = getItemFromReader(reader);*/
 						// For each semaforo, we add a new Semaforo to the list of the interface
-						if (reader.Name.ToLower() == "semaforo1"){
+						if (reader.Name.ToLower() == "indicator1"){
 							int id = int.Parse(getItemFromReader(reader));
 							if (id!=0)
 								panelSemaforoData.listSemaforos.Add(new SemaforoData(id));
 						}
-						if (reader.Name.ToLower() == "semaforo2"){
+						if (reader.Name.ToLower() == "indicator2"){
 							int id = int.Parse(getItemFromReader(reader));
 							if (id!=0)
 								panelSemaforoData.listSemaforos.Add(new SemaforoData(id));
 						}
-						if (reader.Name.ToLower() == "semaforo3"){
+						if (reader.Name.ToLower() == "indicator3"){
 							int id = int.Parse(getItemFromReader(reader));
 							if (id!=0)
 								panelSemaforoData.listSemaforos.Add(new SemaforoData(id));
 						}
-						if (reader.Name.ToLower() == "semaforo4"){
+						if (reader.Name.ToLower() == "indicator4"){
 							int id = int.Parse(getItemFromReader(reader));
 							if (id!=0)
 								panelSemaforoData.listSemaforos.Add(new SemaforoData(id));
@@ -214,8 +212,8 @@ namespace AuxiliarMethods
 				return VMDCPaths.modelsRackPath;
 			if (!File.Exists(VMDCPaths.KeyValueModelsPath))
 				return VMDCPaths.KeyValueModelsPath;
-			//if (!File.Exists(VMDCPaths.configFilePath))
-			//	return VMDCPaths.configFilePath;
+			if (!File.Exists(VMDCPaths.zabbixScriptListPath))
+				return VMDCPaths.zabbixScriptListPath;
 			if (!File.Exists(VMDCPaths.panelSemaforoModelsPath))
 				return VMDCPaths.panelSemaforoModelsPath;
 			if (!File.Exists(VMDCPaths.interfacesSemaforoModelsPath))
@@ -229,6 +227,8 @@ namespace AuxiliarMethods
 		{
 			if (!File.Exists(VMDCPaths.configFilePath))
 				return VMDCPaths.configFilePath;
+			if (!File.Exists(VMDCPaths.defaultConfigFilePath))
+				return VMDCPaths.defaultConfigFilePath;
 			return "";
 		}
 	}

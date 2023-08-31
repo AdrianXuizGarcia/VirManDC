@@ -1405,6 +1405,7 @@ MonoBehaviour:
   panelGameobject: {fileID: 7042754596455971989}
   prefabTest: {fileID: 6010990762165400768, guid: f5a73f990c0688a44b40fed270d2a33c, type: 3}
   baseToSpawnPrefabTest: {fileID: 1448074691088257404}
+  limitOfElementsToBeShown: 15
 --- !u!1 &1423549230028413947
 GameObject:
   m_ObjectHideFlags: 0
@@ -4924,6 +4925,7 @@ MonoBehaviour:
   warningMainPanel: {fileID: 4897318052707851494}
   warningText: {fileID: 7357237213959692943}
   buttonConfigHelper: {fileID: 7943312180470410018}
+  warningSlotIconController: {fileID: 0}
 --- !u!1 &3066048478573362067
 GameObject:
   m_ObjectHideFlags: 0
@@ -7251,7 +7253,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8211177721810038790}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &91961326820676428
 MonoBehaviour:
@@ -7266,7 +7268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainTransform: {fileID: 5129129696293074967}
-  positionToKeep: {x: 0, y: 0.3, z: 1}
+  positionToKeep: {x: 0, y: 0, z: 0}
   initialRotation: {x: 0, y: 0, z: 0}
   active: 1
 --- !u!1 &4552087648859644949
@@ -7298,7 +7300,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8211177721810038790}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3965332099934909541
 MonoBehaviour:
@@ -8619,6 +8621,7 @@ MonoBehaviour:
   panelGameobject: {fileID: 6130853579576399628}
   prefabTest: {fileID: 1897637841787678253, guid: af013c7dfe346354d830d98d02a74c5a, type: 3}
   baseToSpawnPrefabTest: {fileID: 718328502336443417}
+  limitOfElementsToBeShown: 15
 --- !u!1 &5436813703353971209
 GameObject:
   m_ObjectHideFlags: 0
@@ -10296,7 +10299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6767503957990746105
 Transform:
   m_ObjectHideFlags: 0
@@ -10309,7 +10312,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8211177721810038790}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8608760086611505505
 MonoBehaviour:
@@ -10325,7 +10328,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainTransform: {fileID: 8211177722636042976}
   pivotTransform: {fileID: 5129129696293074967}
-  active: 1
+  active: 0
 --- !u!1 &6173540744219824110
 GameObject:
   m_ObjectHideFlags: 0
@@ -18128,7 +18131,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Zabbity Data
+  m_text: Zabbix Data
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
   m_sharedMaterial: {fileID: 21202819797275496, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
@@ -24572,7 +24575,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Zabbity Scripts
+  m_text: 'Zabbix Scripts
 
 '
   m_isRightToLeft: 0
@@ -28125,9 +28128,9 @@ Transform:
   - {fileID: 8651958511334402749}
   - {fileID: 5449239311114337903}
   - {fileID: 6825652298602836661}
+  - {fileID: 1607785272318012721}
   - {fileID: 6366857828864380983}
   - {fileID: 6767503957990746105}
-  - {fileID: 1607785272318012721}
   m_Father: {fileID: 8211177722636042976}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -32991,7 +32994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8211177722969078447
 Transform:
   m_ObjectHideFlags: 0

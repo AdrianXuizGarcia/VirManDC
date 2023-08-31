@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.MixedReality.Toolkit.UI;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using VMDC.Dtos;
 
 public class WarningController : MonoBehaviour
@@ -11,6 +10,7 @@ public class WarningController : MonoBehaviour
 	public GameObject warningMainPanel;
     public TextMeshProUGUI warningText;
     public ButtonConfigHelper buttonConfigHelper;
+	public WarningSlotIconController warningSlotIconController;
     private List<WarningLastData> warningDataList;
 	private int actualWarning = 1;
 
@@ -25,10 +25,12 @@ public class WarningController : MonoBehaviour
 		if (warningDataList == null){
             SetButtonToAdjust("WarningWhite");
             warningMainPanel.SetActive(false);
+			warningSlotIconController.NewStateIcon(false);
 		}
 		else {
 			SetButtonToAdjust("WarningRed");
 			UpdateUI();
+			warningSlotIconController.NewStateIcon(true);
 		}
 	}
 
@@ -41,13 +43,13 @@ public class WarningController : MonoBehaviour
         this.GetComponentInParent<SlotComponentsReferences>().NewPetitionForWarningData();
     }
 	
-	public void NextWarning(){
+	/*public void NextWarning(){
 		actualWarning = actualWarning+1;
 		if (actualWarning > warningDataList.Count)
 			actualWarning = 1;
 		UpdateUI();
 	}
-	
+	*/
 	private void UpdateUI(){
         //WarningLastData warningData = warningDataList[actualWarning-1];
         warningText.text = "";

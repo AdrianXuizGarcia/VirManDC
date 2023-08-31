@@ -99,11 +99,10 @@ namespace VMDC.Dtos
 	{
 		public string model;
 		public float espacioInicioServers1u;
-		public float espacioInicioCanvas1u;
 		public float espacio1uY;
-		public int size;
-		public float espacioRackX; // ?
-		public float espacioRackZ; // ?
+		public int slotsCount;
+		public float espacioRackX;
+		public float espacioRackZ;
 	}
 	
 	
@@ -224,8 +223,6 @@ namespace VMDC.Dtos
 			schema = new DataApiSchema();
 		}
 		public string id;
-		public string screenBackgroundColor;
-		public string panelBackgroundColor;
 		public List<SemaforoData> listSemaforos;
 		public DataApiSchema schema;
 	}

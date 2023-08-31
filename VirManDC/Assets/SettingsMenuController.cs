@@ -1,25 +1,38 @@
 using System.Collections;
+using EncryptLibrary;
 using UnityEngine;
 using UnityEngine.UI;
 using VMDC.AuxiliarConfiguration;
+using VMDC.Constants;
 
 public class SettingsMenuController : MonoBehaviour
 {
 	public InputField url_IPServer;
     public InputField url_ZabbixAPI;
+
+	public InputField userText;
+    public InputField passText;
 	
 	public GameObject panelSettings;
-	
+
 	//?public Button buttonCheckArchitecture;
-	
-	public LogInUIElementsController logInUIElementsController;
+
+	//public LogInUIElementsController logInUIElementsController;
+	public StartController_WelcomeScene startController_WelcomeScene;
 	
 	/// <summary>
     /// Called from Save button
     /// </summary>
     public void SaveConfigurationInFile(){
-		ZabbixConfigFile.SaveAndWriteNewConfiguration(url_IPServer.text,url_ZabbixAPI.text,null);
-		logInUIElementsController.UpdateServerIPText();
+		// TODO: Pass urlConfigurationFiles as value, not used atm
+		ZabbixConfigFile.SaveAndWriteNewConfiguration(url_IPServer.text, url_ZabbixAPI.text,
+						ZabbixConfig.urlConfigurationFiles,
+						StringCipher.Encrypt(userText.text, VMDCEncrypt.PassPhrase),
+						StringCipher.Encrypt(passText.text, VMDCEncrypt.PassPhrase)
+						);
+		//logInUIElementsController.UpdateServerIPText();
+		// Make a new petition for log in 
+		startController_WelcomeScene.MakeLogInPetition();
 		panelSettings.SetActive(false);
 	}
 
@@ -38,6 +51,8 @@ public class SettingsMenuController : MonoBehaviour
 	private void SetActualValuesToPlaceHolder(){
 		url_IPServer.text = ZabbixConfig.ipServer;
 		url_ZabbixAPI.text = ZabbixConfig.urlZabbixAPI;
+		userText.text = StringCipher.Decrypt(ZabbixConfig.encryptedUser, VMDCEncrypt.PassPhrase);
+		passText.text = StringCipher.Decrypt(ZabbixConfig.encryptedPass,VMDCEncrypt.PassPhrase);
 	}
 	
     /// <summary>
@@ -46,14 +61,6 @@ public class SettingsMenuController : MonoBehaviour
 	public void SetDefaultValuesToPlaceHolder(){
 		url_IPServer.text = ZabbixConfigDefault.ipServer;
 		url_ZabbixAPI.text = ZabbixConfigDefault.urlZabbixAPI;
-	}
-	
-	public void AllReadyNow()
-	/*
-		Called when config files and xml are all ok,
-		so we can enter CheckArchitecture */
-	{
-		//?buttonCheckArchitecture.interactable = true;
 	}
 
 }

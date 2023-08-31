@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using VMDC.Constants;
 
 public class KeepRelativePositionToCamera : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class KeepRelativePositionToCamera : MonoBehaviour
     public bool active;
 
     void Start(){
-        cameraTransform = Camera.main.transform;
+        //cameraTransform = Camera.main.transform;
+        cameraTransform = GameObject.FindGameObjectWithTag(VMDCTags.SPAWN_CAMERA_TAG).transform;;
         //mainTransform.Rotate(initialRotation);
     }
 

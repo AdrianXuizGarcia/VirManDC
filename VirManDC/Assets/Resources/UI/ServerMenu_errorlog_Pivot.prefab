@@ -974,8 +974,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: Increment
+        m_TargetAssemblyTypeName: ErrorManagerGUI, Assembly-CSharp
+        m_MethodName: ClearLog
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2894,7 +2894,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2773695814183499075}
-  - component: {fileID: 2773695814183499078}
   - component: {fileID: 2773695814183499073}
   - component: {fileID: 2773695814183499072}
   m_Layer: 0
@@ -2918,20 +2917,6 @@ Transform:
   m_Father: {fileID: 8428262742723239724}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2773695814183499078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2773695814183499074}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41450ff9710eb5a43815a27af7da9e15, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  display: {fileID: 8428262743363268411}
-  apiPetitions: {fileID: 0}
 --- !u!114 &2773695814183499073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2958,7 +2943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainTransform: {fileID: 2773695815283209771}
-  positionToKeep: {x: -0.6, y: 0.1, z: 0.3}
+  positionToKeep: {x: -0.1, y: 0.1, z: 0.3}
   initialRotation: {x: 0, y: 290, z: 0}
   active: 1
 --- !u!1 &2773695814286229128

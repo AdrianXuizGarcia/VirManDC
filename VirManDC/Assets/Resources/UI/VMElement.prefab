@@ -407,7 +407,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7470247768216763201}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5575069751111242592}
+        m_TargetAssemblyTypeName: VMButtonController, Assembly-CSharp
+        m_MethodName: InstanceVMInterface
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7470247768216763201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -506,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382468a2a7dc6184993264709f38ee97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabToInstance: {fileID: 4393661889133215206, guid: 94e222adf91406c4daffe061c1441eed, type: 3}
+  prefabToInstance: {fileID: 1103520962771165361, guid: 8c5171e679b01284297dbf7df3968a41, type: 3}
   serverName: {fileID: 7408822552750723072}
   imageButton: {fileID: 7753137503318657616}
   newButtonColorIfVMActive: {r: 0, g: 1, b: 0.31509495, a: 1}

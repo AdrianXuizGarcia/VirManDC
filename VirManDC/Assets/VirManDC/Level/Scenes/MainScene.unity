@@ -9483,8 +9483,8 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SlotReferenceForWarning, Assembly-CSharp
+      - m_Target: {fileID: 996160834}
+        m_TargetAssemblyTypeName: AllWarningManager, Assembly-CSharp
         m_MethodName: GetAllWarningsData
         m_Mode: 1
         m_Arguments:
@@ -10036,7 +10036,7 @@ GameObject:
   - component: {fileID: 650152801}
   - component: {fileID: 650152802}
   m_Layer: 0
-  m_Name: InicioController
+  m_Name: StartController_MainScene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10072,6 +10072,7 @@ MonoBehaviour:
   callForZabbixData: 1
   slotDFAM: {fileID: 1215411587}
   architectureGeneralManager: {fileID: 514728687}
+  allWarningManager: {fileID: 996160834}
 --- !u!1 &672266725
 GameObject:
   m_ObjectHideFlags: 0
@@ -14078,7 +14079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &964682821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17210,6 +17211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apiPetitions: {fileID: 138979258}
+  slotListManager: {fileID: 2066578943}
 --- !u!1 &1216360950
 GameObject:
   m_ObjectHideFlags: 0
@@ -19744,7 +19746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1450006605
 Transform:
   m_ObjectHideFlags: 0
@@ -20743,6 +20745,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1505719023 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2773695814183499072, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
+  m_PrefabInstance: {fileID: 2773695813297087722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1515777a910e8c419f6fe3da6d03c6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1515657118
 GameObject:
   m_ObjectHideFlags: 0
@@ -22445,7 +22458,7 @@ GameObject:
   - component: {fileID: 1723777858}
   m_Layer: 0
   m_Name: PivotForRack
-  m_TagString: Untagged
+  m_TagString: PivotForRack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29950,7 +29963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810780305771561025}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0023, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4650336335090192234}
@@ -30660,9 +30673,9 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7561297404384552370}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ToggleFollowMeBehavior
+      - m_Target: {fileID: 4208066327059107805}
+        m_TargetAssemblyTypeName: KeepRelativePositionToCamera, Assembly-CSharp
+        m_MethodName: SwapState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31778,6 +31791,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1419826586849845616, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1505719023}
+    - target: {fileID: 1419826586849845616, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SwapState
+      objectReference: {fileID: 0}
+    - target: {fileID: 1419826586849845616, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: KeepRelativePositionToCamera, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 2598709075801674747, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -32793,7 +32818,7 @@ MonoBehaviour:
   iconSprite: {fileID: 21300000, guid: 20f25674b9512834f88938d45ed495d7, type: 3}
   iconQuadRenderer: {fileID: 4650336335057921313}
   iconQuadTextureNameID: _MainTex
-  iconQuadTexture: {fileID: 2800000, guid: c86f8ff820563cf478d3e480d64271cb, type: 3}
+  iconQuadTexture: {fileID: 2800000, guid: 2b58c8124f806bf498f86a9e3ec9a665, type: 3}
   defaultButtonQuadMaterial: {fileID: 2100000, guid: fa419ab56051229449e3b813df8f295f, type: 2}
   iconSet: {fileID: 11400000, guid: 70b17cbf00cfca445821ca65e0b07327, type: 2}
   defaultIconSet: {fileID: 11400000, guid: 8b386ef895f7c924f8c4b03d1d3ed683, type: 2}
@@ -38391,7 +38416,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4650336336684550539}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.015999999, z: 0}
+  m_LocalPosition: {x: 0, y: 0.0014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4650336336044368625}
@@ -39155,7 +39180,7 @@ Transform:
   m_GameObject: {fileID: 4650336336055396484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.01}
-  m_LocalScale: {x: 0.032, y: 0.096, z: 0.02}
+  m_LocalScale: {x: 0.032, y: 0.05140704, z: 0.02}
   m_Children: []
   m_Father: {fileID: 4650336334959581428}
   m_RootOrder: 0
@@ -39306,7 +39331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Reset Menu
+  m_text: Reset Menu Position
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
   m_sharedMaterial: {fileID: 21202819797275496, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
@@ -39496,7 +39521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &4650336336598132661
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41739,7 +41764,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7561297404384552369}
-  - component: {fileID: 7561297404384552370}
   - component: {fileID: 7561297404384552332}
   - component: {fileID: 6197318544926915814}
   - component: {fileID: 7561297404384552334}
@@ -41774,27 +41798,6 @@ Transform:
   m_Father: {fileID: 4208066325994556598}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7561297404384552370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7561297404384552368}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d1fea68463e4e84b86c395b654f950d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visualizationObject: {fileID: 2946230374140322779}
-  interactableObject: {fileID: 0}
-  buttonBehavior: 0
-  autoFollowAtDistance: 0
-  autoFollowDistance: 2
-  autoFollowTransformTarget: {fileID: 0}
-  autoFollowTriggered:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!33 &7561297404496108818
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42223,7 +42226,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Visuals Images
+  m_text: Rack 1.2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}
   m_sharedMaterial: {fileID: 21202819797275496, guid: 6a84f857bec7e7345843ae29404c57ce, type: 2}

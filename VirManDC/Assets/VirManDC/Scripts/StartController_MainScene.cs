@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inicio : MonoBehaviour
+public class StartController_MainScene : MonoBehaviour
 {
 
     public bool callForArchitecture = true;
@@ -10,6 +10,7 @@ public class Inicio : MonoBehaviour
     public SlotDataFromAPI_Manager slotDFAM;
 
     public ArchitectureGeneralManager architectureGeneralManager;
+    public AllWarningManager allWarningManager;
 
     void Start()
     {
@@ -22,7 +23,7 @@ public class Inicio : MonoBehaviour
         //if (slotDFAM && callForZabbixData) {
         if (!StaticDataHolder.architectureMode) {
             //Debug.Log("es " + StaticDataHolder.architectureMode);
-            StartCoroutine(InitDataCoroutine());
+            StartCoroutine(InitHostsDataCoroutine());
             //StartCoroutine(InitScriptCoroutine("10829",1)); // For testing
             //StartCoroutine(InitScriptCoroutine("10829",4)); // For testing
             //StartCoroutine(InitScriptCoroutine("10829",3)); // For testing
@@ -30,12 +31,14 @@ public class Inicio : MonoBehaviour
         }
     }
 
-    private IEnumerator InitDataCoroutine(){
+    private IEnumerator InitHostsDataCoroutine(){
         yield return StartCoroutine(slotDFAM.UpdateHostsData());
+        allWarningManager.GetAllWarningsData();
         //Debug.Log("Data updated!");
         //Debug.Log(slotDFAM.hostsData);
     }
 
+    //? For debugging 
     private IEnumerator InitScriptCoroutine(string hostid, int scriptid){
         string response = "";
         yield return StartCoroutine(slotDFAM.ExecuteScriptOnHostID(hostid,scriptid,(string aux) => response=aux));
@@ -49,6 +52,5 @@ public class Inicio : MonoBehaviour
         //Debug.Log(slotDFAM.hostsData);
     }
     */
-    
 
 }

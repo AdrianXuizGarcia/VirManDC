@@ -12,13 +12,15 @@ public class ServerMenuBehaviourController : MonoBehaviour
     private ListOfComponentsGUI listOfComponentsGUI;
 
     void Start(){
-        serverMenu.SetActive(false);
-        listOfComponentsGUI = serverMenu.GetComponentInChildren<ListOfComponentsGUI>();
-        listOfComponentsGUI.changeSlotName(referenceSlotData.slotName);
+        if(serverMenu){
+            serverMenu.SetActive(false);
+            listOfComponentsGUI = serverMenu.GetComponentInChildren<ListOfComponentsGUI>();
+            listOfComponentsGUI.changeSlotName(referenceSlotData.slotName);
+        }      
     }
 
     public void SwapStateMenu(){
         serverMenu.SetActive(!serverMenu.activeSelf);
-        drawAuxiliarLinesController.ChangeState(false);
+        //drawAuxiliarLinesController.ChangeState(false);
     }
 }

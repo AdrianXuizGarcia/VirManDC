@@ -9,8 +9,8 @@ public class LogInUIElementsController : MonoBehaviour
 {
 	public TextMeshPro serverIpText;
 	public TextMeshPro zabbixAPiversionText;
-	public Button buttonLogIn;
-	public GameObject loadingCircle;
+	public GameObject buttonLogIn;
+	public GameObject buttonCheckArchitecture;
 	public InputField username;
 	public InputField password;
 	public TextMeshPro errorText;
@@ -30,26 +30,16 @@ public class LogInUIElementsController : MonoBehaviour
 	public void StartLogIn(){
 		//isLoading = true;
 		ManageAllInputs(false);
-		loadingCircle.SetActive(true);
 	}
 	
 	public void EndLogIn(){
 		//isLoading = false;
 		ManageAllInputs(true);
-		loadingCircle.SetActive(false);
-	}
-	
-	private void CheckInputFields(){
-		if((username.text == "")|| (password.text == ""))
-			buttonLogIn.interactable = false;
-		else
-			buttonLogIn.interactable = true;
 	}
 	
 	private void ManageAllInputs(bool active){
-		username.interactable = active;
-		password.interactable = active;
-		buttonLogIn.interactable = active;
+		buttonLogIn.SetActive(active);
+		buttonCheckArchitecture.SetActive(active);
 	}
 	
 	public void DeactivateInitialButtons(){
@@ -60,7 +50,12 @@ public class LogInUIElementsController : MonoBehaviour
 		ManageAllInputs(true);
 	}
 	
-	public void RefreshErrorText(){
-		errorText.text = "";
+	public void ActivateTryArchitectureButton(){
+		buttonCheckArchitecture.SetActive(true);
+	}
+
+	public void SetErrorTexts(){
+		serverIpText.text = "Error while loading app.\n Check error interface";
+		zabbixAPiversionText.text = "";
 	}
 }

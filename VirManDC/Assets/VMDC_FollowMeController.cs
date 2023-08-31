@@ -14,9 +14,11 @@ public class VMDC_FollowMeController : MonoBehaviour
         //positionControllerGameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// To be called from button
+    /// </summary>
     public void SwapPositionController(){
         keepRelativePositionToCameraScript.SwapState();
-        //positionControllerGameObject.SetActive(!positionControllerGameObject.activeSelf);
         keepPositionAndRotationController.SwapState();
     }
 }
