@@ -78,7 +78,6 @@ public class StartController_WelcomeScene : MonoBehaviour
 
     private IEnumerator MakeLogInPetitionCo(){
 		string responseString = "";
-		//yield return StartCoroutine(apiPetitions.MakeLogInPetition("Admin","d1@8#y2FFHl3",(string aux) => responseString=aux));
         yield return StartCoroutine(apiPetitions.MakeLogInPetition(
             StringCipher.Decrypt(ZabbixConfig.encryptedUser,VMDCEncrypt.PassPhrase),
             StringCipher.Decrypt(ZabbixConfig.encryptedPass,VMDCEncrypt.PassPhrase),
@@ -111,18 +110,5 @@ public class StartController_WelcomeScene : MonoBehaviour
         logInUIElementsController.UpdateZabbixAPIText(version);
 
     }
-
-    /*
-    Prueba de warning
-    public IEnumerator UpdateWarningsCoroutine()
-	{
-		List<WarningLastData> warningData = null;
-        // 10566 es webcitic
-		yield return StartCoroutine(slotDFAM.GetWarningsData("10566", (List<WarningLastData> aux)=>warningData=aux));
-		//WarningLastData warningData = slotDFAM.GetWarningsData(slotDaC.hostID);
-		if (warningData!=null)
-			text.text=warningData[0].warningDescription;
-		
-	}*/
 
 }

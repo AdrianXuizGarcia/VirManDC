@@ -7235,7 +7235,7 @@ GameObject:
   - component: {fileID: 6366857828864380983}
   - component: {fileID: 91961326820676428}
   m_Layer: 0
-  m_Name: KeepRelativeToPosition
+  m_Name: KeepRelativePositionToCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

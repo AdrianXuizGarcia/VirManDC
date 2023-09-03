@@ -11,11 +11,6 @@ public class LogInUIElementsController : MonoBehaviour
 	public TextMeshPro zabbixAPiversionText;
 	public GameObject buttonLogIn;
 	public GameObject buttonCheckArchitecture;
-	public InputField username;
-	public InputField password;
-	public TextMeshPro errorText;
-	
-	//private bool isLoading;
 	
 	public void UpdateServerIPText(){
 		//serverIpText.text = serverIpText.text + " " + ZabbixConfig.ipServer;

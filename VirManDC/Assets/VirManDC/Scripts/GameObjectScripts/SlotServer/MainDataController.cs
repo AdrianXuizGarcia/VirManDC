@@ -11,6 +11,6 @@ public class MainDataController : MonoBehaviour
     /// </summary>
     public void NewPetitionForMainData()
     {
-        this.GetComponentInParent<SlotComponentsReferences>().NewPetitionForMainData();
+        GetComponentInParent<SlotComponentsReferences>().NewPetitionForMainData();
     }
 }

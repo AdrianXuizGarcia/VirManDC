@@ -17513,7 +17513,7 @@ GameObject:
   - component: {fileID: 1250169082}
   - component: {fileID: 1250169081}
   m_Layer: 0
-  m_Name: AuxiliarBaseMenu
+  m_Name: AuxiliarMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22191,7 +22191,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Auxiliar Menu Base
+  m_text: Auxiliar Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: afc8299d5d5bbd440a0616c8ecbc7217, type: 2}
   m_sharedMaterial: {fileID: 21340371490990018, guid: afc8299d5d5bbd440a0616c8ecbc7217, type: 2}
@@ -22218,7 +22218,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.35
+  m_fontSize: 29.45
   m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 1

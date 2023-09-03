@@ -13,7 +13,9 @@ using VMDC.AuxiliarConfiguration;
 using VMDC.JsonDtos;
 using Newtonsoft.Json;
 
-// This class contains all the petitions to the Zabbix API
+/// <summary>
+/// This class contains all the petitions to the Zabbix API
+/// </summary>
 public class ZabbixPetitions : MonoBehaviour
 	{
 		// DATA PETITIONS
