@@ -20749,17 +20749,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1505719023 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2773695814183499072, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-  m_PrefabInstance: {fileID: 2773695813297087722}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1515777a910e8c419f6fe3da6d03c6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1515657118
 GameObject:
   m_ObjectHideFlags: 0
@@ -31795,51 +31784,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1419826586849845616, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1505719023}
-    - target: {fileID: 1419826586849845616, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SwapState
-      objectReference: {fileID: 0}
-    - target: {fileID: 1419826586849845616, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: KeepRelativePositionToCamera, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 2598709075801674747, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599249412694738311, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599249412694738311, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599327474482396009, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2599327474482396009, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2600021631848312889, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2600021631848312889, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2600021631848312889, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2600021631848312889, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -31871,14 +31816,6 @@ PrefabInstance:
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 375749740}
-    - target: {fileID: 2773695813292628022, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClearLog
-      objectReference: {fileID: 0}
-    - target: {fileID: 2773695813292628022, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ErrorManagerGUI, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 2773695813729745326, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -31970,14 +31907,6 @@ PrefabInstance:
     - target: {fileID: 2773695815283209771, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3366884428533556497, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: onManipulationEnded.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3366884428533556497, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
-      propertyPath: onManipulationStarted.m_PersistentCalls.m_Calls.Array.size
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3822403364747471709, guid: 9cbf9cfc62b60784db555fbe38a08887, type: 3}
       propertyPath: m_AnchorMax.x

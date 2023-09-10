@@ -14,15 +14,12 @@ public class VMsListPanelController : MonoBehaviour
     private bool panelIsOpen = false;
 
     void Start() {
-        /*for(int i = 0; i < numberOfInstances; i++)
-        {
-            Instantiate(prefabTest, baseToSpawnPrefabTest.transform);
-        }*/
+        DeactivateAnyChilds();
         panelGameobject.SetActive(panelIsOpen);
     }
 
     public IEnumerator Init(List<VMData> listOfElements) {
-        DeactivateAnyChilds();
+        //DeactivateAnyChilds();
         ResetUIScroll();
         DeleteAllDataObjects();
         int ElementsBeingShown = 0;

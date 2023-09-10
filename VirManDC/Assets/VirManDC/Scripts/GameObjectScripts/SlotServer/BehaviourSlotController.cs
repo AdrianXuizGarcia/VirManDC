@@ -90,7 +90,8 @@ public class BehaviourSlotController : MonoBehaviour
 			yield return StartCoroutine(slotDFAM.GetMainDataFromApi(slotDataReference.dataApiSchema,slotDataReference.hostID, (DataApiContainer aux)=>slotDataReference.dataApiContainer=aux));
         //TODO: What happens if null
 		Debug.Log("Waiting for semaforos update...");
-		yield return StartCoroutine(indicatorPanelControllerReference.UpdateDataButtons(slotDataReference.dataApiContainer.keyDataList));
+        if (slotDataReference.dataApiContainer!=null)
+		    yield return StartCoroutine(indicatorPanelControllerReference.UpdateDataButtons(slotDataReference.dataApiContainer.keyDataList));
         Debug.Log("Waiting for data panel update...");
         yield return StartCoroutine(testDataPanelController.Init(slotDataReference.dataApiContainer.appDataList));
         Debug.Log("Data retrieved!");

@@ -18,6 +18,11 @@ public class TestDataPanelController : MonoBehaviour
     private int actualIndicatorPage = 0;
     private int numOfPages = -1;
 
+    void Start() {
+        DeactivateAnyChilds();
+        panelGameobject.SetActive(panelIsOpen);
+    }
+
     public IEnumerator Init(List<List<InfoApi>> listOfElements) {
         DeactivateAnyChilds();
         ResetUIScroll();
@@ -44,7 +49,6 @@ public class TestDataPanelController : MonoBehaviour
                     break;
             }
         }
-        panelGameobject.SetActive(panelIsOpen);
         SwapStateAllPageElements(false);
         SwapStatePageElements(actualIndicatorPage,true);
         yield return null;
@@ -91,8 +95,11 @@ public class TestDataPanelController : MonoBehaviour
     }
 
     private void SwapStatePageElements(int page, bool state){
-        foreach(GameObject element in listsDataElement[page])
-            element.SetActive(state);
+        if (listsDataElement.Count > 0){
+            foreach(GameObject element in listsDataElement[page])
+                element.SetActive(state);
+        }
+        
     }
 
     private void SwapStateAllPageElements(bool state){

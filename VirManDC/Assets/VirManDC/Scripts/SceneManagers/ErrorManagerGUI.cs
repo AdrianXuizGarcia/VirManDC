@@ -29,21 +29,19 @@ public class ErrorManagerGUI : MonoBehaviour
     }
 	
 	private void Initialize(){
-		//errorText = generalErrorMessage.GetComponentInChildren<Text>();
-		//logInErrorMessage = logInErrorScroll.GetComponentInChildren<Text>();
 		displayText = optionsErrorScroll.GetComponent<TextMeshProUGUI>();
 		errorCanvas.SetActive(false);
         ClearLog();
-        //initialized = true;
     }
 	
 	public void NewErrorMessage(string s)
 	{	
+		// If the interface was close, the previous error is 
+		// suposed to be already known
 		if(!errorCanvas.activeSelf)
-            errorCanvas.SetActive(true);
-        //TextMeshProUGUI displayText = optionsErrorScroll.GetComponent<TextMeshProUGUI>();
+			ClearLog();
+        errorCanvas.SetActive(true);
         displayText.text = displayText.text+"\n"+s;
-        //Debug.Log("SO: " + displayText.text);
     }
 
 	public void ClearLog()
