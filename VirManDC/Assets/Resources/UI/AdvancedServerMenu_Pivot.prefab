@@ -7270,7 +7270,7 @@ MonoBehaviour:
   mainTransform: {fileID: 5129129696293074967}
   positionToKeep: {x: 0, y: 0, z: 0}
   initialRotation: {x: 0, y: 0, z: 0}
-  active: 1
+  active: 0
 --- !u!1 &4552087648859644949
 GameObject:
   m_ObjectHideFlags: 0

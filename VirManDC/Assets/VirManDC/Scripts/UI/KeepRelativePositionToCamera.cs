@@ -14,7 +14,8 @@ public class KeepRelativePositionToCamera : MonoBehaviour
 
     void Start(){
         //cameraTransform = Camera.main.transform;
-        cameraTransform = GameObject.FindGameObjectWithTag(VMDCTags.SPAWN_CAMERA_TAG).transform;;
+        cameraTransform = GameObject.FindGameObjectWithTag(VMDCTags.SPAWN_CAMERA_TAG).transform;
+        mainTransform.position = cameraTransform.position;
         //mainTransform.Rotate(initialRotation);
     }
 

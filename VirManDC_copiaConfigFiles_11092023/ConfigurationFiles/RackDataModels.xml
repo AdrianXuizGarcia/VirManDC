@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RackModels>
+	<RackModel model="dellXYZ">
+		<spaceInitServers1u>-0.07</spaceInitServers1u>
+		<space1uY>0.305</space1uY>
+		<spaceRackX>1.7</spaceRackX>
+		<spaceRackZ>2</spaceRackZ>
+		<slotsCount>20</slotsCount>
+	</RackModel>
+	<RackModel model="netShelterSX">
+		<spaceInitServers1u>0.07</spaceInitServers1u>
+		<space1uY>0.305</space1uY>
+		<spaceRackX>17</spaceRackX>
+		<spaceRackZ>2</spaceRackZ>
+		<slotsCount>29</slotsCount>
+	</RackModel>
+	
+	<RackModel model="BasicModel_Rack">
+		<spaceInitServers1u>0.056</spaceInitServers1u>
+		<space1uY>0.05</space1uY>
+		<spaceRackX>0.6</spaceRackX>
+		<spaceRackZ>0.3</spaceRackZ>
+		<slotsCount>32</slotsCount>
+	</RackModel>
+	<RackModel model="BasicModel_InRowCooling">
+		<spaceInitServers1u>0</spaceInitServers1u>
+		<space1uY>0</space1uY>
+		<spaceRackX>0.6</spaceRackX>
+		<spaceRackZ>0.305</spaceRackZ>
+	</RackModel>
+</RackModels>

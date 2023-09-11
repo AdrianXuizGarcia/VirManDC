@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Last edition: 30/08/2023 17:40 -->
+<Architecture>
+<!-- The position and the scale is the same as the transform of the gameobject
+	 "ScalePivot_BaseGraphic". Better edit and copy it from inspector 
+	 when playing scene -->
+<PlaceDescription posX="-0.4" scaleX="3.8" posZ="-0.7" scaleZ="3.8" centerX="1.5" centerZ="1.2"/>
+<RacksDefinition>
+	<Rack rackID="101" name="Rack 1.1" model="BasicModel_Rack" graphicsModel="LP">
+		<Transform>
+		  <posX>0</posX>
+		  <posY>0.85</posY>
+		  <posZ>0</posZ>
+		  <rotation>0</rotation>
+		</Transform>
+		<SlotsRack>
+			<Slot slotNum="1" name="DefaultSlot" size="2" model="Asus" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>28</posY>
+			</Slot>
+			<Slot slotNum="1" name="DefaultSlot" size="2" model="Asus" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>0</posY>
+			</Slot>
+			<Slot slotNum="1" name="Hawkeye con error" size="4" model="dellemc_pexe8545" type="zabbixAgentMoreData" isHypervisor="false">
+				<slotID>10326</slotID>
+				<posY>6</posY>
+			</Slot>
+			<Slot slotNum="1" name="Hawkeye" size="2" model="Dell_EMC_ME4012" type="zabbixAgent" isHypervisor="false">
+				<slotID>10326</slotID>
+				<posY>10</posY>
+			</Slot>
+		</SlotsRack>
+	</Rack>
+	<Rack rackID="102" name="Rack 1.2" model="BasicModel_Rack" graphicsModel="LP">
+		<Transform>
+		  <posX>1</posX>
+		  <posY>0.85</posY>
+		  <posZ>0</posZ>
+		  <rotation>0</rotation>
+		</Transform>
+		<SlotsRack>
+			<Slot slotNum="1" name="SlotMonitorizado_1" size="1" model="cisco1_1u" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>30</posY>
+			</Slot>
+			<Slot slotNum="2" name="SlotMonitorizado_1" size="2" model="dell1_2u" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>28</posY>
+			</Slot>
+			<Slot slotNum="2" name="SlotMonitorizado_1" size="2" model="Dell_EMC_ME4012" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>26</posY>
+			</Slot>
+			<Slot slotNum="2" name="SlotMonitorizado_1" size="2" model="Dell_EMC_ME4012" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>24</posY>
+			</Slot>
+			<Slot slotNum="2" name="SlotMonitorizado_1" size="2" model="Dell_EMC_ME4012" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>22</posY>
+			</Slot>
+			<Slot slotNum="2" name="Beyonder 03" size="4" model="hp3_2u" type="hypervisor" isHypervisor="true">
+				<slotID>10347</slotID>
+				<posY>0</posY>
+			</Slot>
+			<Slot slotNum="2" name="SlotMonitorizado_1" size="4" model="hp3_2u" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>4</posY>
+			</Slot>
+			<Slot slotNum="2" name="SlotMonitorizado_1" size="1" model="cisco1_1u" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>9</posY>
+			</Slot>
+			<Slot slotNum="2" name="SlotMonitorizado_1" size="2" model="LenovoSystemX" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>11</posY>
+			</Slot>
+			<Slot slotNum="2" name="SlotMonitorizado_1" size="2" model="DellEMC_Unity" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>13</posY>
+			</Slot>
+			<Slot slotNum="2" name="SlotMonitorizado_1" size="2" model="DellEMC_Unity" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>15</posY>
+			</Slot>
+		</SlotsRack>
+	</Rack>
+	<Rack rackID="103" name="Rack 1.3" model="BasicModel_Rack" graphicsModel="LP">
+		<Transform>
+		  <posX>2.5</posX>
+		  <posY>0.85</posY>
+		  <posZ>0</posZ>
+		  <rotation>0</rotation>
+		</Transform>
+		<SlotsRack>
+			<Slot slotNum="1" name="Beyonder 14" size="2" model="Dell_EMC_ME4012" type="hypervisor" isHypervisor="true">
+				<slotID>10829</slotID>
+				<posY>0</posY>
+			</Slot>
+			<Slot slotNum="2" name="Cerebro" size="2" model="Dell_EMC_ME4012" type="zabbixAgentMoreData" isHypervisor="true">
+				<slotID>10325</slotID>
+				<posY>4</posY>
+			</Slot>
+			<Slot slotNum="3" name="CITIC Alfresco" size="2" model="dell1_2u" type="empty" isHypervisor="false">
+				<slotID>10565</slotID>
+				<posY>8</posY>
+			</Slot>
+			<Slot slotNum="4" name="SlotMonitorizado_1" size="2" model="hp1_2u" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>16</posY>
+			</Slot>
+			<Slot slotNum="4" name="SlotMonitorizado_1" size="2" model="hp1_2u" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>18</posY>
+			</Slot>
+			<Slot slotNum="4" name="SlotMonitorizado_1" size="2" model="hp1_1u" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>23</posY>
+			</Slot>
+		</SlotsRack>
+	</Rack>
+	<Rack rackID="104" name="Rack 1.4" model="BasicModel_Rack" graphicsModel="LP">
+		<Transform>
+		  <posX>4</posX>
+		  <posY>0.85</posY>
+		  <posZ>0</posZ>
+		  <rotation>0</rotation>
+		</Transform>
+		<SlotsRack>
+			<Slot slotNum="3" name="SlotMonitorizado_1" size="2" model="LenovoSystemX" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>26</posY>
+			</Slot>
+			<Slot slotNum="4" name="SlotMonitorizado_1" size="2" model="LenovoSystemX" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>24</posY>
+			</Slot>
+			<Slot slotNum="1" name="Switch Red" size="1" model="cisco1_1u" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>30</posY>
+			</Slot>
+			<Slot slotNum="2" name="UPS" size="4" model="5600R_HV_208V_UPS" type="little" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>0</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell EMC" size="2" model="DellEMC_Unity" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>10</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell EMC" size="2" model="DellEMC_Unity" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>12</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell EMC" size="2" model="DellEMC_Unity" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>14</posY>
+			</Slot>
+		</SlotsRack>
+	</Rack>
+  	<Rack rackID="105" name="Rack 1.5" model="BasicModel_Rack" graphicsModel="LP">
+		<Transform>
+		  <posX>5</posX>
+		  <posY>0.85</posY>
+		  <posZ>-0.5</posZ>
+		  <rotation>0</rotation>
+		</Transform>
+		<SlotsRack>
+			<Slot slotNum="2" name="Dell PowerEdge" size="2" model="Dell_PowerEdge_FC830_16" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>4</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell PowerEdge" size="2" model="Dell_PowerEdge_FC830_16" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>6</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell PowerEdge" size="2" model="Dell_PowerEdge_FC830_16" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>8</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell PowerEdge" size="2" model="Dell_PowerEdge_FC830_16" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>10</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell PowerEdge" size="2" model="Dell_PowerEdge_FC830_16" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>12</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell Ethernet" size="1" model="Dell_Ethernet" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>17</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell PowerEdge" size="2" model="Dell_PowerEdge_FC830_8" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>19</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell PowerEdge" size="2" model="Dell_PowerEdge_FC830_8" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>21</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell PowerEdge" size="2" model="Dell_PowerEdge_FC830_8" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>23</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell PowerEdge" size="2" model="Dell_PowerEdge_FC830_8" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>25</posY>
+			</Slot>
+			<Slot slotNum="2" name="Dell Ethernet" size="1" model="Dell_Ethernet" type="" isHypervisor="false">
+				<slotID>0</slotID>
+				<posY>30</posY>
+			</Slot>
+		</SlotsRack>
+	</Rack>
+	
+	
+	
+	<Rack rackID="201" name="Rack 2.1" model="BasicModel_Rack" graphicsModel="LP">
+		<Transform>
+		  <posX>0</posX>
+		  <posY>0.85</posY>
+		  <posZ>8</posZ>
+		  <rotation>180</rotation>
+		</Transform>
+		<SlotsRack>
+		</SlotsRack>
+	</Rack>
+	<Rack rackID="202" name="Rack 2.2" model="BasicModel_Rack" graphicsModel="LP">
+		<Transform>
+		  <posX>1</posX>
+		  <posY>0.85</posY>
+		  <posZ>8</posZ>
+		  <rotation>180</rotation>
+		</Transform>
+		<SlotsRack>
+		</SlotsRack>
+	</Rack>
+	<Rack rackID="203" name="Rack 2.3" model="BasicModel_Rack" graphicsModel="LP">
+		<Transform>
+		  <posX>2.5</posX>
+		  <posY>0.85</posY>
+		  <posZ>8</posZ>
+		  <rotation>180</rotation>
+		</Transform>
+		<SlotsRack>
+		</SlotsRack>
+	</Rack>
+	<Rack rackID="204" name="Rack 2.4" model="BasicModel_Rack" graphicsModel="LP">
+		<Transform>
+		  <posX>4</posX>
+		  <posY>0.85</posY>
+		  <posZ>8</posZ>
+		  <rotation>180</rotation>
+		</Transform>
+		<SlotsRack>
+		</SlotsRack>
+	</Rack>
+  	<Rack rackID="205" name="Rack 2.5" model="BasicModel_Rack" graphicsModel="LP">
+		<Transform>
+		  <posX>5</posX>
+		  <posY>0.85</posY>
+		  <posZ>8.5</posZ>
+		  <rotation>180</rotation>
+		</Transform>
+		<SlotsRack>
+		</SlotsRack>
+	</Rack>
+	
+  <!-- Other items -->
+	<Other otherID="2" name="InRow 11" model="BasicModel_InRowCooling" graphics="LP">
+		<Transform>
+		  <posX>3.25</posX>
+		  <posY>0.85</posY>
+		  <posZ>0</posZ>
+		  <rotation>180</rotation>
+		</Transform>
+	</Other>
+	<Other otherID="3" name="InRow 12" model="BasicModel_InRowCooling" graphics="LP">
+		<Transform>
+		  <posX>1.75</posX>
+		  <posY>0.85</posY>
+		  <posZ>0</posZ>
+		  <rotation>180</rotation>
+		</Transform>
+	</Other>
+</RacksDefinition>
+</Architecture>

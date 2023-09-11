@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Values only read at begining of program. If changed, restart the application -->
+<IndicatorsPanelModels>
+	<IndicatorPanel id="1">
+		<name>CPU Load</name>
+		<application>CPU</application>
+		<key>cpu1</key>
+		<imageName>cpu_ico</imageName>
+	</IndicatorPanel>
+	<IndicatorPanel id="2">
+		<name>Memory Usage</name>
+		<application>Memory</application>
+		<key>mem1</key>
+		<imageName>ram_ico</imageName>
+	</IndicatorPanel>
+	<IndicatorPanel id="3">
+		<name>Datastore Usage on C:</name>
+		<application>Filesystem C:</application>
+		<key>dat1</key>
+		<imageName>almacenamiento_ico</imageName>
+	</IndicatorPanel>
+	
+	<IndicatorPanel id="4">
+		<name>Datastore Usage on E:</name>
+		<application>Filesystem E:</application>
+		<key>dat2</key>
+		<imageName>almacenamiento_ico</imageName>
+	</IndicatorPanel>
+	
+		<IndicatorPanel id="10">
+		<name>CPU Load</name>
+		<application>CPU</application>
+		<key>cpu_vm</key>
+		<imageName>cpu_ico</imageName>
+	</IndicatorPanel>
+	<IndicatorPanel id="11">
+		<name>Memory Usage</name>
+		<application>Memory</application>
+		<key>mem_vm</key>
+		<imageName>ram_ico</imageName>
+	</IndicatorPanel>
+	<IndicatorPanel id="12">
+		<name>Storage Usage</name>
+		<application>Storage</application>
+		<key>storage_vm</key>
+		<imageName>almacenamiento_ico</imageName>
+	</IndicatorPanel>
+	
+	<IndicatorPanel id="100">
+		<name>VM machines</name>
+		<application>CPU</application>
+		<key>is_VM_used</key>
+		<imageName>usuarios_ico</imageName>
+	</IndicatorPanel>
+	
+	<IndicatorPanel id="20">
+		<name>CPU Load</name>
+		<application>CPU</application>
+		<key>cpu20</key>
+		<imageName>cpu_ico</imageName>
+	</IndicatorPanel>
+	<IndicatorPanel id="21">
+		<name>Memory Usage</name>
+		<application>Memory</application>
+		<key>mem21</key>
+		<imageName>ram_ico</imageName>
+	</IndicatorPanel>
+	<IndicatorPanel id="22">
+		<name>Datastore Usage</name>
+		<application>Datastore</application>
+		<key>dat22</key>
+		<imageName>almacenamiento_ico</imageName>
+	</IndicatorPanel>
+</IndicatorsPanelModels>

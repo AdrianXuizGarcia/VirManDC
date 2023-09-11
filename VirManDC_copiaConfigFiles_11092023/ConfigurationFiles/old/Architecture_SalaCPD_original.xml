@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Last edition: 19/02/2021 14:00 -->
+<Architecture>
+<PlaceDescription sizeX="1" sizeZ="2" />
+<CameraSettings>
+	<posX>6</posX>
+	<posY>2.5</posY>
+	<posZ>9</posZ>
+	<rotation>185</rotation>
+</CameraSettings>
+<RacksDefinition>
+  <Rack rackID="11" name="Rack11" model="netShelterSX" graphics="LD">
+	<Transform>
+      <posX>5</posX>
+	  <posY>0</posY>
+      <posZ>2.5</posZ>
+      <rotation>180</rotation>
+    </Transform>
+    <SlotsRack>
+    </SlotsRack>
+  </Rack>
+    <Rack rackID="12" name="Rack12" model="netShelterSX" graphics="LD">
+	<Transform>
+      <posX>4</posX>
+	  <posY>0</posY>
+      <posZ>2.5</posZ>
+      <rotation>180</rotation>
+    </Transform>
+    <SlotsRack>
+		  <Slot slotNum="1" name="SlotMonitorizado_1" size="2" model="LenovoSystemX" type="little" >
+        <slotID>10346</slotID>
+        <posY>0</posY>
+      </Slot>
+	  	  <Slot slotNum="2" name="SlotMonitorizado_2" size="2" model="LenovoSystemX" type="little" >
+        <slotID>10344</slotID>
+        <posY>2</posY>
+      </Slot>
+	  	  <Slot slotNum="3" name="SlotMonitorizado_3" size="2" model="LenovoSystemX" type="little" >
+        <slotID>10347</slotID>
+        <posY>4</posY>
+      </Slot>
+	  	  <Slot slotNum="4" name="SlotMonitorizado_4" size="2" model="LenovoSystemX" type="little" >
+        <slotID>10345</slotID>
+        <posY>6</posY>
+      </Slot>
+	  	  <Slot slotNum="5" name="SlotMonitorizado_5" size="2" model="DellEMC_Unity" type="little" >
+        <slotID>10342</slotID>
+        <posY>8</posY>
+      </Slot>
+	  <Slot slotNum="9" name="SlotMonitorizado_9" size="2" model="DellEMC_Unity" type="little" >
+        <slotID>10686</slotID>
+        <posY>12</posY>
+      </Slot>
+	  <Slot slotNum="10" name="SlotMonitorizado_13" size="2" model="DellEMC_Unity" type="little" >
+        <slotID>10687</slotID>
+        <posY>14</posY>
+      </Slot>
+	  	  <Slot slotNum="6" name="SlotMonitorizado_10" size="2" model="DellEMC_Unity" type="little" >
+        <slotID>10348</slotID>
+        <posY>26</posY>
+      </Slot>
+	  	  <Slot slotNum="7" name="SlotMonitorizado_11" size="2" model="DellEMC_Unity" type="little" >
+        <slotID>10349</slotID>
+        <posY>24</posY>
+      </Slot>
+	  	  <Slot slotNum="8" name="SlotMonitorizado_12" size="2" model="DellEMC_Unity" type="little" >
+        <slotID>10343</slotID>
+        <posY>22</posY>
+      </Slot>
+    </SlotsRack>
+  </Rack>
+  <Rack rackID="14" name="Rack14" model="netShelterSX" graphics="LD">
+	<Transform>
+      <posX>2.5</posX>
+	  <posY>0</posY>
+      <posZ>2.5</posZ>
+      <rotation>180</rotation>
+    </Transform>
+    <SlotsRack>
+	  <Slot slotNum="1" name="SlotMonitorizado_1" size="2" model="DellEMC_Unity" type="little" >
+        <slotID>10325</slotID>
+        <posY>22</posY>
+      </Slot>
+    </SlotsRack>
+  </Rack>
+    <Rack rackID="16" name="Rack16" model="netShelterSX" graphics="LD">
+	<Transform>
+      <posX>1</posX>
+	  <posY>0</posY>
+      <posZ>2.5</posZ>
+      <rotation>180</rotation>
+    </Transform>
+    <SlotsRack>
+    </SlotsRack>
+  </Rack>
+  <Rack rackID="17" name="Rack17" model="netShelterSX" graphics="LD">
+	<Transform>
+      <posX>0</posX>
+	  <posY>0</posY>
+      <posZ>2.5</posZ>
+      <rotation>180</rotation>
+    </Transform>
+    <SlotsRack>
+	<Slot slotID="1" name="SlotMonitorizado_1" size="1" model="LenovoSystemX" type="internet" >
+        <slotID>10.56.64.87</slotID>
+        <posY>0</posY>
+      </Slot>
+      <Slot slotID="2" name="SlotMonitorizado_2" size="2" model="dell3_2u" type="internet" >
+        <slotID>10.56.64.71</slotID>
+        <posY>2</posY>
+      </Slot>
+	  <Slot slotID="3" name="SlotMonitorizado_3" size="3" model="dell1_2u" type="normal" >
+        <slotID>193.147.40.194</slotID>
+        <posY>4</posY>
+      </Slot>
+	  	  <Slot slotID="4" name="Zabbix server" size="2" model="dell2_2u" type="basic" >
+        <slotID>127.0.0.1</slotID>
+        <posY>7</posY>
+      </Slot>
+	  <!-- Prueba error
+	  <Slot slotID="4" name="SlotMonitorizado_4" size="2" model="lia2_1u" type="normal" >
+        <slotID>193.144.61.00</slotID>
+        <posY>7</posY>
+      </Slot>
+	  -->
+    </SlotsRack>
+  </Rack>
+    <Rack rackID="21" name="Rack21" model="netShelterSX" graphics="LD">
+	<Transform>
+      <posX>5</posX>
+	  <posY>0</posY>
+      <posZ>0</posZ>
+      <rotation>0</rotation>
+    </Transform>
+    <SlotsRack>
+    </SlotsRack>
+  </Rack>
+    <Rack rackID="22" name="Rack22" model="netShelterSX" graphics="LD">
+	<Transform>
+      <posX>4</posX>
+	  <posY>0</posY>
+      <posZ>0</posZ>
+      <rotation>0</rotation>
+    </Transform>
+    <SlotsRack>
+	  <Slot slotID="1" name="SlotMonitorizado_1" size="2" model="dell2_2u" type="basic" >
+        <slotID>10333</slotID>
+        <posY>5</posY>
+      </Slot>
+    </SlotsRack>
+  </Rack>
+    <Rack rackID="24" name="Rack24" model="netShelterSX" graphics="LD">
+	<Transform>
+      <posX>2.5</posX>
+	  <posY>0</posY>
+      <posZ>0</posZ>
+      <rotation>0</rotation>
+    </Transform>
+    <SlotsRack>
+    </SlotsRack>
+  </Rack>
+    <Rack rackID="26" name="Rack26" model="netShelterSX" graphics="LD">
+	<Transform>
+      <posX>1</posX>
+	  <posY>0</posY>
+      <posZ>0</posZ>
+      <rotation>0</rotation>
+    </Transform>
+    <SlotsRack>
+    </SlotsRack>
+  </Rack>
+    <Rack rackID="27" name="Rack27" model="netShelterSX" graphics="LD">
+	<Transform>
+      <posX>0</posX>
+	  <posY>0</posY>
+      <posZ>0</posZ>
+      <rotation>0</rotation>
+    </Transform>
+    <SlotsRack>
+    </SlotsRack>
+  </Rack>
+  <!-- Other items -->
+    <Other otherID="1" name="InRow11" model="InRowCoolingSystem" graphics="LD">
+	<Transform>
+      <posX>3.5</posX>
+	  <posY>0</posY>
+      <posZ>3</posZ>
+      <rotation>0</rotation>
+    </Transform>
+  </Other>
+  <Other otherID="4" name="InRow12" model="InRowCoolingSystem" graphics="LD">
+	<Transform>
+      <posX>2</posX>
+	  <posY>0</posY>
+      <posZ>3</posZ>
+      <rotation>0</rotation>
+    </Transform>
+  </Other>
+  <Other otherID="2" name="InRow21" model="InRowCoolingSystem" graphics="LD">
+	<Transform>
+      <posX>3</posX>
+	  <posY>0</posY>
+      <posZ>-0.5</posZ>
+      <rotation>180</rotation>
+    </Transform>
+  </Other>
+  <Other otherID="3" name="InRow22" model="InRowCoolingSystem" graphics="LD">
+	<Transform>
+      <posX>1.5</posX>
+	  <posY>0</posY>
+      <posZ>-0.5</posZ>
+      <rotation>180</rotation>
+    </Transform>
+  </Other>
+</RacksDefinition>
+</Architecture>

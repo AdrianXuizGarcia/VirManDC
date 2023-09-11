@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Values only read at begining of program. If changed, restart the application -->
+<KeyValueModels>
+<!-- type simple check vmware -->
+	<KeyValueModel id="cpu1">
+		<key>system.cpu.util</key>
+		<topLimit>100</topLimit>
+	</KeyValueModel>
+	<KeyValueModel id="mem1">
+		<key>vm.memory.util</key>
+		<topLimit>100</topLimit>
+	</KeyValueModel>
+		<KeyValueModel id="dat1">
+		<key>vfs.fs.size[C:,pused]</key>
+		<topLimit>100</topLimit>
+	</KeyValueModel>
+		<KeyValueModel id="dat2">
+		<key>vfs.fs.size[E:,pused]</key>
+		<topLimit>100</topLimit>
+	</KeyValueModel>
+	
+	
+	
+	<KeyValueModel id="storage_vm">
+		<key>vmware.vm.storage.committed[{$URL},{HOST.HOST}]</key>
+		<topLimit>1000000</topLimit>
+	</KeyValueModel>
+	<KeyValueModel id="cpu_vm">
+		<key>vmware.vm.cpu.usage[{$URL},{HOST.HOST}]</key>
+		<topLimit>500</topLimit>
+	</KeyValueModel>
+	<KeyValueModel id="mem_vm">
+		<key>vmware.vm.memory.size[{$URL},{HOST.HOST}]</key>
+		<topLimit>100000</topLimit>
+	</KeyValueModel>
+	<KeyValueModel id="gen_vm">
+		<key>vmware.hv.memory.used[{$URL},{HOST.HOST}]</key>
+		<topLimit>1000000</topLimit>
+	</KeyValueModel>
+	
+	<KeyValueModel id="is_VM_used">
+		<key>vmware.vm.cpu.usage[{$URL},{HOST.HOST}]</key>
+		<topLimit>1</topLimit>
+	</KeyValueModel>
+	
+	<!-- type simple check vmware -->
+	<KeyValueModel id="cpu20">
+		<key>vmware.hv.cpu.usage[{$URL},{HOST.HOST}]</key>
+		<topLimit>230000000000</topLimit> <!-- Calculado en base al top alcanzado en Zabbix -->
+	</KeyValueModel>
+		<KeyValueModel id="mem21">
+		<key>vmware.hv.memory.percent[{$URL},{HOST.HOST}]</key>
+		<topLimit>100</topLimit>
+	</KeyValueModel>
+		<KeyValueModel id="dat22">
+		<key>vmware.hv.datastore.size[{$URL},{HOST.HOST},Datastore-SSD-450F-11,pfree]</key>
+		<topLimit>100</topLimit>
+	</KeyValueModel>
+	
+	
+</KeyValueModels>

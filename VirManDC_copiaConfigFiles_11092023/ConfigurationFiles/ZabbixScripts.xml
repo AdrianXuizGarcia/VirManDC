@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Values only read at begining of program. If changed, restart the application -->
+<ZabbixScriptList>
+	<ZabbixScript id="1">
+		<ShowName>Ping</ShowName>
+	</ZabbixScript>
+	<ZabbixScript id="2">
+		<ShowName>Comprobar Sistema Operativo</ShowName>
+	</ZabbixScript>
+	<ZabbixScript id="3">
+		<ShowName>Datastore Usage</ShowName>
+	</ZabbixScript>
+</ZabbixScriptList>

@@ -34816,9 +34816,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainTransform: {fileID: 1185925280758744926}
-  positionToKeep: {x: 0, y: 0.3, z: 1}
+  positionToKeep: {x: 0, y: 0, z: 0}
   initialRotation: {x: 0, y: 0, z: 0}
-  active: 1
+  active: 0
 --- !u!1 &7542182299345397704
 GameObject:
   m_ObjectHideFlags: 0

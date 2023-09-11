@@ -1,0 +1,60 @@
+Mono path[0] = 'C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Managed'
+Mono config path = 'C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/MonoBleedingEdge/etc'
+Plugins: Failed to load 'C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Plugins\x86_64/AudioPluginMicrosoftSpatializerCrossPlatform.dll' because one or more of its dependencies could not be loaded.
+Initialize engine version: 2020.3.41f1 (7c19dc9acfda)
+[Subsystems] Discovering subsystems at path C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/UnitySubsystems
+[Subsystems] No descriptors matched for  examples in UnitySubsystems/MicrosoftOpenXRPlugin/UnitySubsystemsManifest.json.
+[Subsystems] 1 'inputs' descriptors matched in UnitySubsystems/MicrosoftOpenXRPlugin/UnitySubsystemsManifest.json
+[Subsystems] No descriptors matched for  displays in UnitySubsystems/MicrosoftOpenXRPlugin/UnitySubsystemsManifest.json.
+[Subsystems] 1 'meshings' descriptors matched in UnitySubsystems/MicrosoftOpenXRPlugin/UnitySubsystemsManifest.json
+[Subsystems] No descriptors matched for  examples in UnitySubsystems/UnityOpenXR/UnitySubsystemsManifest.json.
+[Subsystems] 1 'inputs' descriptors matched in UnitySubsystems/UnityOpenXR/UnitySubsystemsManifest.json
+[Subsystems] 1 'displays' descriptors matched in UnitySubsystems/UnityOpenXR/UnitySubsystemsManifest.json
+[Subsystems] No descriptors matched for  meshings in UnitySubsystems/UnityOpenXR/UnitySubsystemsManifest.json.
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 2060 (ID=0x1f15)
+    Vendor:   
+    VRAM:     5980 MB
+    Driver:   30.0.15.1278
+Begin MonoManager ReloadAssembly
+- Completed reload, in  3.382 seconds
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/MicrosoftOpenXRPlugin
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/MicrosoftOpenXRPlugin.dll
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/MicrosoftOpenXRPlugin
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/libMicrosoftOpenXRPlugin
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/libMicrosoftOpenXRPlugin.dll
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/libMicrosoftOpenXRPlugin
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/MicrosoftOpenXRPlugin
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/MicrosoftOpenXRPlugin.dll
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/MicrosoftOpenXRPlugin
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/libMicrosoftOpenXRPlugin
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/libMicrosoftOpenXRPlugin.dll
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/libMicrosoftOpenXRPlugin
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/MicrosoftOpenXRPlugin
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/MicrosoftOpenXRPlugin.dll
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/MicrosoftOpenXRPlugin
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/libMicrosoftOpenXRPlugin
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/libMicrosoftOpenXRPlugin.dll
+Fallback handler could not load library C:/Users/AdrianPC/Desktop/TFM/UnityProject/VirManDC_Repo/VirManDC/Builds/PruebaWindows/VirManDC_Data/Mono/libMicrosoftOpenXRPlugin
+DllNotFoundException: MicrosoftOpenXRPlugin
+  at (wrapper managed-to-native) Microsoft.MixedReality.OpenXR.NativeLib.SetPluginEnvironment(Microsoft.MixedReality.OpenXR.PluginEnvironment,string)
+  at Microsoft.MixedReality.OpenXR.PluginEnvironmentSubsystem.InitializePlugin () [0x00013] in <d0eb1eff8e67474e86eb0a5c0e21f725>:0 
+  at Microsoft.MixedReality.OpenXR.OpenXRFeaturePlugin`1[TPlugin].OnEnable () [0x00006] in <d0eb1eff8e67474e86eb0a5c0e21f725>:0 
+
+<RI> Initializing input.
+New input system (experimental) initialized
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.240600 ms
+Unable to register IMixedRealityInputDeviceManager data provider (OpenVR Device Manager) because the value of concreteType is null.
+This may be caused by code being stripped during linking. The link.xml file in the MixedRealityToolkit.Generated folder is used to control code preservation.
+More information can be found at https://docs.unity3d.com/Manual/ManagedCodeStripping.html.
+Setting up 6 worker threads for Enlighten.
+  Thread -> id: 1ab4 -> priority: 1 
+  Thread -> id: 2e2c -> priority: 1 
+  Thread -> id: 1680 -> priority: 1 
+  Thread -> id: 3ed4 -> priority: 1 
+  Thread -> id: 33a4 -> priority: 1 
+  Thread -> id: 3918 -> priority: 1 

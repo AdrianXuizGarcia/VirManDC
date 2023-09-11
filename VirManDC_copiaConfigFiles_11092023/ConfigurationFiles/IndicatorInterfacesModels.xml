@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Values only read at begining of program. If changed, restart the application -->
+<IndicatorInterfacesModels>
+	<panelData id="empty">
+		<indicator1>0</indicator1>
+		<indicator2>0</indicator2>
+		<indicator3>0</indicator3>
+		<indicator4>0</indicator4>
+	</panelData>
+	<panelData id="little">
+		<indicator1>100</indicator1>
+		<indicator2>3</indicator2>
+		<indicator3>2</indicator3>
+		<indicator4>1</indicator4>
+	</panelData>
+	
+	<panelData id="zabbixAgent">
+		<indicator1>1</indicator1>
+		<indicator2>2</indicator2>
+		<indicator3>3</indicator3>
+		<indicator4>0</indicator4>
+	</panelData>
+		<panelData id="zabbixAgentMoreData">
+		<indicator1>1</indicator1>
+		<indicator2>2</indicator2>
+		<indicator3>3</indicator3>
+		<indicator4>4</indicator4>
+	</panelData>
+	<panelData id="hypervisor">
+		<indicator1>20</indicator1>
+		<indicator2>21</indicator2>
+		<indicator3>22</indicator3>
+		<indicator4>0</indicator4>
+	</panelData>
+</IndicatorInterfacesModels>
