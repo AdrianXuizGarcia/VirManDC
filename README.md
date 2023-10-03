@@ -7,3 +7,6 @@ For more info, check the [wiki](https://github.com/AdrianXuizGarcia/VirManDC/wik
 
 ## What is VirManDC?
 Its acronym stands for Virtual Management Data Center. It is an application for HoloLens 2 capable of representing the graphical model of a Data Center and displaying the information associated with each server monitored by a Zabbix service through its API.
+
+## License
+Licensed under MIT License.
