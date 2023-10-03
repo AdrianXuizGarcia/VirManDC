@@ -1,7 +1,9 @@
 # VirManDC
-Bienvenido al repositorio oficial de VirManDC. El código y los recursos aquí presentes corresponden a la versión de Septiembre 2023, para su entrega como parte del Trabajo de Fin de Máster del MUEI de la UDC.
+Welcome to the official VirManDC repository. The code and resources here correspond to the September 2023 version, to be delivered as part of the Master's Thesis of the MUEI of the UDC.
 
-Se incluye la carpeta principal del proyecto, lista para ser abierta desde Unity (versión 2020.3.41f1), y la carpeta de ficheros de configuración que debe ser copiada en el dispositivo HoloLens 2.
+Included is the main project folder, ready to be opened from Unity (version 2020.3.41f1), and the configuration files folder to be copied to the HoloLens 2 device.
 
-## ¿Qué es VirManDC?
-Sus siglas corresponden a Virtual Management Data Center. Se trata de una aplicación para HoloLens 2 capaz de representar el modelo gráfico de un CPD y mostrar la información asociada a cada servidor monitorizado por un servicio Zabbix a través de su API
+For more info, check the [wiki](https://python-poetry.org/)
+
+## What is VirManDC?
+Its acronym stands for Virtual Management Data Center. It is an application for HoloLens 2 capable of representing the graphical model of a Data Center and displaying the information associated with each server monitored by a Zabbix service through its API.
