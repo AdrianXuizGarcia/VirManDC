@@ -78,16 +78,27 @@ public class StartController_WelcomeScene : MonoBehaviour
 
     private IEnumerator MakeLogInPetitionCo(){
 		string responseString = "";
-        yield return StartCoroutine(apiPetitions.MakeLogInPetition(
-            StringCipher.Decrypt(ZabbixConfig.encryptedUser,VMDCEncrypt.PassPhrase),
-            StringCipher.Decrypt(ZabbixConfig.encryptedPass,VMDCEncrypt.PassPhrase),
-            (string aux) => responseString=aux));
-        if (responseString=="" || responseString==null){
-            ConectionIsBad();
-        } else {
-            ConectionIsOk(responseString);
+        if (ZabbixConfig.encryptedUser != string.Empty && ZabbixConfig.encryptedPass != string.Empty)
+        {
+            yield return StartCoroutine(apiPetitions.MakeLogInPetition(
+                StringCipher.Decrypt(ZabbixConfig.encryptedUser, VMDCEncrypt.PassPhrase),
+                StringCipher.Decrypt(ZabbixConfig.encryptedPass, VMDCEncrypt.PassPhrase),
+                (string aux) => responseString = aux));
+            if (responseString == "" || responseString == null)
+            {
+                ConectionIsBad();
+            }
+            else
+            {
+                ConectionIsOk(responseString);
+            }
         }
-	}
+        else
+        {
+            ConectionIsBad();
+            ErrorManager.NewErrorMessage("No user or password provided for API conection");
+        }
+    }
 
     private void ConectionIsOk(string authKey){
         ZabbixConfig.authKey = authKey;

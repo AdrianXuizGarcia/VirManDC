@@ -51,8 +51,8 @@ public class SettingsMenuController : MonoBehaviour
 	private void SetActualValuesToPlaceHolder(){
 		url_IPServer.text = ZabbixConfig.ipServer;
 		url_ZabbixAPI.text = ZabbixConfig.urlZabbixAPI;
-		userText.text = StringCipher.Decrypt(ZabbixConfig.encryptedUser, VMDCEncrypt.PassPhrase);
-		passText.text = StringCipher.Decrypt(ZabbixConfig.encryptedPass,VMDCEncrypt.PassPhrase);
+		userText.text = ZabbixConfig.encryptedUser!=string.Empty ? StringCipher.Decrypt(ZabbixConfig.encryptedUser, VMDCEncrypt.PassPhrase) : string.Empty;
+		passText.text = ZabbixConfig.encryptedPass!=string.Empty ? StringCipher.Decrypt(ZabbixConfig.encryptedPass, VMDCEncrypt.PassPhrase) : string.Empty;
 	}
 	
     /// <summary>
