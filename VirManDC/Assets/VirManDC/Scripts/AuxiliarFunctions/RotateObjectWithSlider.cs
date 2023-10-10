@@ -1,3 +1,6 @@
+// Copyright (c) 2023 Adrián Xuíz García.
+// Licensed under the MIT License.
+
 using Microsoft.MixedReality.Toolkit.UI;
 using UnityEngine;
 

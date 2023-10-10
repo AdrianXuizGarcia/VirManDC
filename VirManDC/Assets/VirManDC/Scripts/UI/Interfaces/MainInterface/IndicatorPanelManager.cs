@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿// Copyright (c) 2023 Adrián Xuíz García.
+// Licensed under the MIT License.
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using AuxiliarMethods;

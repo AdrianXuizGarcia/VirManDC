@@ -1,4 +1,7 @@
-﻿using System;
+﻿// Copyright (c) 2023 Adrián Xuíz García.
+// Licensed under the MIT License.
+
+using System;
 using System.Collections;
 using UnityEngine;
 using VMDC.Dtos;

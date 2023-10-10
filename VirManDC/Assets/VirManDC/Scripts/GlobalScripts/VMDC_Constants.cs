@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿// Copyright (c) 2023 Adrián Xuíz García.
+// Licensed under the MIT License.
+
+using UnityEngine;
 using System.IO;
 
 namespace VMDC.Constants

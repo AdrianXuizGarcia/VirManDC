@@ -1,4 +1,7 @@
-﻿using TMPro;
+﻿// Copyright (c) 2023 Adrián Xuíz García.
+// Licensed under the MIT License.
+
+using TMPro;
 using UnityEngine;
 
 public class DataPanelElementController : MonoBehaviour {
