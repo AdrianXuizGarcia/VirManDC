@@ -1,7 +1,7 @@
 # VirManDC
 Welcome to the official VirManDC repository. The code and resources here correspond to the September 2023 version, to be delivered as part of the Master's Thesis of the MUEI of the UDC.
 
-Included is the main project folder, ready to be opened from Unity (version 2020.3.41f1), and the configuration files folder to be copied to the HoloLens 2 device.
+Its included the main project folder, ready to be opened from Unity (version 2020.3.41f1), the configuration files folder to be copied to the HoloLens 2 device and the main documentation of the project.
 
 For more info, check the [wiki](https://github.com/AdrianXuizGarcia/VirManDC/wiki).
 
