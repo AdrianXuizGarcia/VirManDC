@@ -1,0 +1,30 @@
+name: Prevent Direct PRs to Main
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+    branches:
+      - main
+
+jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name rules
+        run: |
+          echo "Base branch: ${{ github.event.pull_request.base.ref }}"
+          echo "Head branch: ${{ github.event.pull_request.head.ref }}"
+
+          BASE_BRANCH="${{ github.event.pull_request.base.ref }}"
+          HEAD_BRANCH="${{ github.event.pull_request.head.ref }}"
+
+          if [ "$BASE_BRANCH" = "main" ]; then
+            if [ "$HEAD_BRANCH" != "dev" ] && [[ "$HEAD_BRANCH" != *"hotfix"* ]]; then
+              echo "❌ No se permiten PRs directas a 'main' que no provengan de 'dev' o ramas con 'hotfix' en el nombre."
+              exit 1
+            else
+              echo "✅ PR válida: desde 'dev' o rama con 'hotfix'."
+            fi
+          else
+            echo "✅ La PR no va dirigida a 'main'."
+          fi
